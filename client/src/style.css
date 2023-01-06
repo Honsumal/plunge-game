@@ -1,0 +1,407 @@
+:root{
+    --prs:#003049;
+    --mxr:#d62828;
+    --ora:#f77f00;
+    --myr:#fcbf49;
+    --lmm:#eae2b7;
+}
+
+
+* {
+    box-sizing: border-box;
+    font-size: 16px;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+
+body {
+    background-color: var(--prs);
+}
+
+.container{
+    background-color: var(--mxr);
+}
+
+/* Page Header */
+h1 {
+    display: inline-block;
+    font-size: 16px;
+    color: var(--prs);    
+}
+
+/* Section Header */
+h2 {
+    margin-bottom: 20px;
+    font-size: 16px;
+    text-align: left;
+    color: var(--prs)
+}
+
+/* Project Labels */
+h3 {
+    margin-top: 10px;
+    margin-bottom: 25px;
+    font-size: 16px;
+    position: relative;
+    color: var(--lmm);
+}
+
+li {
+    display: inline-block;
+    margin-left: 25px; 
+    color: var(--prs);
+}
+
+a {
+   text-decoration: none;
+   color:var(--prs)
+}
+
+.headline {
+    color: var(--myr)
+}
+
+.centered {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+main {
+    width: 85%;
+    display: inline-block;
+}
+
+article {
+    margin-bottom: 20px;
+    padding: 50px;
+    height: fit-content;
+    background-color: var(--lmm);
+}
+
+article a {
+    font-size: 24px;
+    font-weight: bold;
+    color: var(--mxr);
+}
+
+p {
+    color: var(--prs)
+}
+
+textarea {
+    margin-left: 15px
+}
+
+.resume {
+    font-size: 20px;
+
+}
+
+.foot {
+    margin-top: 2.5%;
+    margin-left: -25px;
+}
+
+button {
+    position: relative;
+    margin-top: 25px;
+    margin-left: 48%;
+}
+
+/* Image Rules */
+.self {
+    height: 300px;
+}
+  
+.norm {
+    width: 400px;
+    margin-bottom: 25px;
+    border-radius: 10px;
+}
+
+/* Flexbox Rules */
+.row {
+
+    display: flex;
+    flex-wrap: wrap;
+    margin-top: 2%;
+}
+  
+.project{
+
+    flex: 1 0 100%;
+    padding: 10px;
+    text-align: center;
+}
+
+/* Nav button Rules */
+.home,
+.proj,
+.abt,
+.cont {
+    font-size: 25px;
+    color: var(--myr);
+    transition: all .2s ease-in-out;
+}
+
+.home:hover,
+.proj:hover,
+.abt:hover,
+.cont:hover {
+    color:white;
+    transform: scale(1.25)
+}
+
+/* Footer button Rules */
+.html,
+.css,
+.js,
+.jqry,
+.btsp,
+.mtcs,
+.hdbs,
+.react,
+.matui,
+.pyth,
+.expr,
+.node,
+.mysql,
+.godb,
+.gql,
+.ansys,
+.math,
+.labv {
+    font-size: 12.5px;
+    color: var(--myr);
+    transition: all .2s ease-in-out;
+}
+
+.html:hover {
+    color: orange;
+    transform: scale(1.25);
+}
+
+.css:hover {
+    color: blue;
+    transform: scale(1.25);
+}
+
+.js:hover {
+    color: white;
+    transform: scale(1.25);
+}
+
+.jqry:hover {
+    color: lightblue;
+    transform: scale(1.25);
+}
+
+.btsp:hover {
+    color:purple;
+    transform: scale(1.25);
+}
+
+.mtcs:hover {
+    color:#eb7077;
+    transform: scale(1.25);
+}
+
+.hdbs:hover {
+    color:#302116;
+    transform: scale(1.25);
+}
+
+.react:hover {
+    color:#5ed3f3;
+    transform: scale(1.25);
+}
+
+.matui:hover {
+    color:#0978e6;
+    transform: scale(1.25);
+}
+
+.pyth:hover {
+    color:#f7d54c;
+    transform: scale(1.25);
+}
+
+.expr:hover {
+    color:#ebd81c;
+    transform: scale(1.25);
+}
+
+.node:hover {
+    color:#8bc238;
+    transform: scale(1.25);
+}
+
+.mysql:hover {
+    color:#005e86;
+    transform: scale(1.25);
+}
+
+.godb:hover {
+    color:#116149;
+    transform: scale(1.25);
+}
+
+.gql:hover {
+    color: #3f27ba;
+    transform:scale(1.25)
+}
+
+.ansys:hover {
+    color:#f4ae25;
+    transform: scale(1.25);
+}
+
+.math:hover {
+    color:#d6272b;
+    transform: scale(1.25);
+}
+
+.labv:hover {
+    color:#f7d700;
+    transform: scale(1.25);
+}
+
+/* Creates a glow around hovered project */
+.project:hover{
+    box-shadow: inset 0px 0px 8px var(--myr), 0 0 15px var(--myr);
+}
+  
+/* Media Queries to change rows depending on screen size*/
+
+@media screen and (min-width: 768px) {
+    h1,
+    h2,
+    h3,
+    h4 {
+        font-size: 24px;
+    }
+
+    nav {
+        padding-top: 15px;
+        margin-top:0px;
+    }
+
+    .proj-box{
+      flex: 0 0 50%;
+      max-width: 50%;
+}
+    .proj-box:last-mxrld {
+      flex-grow: 1;
+    }
+  }
+  
+@media screen and (min-width: 1050px){
+    header {
+        padding-bottom: 0px;
+    }
+
+    h1 {
+        font-size: 36px;
+    }
+
+    .proj-box{
+      flex: 0 0 33%;
+      max-width: 33%;
+    }
+}
+
+@media screen and (min-width: 552px){
+    .html,
+    .css,
+    .js,
+    .jqry,
+    .btsp,
+    .mtcs,
+    .hdbs,
+    .react,
+    .matui,
+    .pyth,
+    .expr,
+    .node,
+    .mysql,
+    .godb,
+    .gql,
+    .ansys,
+    .math,
+    .labv {
+        font-size: 20px;
+    }
+}
+
+@media screen and (min-width: 864px){
+    .html,
+    .css,
+    .js,
+    .jqry,
+    .btsp,
+    .mtcs,
+    .hdbs,
+    .react,
+    .matui,
+    .pyth,
+    .expr,
+    .node,
+    .mysql,
+    .godb,
+    .gql,
+    .ansys,
+    .math,
+    .labv {
+        font-size: 25px;
+    }
+}
+
+@media screen and (min-width: 1008px){
+    .html,
+    .css,
+    .js,
+    .jqry,
+    .btsp,
+    .mtcs,
+    .hdbs,
+    .react,
+    .matui,
+    .pyth,
+    .expr,
+    .node,
+    .mysql,
+    .godb,
+    .gql,
+    .ansys,
+    .math,
+    .labv {
+        font-size: 30px;
+    }
+}
+
+@media screen and (min-width: 1366px){
+    .html,
+    .css,
+    .js,
+    .jqry,
+    .btsp,
+    .mtcs,
+    .hdbs,
+    .react,
+    .matui,
+    .pyth,
+    .expr,
+    .node,
+    .mysql,
+    .godb,
+    .gql
+    .ansys,
+    .math,
+    .labv {
+        font-size: 40px;
+    }
+
+    .foot {
+        margin-top: 1%;
+    }
+}
