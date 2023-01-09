@@ -10,6 +10,10 @@ let pStrike_count = 0;
 let aRavage = false;
 var dipslay = false;
 
+function turn_order () {
+
+}
+
 function fight () {
     console.log(`Battle Start! ${a.name}, ${a.epithet} vs ${e.name}, ${e.epithet}!`);
     a.printStats();
@@ -24,6 +28,7 @@ function fight () {
 
     if (!a.isAlive()) {
         console.log (`${a.name} perished, ${e.name} has triumphed!`)
+        console.log (`Game Over!`)
     } else {
         console.log(`${e.name} has perished, ${a.name} is victorious!`)
         a.levelUp()
