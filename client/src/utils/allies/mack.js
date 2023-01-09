@@ -5,6 +5,7 @@ class Mack extends Character {
         const name = "Mack";
         const epithet = "the Stannic Sol";
         const hp = 15;
+        const maxHp = 15;
         const atk = 12;
         const spd = 18;
         const standard = "Batter";
@@ -12,31 +13,20 @@ class Mack extends Character {
         const special_2 = "Ravage";
         const rotate = "Disengage";
 
-        super (name, epithet, hp, atk, spd, standard, special_1, special_2, rotate)
+        super (name, epithet, hp, maxHp, atk, spd, standard, special_1, special_2, rotate)
     };
 
-    special_1(opp, pStrike_count) {
-        opp.hp -= (this.atk * 0.5 * (pStrike_count + 1))
-        pStrike_count ++
-    }
-
-    rotate(next, active){
-        if (active.character === "Mack") {
-            active.character = next;
-        }
-    }
-
-    entry (active) {
-        if (active.ally.dipslay) {
-            this.spd = this.spd * 0.5;
-        }
+    spec_1(opp, pStrike_count) {
+        opp.hp -= this.atk * 0.5 *(1 + pStrike_count);
+        console.log(`${this.name} attacked ${opp.name} using ${this.special_1} for ${this.atk * 0.5 * (1 + pStrike_count)} damage!`)
     }
 
     levelUp () {
         this.level ++;
         this.hp += 2;
+        this.maxHp += 2;
         this.atk ++;
-        this.spd += 3;
+        this.spd += 3;       
     }
 }
 

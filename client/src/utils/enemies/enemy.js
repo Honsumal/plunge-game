@@ -1,9 +1,10 @@
 class Enemy {
-    constructor(name, epithet, level, hp, atk, spd, standard, special_1, special_2, special_3) {
+    constructor(name, epithet, level, hp, maxHp, atk, spd, standard, special_1, special_2, special_3) {
         this.name = name;
         this.epithet = epithet
         this.level = level;
         this.hp = hp;
+        this.maxHp = maxHp;
         this.atk = atk;
         this.spd = spd;
         this.standard = standard;
@@ -12,8 +13,15 @@ class Enemy {
         this.special_3 = special_3;
     }
 
-    attack(opp, active) {
-        opp.hp -= this.atk * (1 + active.ally.ravage * 0.2)
+    attack(opp, aRavage) {
+        opp.hp -= this.atk * (1 + aRavage * 0.2)
+        console.log(`${this.name} attacked ${opp.name} using ${this.standard} for ${this.atk * (1 + aRavage * 0.2)} damage!`)
+    }
+
+    turnStart(cheese) {
+        if (cheese) {
+            this.hp += 0.00625 * this.maxHp
+        }
     }
 
     printStats() {

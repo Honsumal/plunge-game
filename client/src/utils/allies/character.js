@@ -1,10 +1,11 @@
 class Character {
-    constructor (name, epithet, hp, atk, spd, standard, special_1, special_2, rotate) {
+    constructor (name, epithet, hp, maxHp, atk, spd, standard, special_1, special_2, rotate) {
         this.name = name;
         this.epithet = epithet
         this.level = 1;
         this.atk = atk;
         this.hp = hp;
+        this.maxHp = maxHp;
         this.spd = spd;
         this.standard = standard;
         this.special_1 = special_1;
@@ -14,6 +15,19 @@ class Character {
 
     attack(opp) {
         opp.hp -= this.atk
+        console.log(`${this.name} attacked ${opp.name} using ${this.standard} for ${this.atk} damage!`)
+    }
+
+    rotate(next, active){
+        if (active.character === "Mack") {
+            active.character = next;
+        }
+    }
+
+    turnStart (dipslay) {
+        if (dipslay) {
+            this.spd = this.spd * 0.5;
+        }
     }
 
     printStats() {

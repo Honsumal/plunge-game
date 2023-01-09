@@ -5,36 +5,33 @@ class Melchor extends Enemy {
         const name = "Melchor";
         const epithet = "Slayer of Dips";
         const level = 3
-        const hp = 1200;
-        const atk = 14;
+        const hp = 80;
+        const maxHp = 80;
+        const atk = 4;
         const spd = 12;
         const standard = "Dipstrike";
         const special_1 = "Ravage";
         const special_2 = "Dipslay";
 
-        super (name, epithet, level, hp, atk, spd, standard, special_1, special_2)
+        super (name, epithet, level, hp, maxHp, atk, spd, standard, special_1, special_2)
     };
 
-    special_1 (opp, active){
-        if (!active.ally.ravage) {
+    spec_1 (opp, aRavage){
+        if (!aRavage) {
             opp.hp -= this.atk * 0.8;
-            active.ally.ravage = !active.ally.ravage;
+            console.log(`${this.name} attacked ${opp.name} using ${this.special_1} for ${this.atk * 0.8 * (1 + aRavage * 0.2)} damage!`)
         } else {
             opp.hp -= this.atk * 0.8 * 1.2;
+            console.log(`${this.name} attacked ${opp.name} using ${this.special_1} for ${this.atk * 0.8 * (1 + aRavage * 0.2)} damage!`)
         }
     }
 
-    special_2 (active) {
-        if (this.hp < 600 || this.hp === 600) {
-           active.ally.dipslay = !active.ally.dipslay;
+    spec_2 (dipslay) {
+        if (this.hp < 40 || this.hp === 40) {
+           dipslay = true;
         }
     }
 
 }
-
-const m = new Melchor
-
-m.printStats()
-m.printActions()
 
 module.exports = Melchor
