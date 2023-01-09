@@ -11,6 +11,7 @@ class Character {
         this.special_1 = special_1;
         this.special_2 = special_2;
         this.rotate = rotate;
+        this.dipslay = false;
     }
 
     attack(opp) {
@@ -25,8 +26,9 @@ class Character {
     }
 
     turnStart (dipslay) {
-        if (dipslay) {
+        if (dipslay && !this.dipslay) {
             this.spd = this.spd * 0.5;
+            this.dipslay = true;
         }
     }
 

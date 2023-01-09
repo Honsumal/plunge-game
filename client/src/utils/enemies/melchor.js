@@ -5,8 +5,8 @@ class Melchor extends Enemy {
         const name = "Melchor";
         const epithet = "Slayer of Dips";
         const level = 3
-        const hp = 80;
-        const maxHp = 80;
+        const hp = 160;
+        const maxHp = 160;
         const atk = 4;
         const spd = 12;
         const standard = "Dipstrike";
@@ -23,12 +23,6 @@ class Melchor extends Enemy {
         } else {
             opp.hp -= this.atk * 0.8 * 1.2;
             console.log(`${this.name} attacked ${opp.name} using ${this.special_1} for ${this.atk * 0.8 * (1 + aRavage * 0.2)} damage!`)
-        }
-    }
-
-    spec_2 (dipslay) {
-        if (this.hp < 40 || this.hp === 40) {
-           dipslay = true;
         }
     }
 
