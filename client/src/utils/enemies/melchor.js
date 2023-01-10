@@ -16,13 +16,25 @@ class Melchor extends Enemy {
         super (name, epithet, level, hp, maxHp, atk, spd, standard, special_1, special_2)
     };
 
-    spec_1 (opp, aRavage){
-        if (!aRavage) {
+    spec_1 (opp){
+        if (!this.aRavage) {
             opp.hp -= this.atk * 0.8;
-            console.log(`${this.name} attacked ${opp.name} using ${this.special_1} for ${this.atk * 0.8 * (1 + aRavage * 0.2)} damage!`)
+            opp.hp.toFixed(2)
+            console.log(`${this.name} attacked ${opp.name} using ${this.special_1} for ${this.atk * 0.8 * (1 + this.aRavage * 0.2)} damage!`)
+            this.aRavage = true;
         } else {
             opp.hp -= this.atk * 0.8 * 1.2;
-            console.log(`${this.name} attacked ${opp.name} using ${this.special_1} for ${this.atk * 0.8 * (1 + aRavage * 0.2)} damage!`)
+            opp.hp.toFixed(2)
+            console.log(`${this.name} attacked ${opp.name} using ${this.special_1} for ${this.atk * 0.8 * (1 + this.aRavage * 0.2)} damage!`)
+        }
+    }
+
+    strike (opp) {
+        let dice = Math.floor(Math.random() * 2);
+        if (dice === 0) {
+            return this.attack(opp)
+        } else {
+            return this.spec_1(opp)
         }
     }
 

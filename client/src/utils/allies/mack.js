@@ -16,9 +16,12 @@ class Mack extends Character {
         super (name, epithet, hp, maxHp, atk, spd, standard, special_1, special_2, rotate)
     };
 
-    spec_1(opp, pStrike_count) {
-        opp.hp -= this.atk * 0.5 *(1 + pStrike_count);
-        console.log(`${this.name} attacked ${opp.name} using ${this.special_1} for ${this.atk * 0.5 * (1 + pStrike_count)} damage!`)
+
+    spec_1(opp) {
+        opp.hp -= this.atk * 0.5 *(1 + this.pStrike_count);
+        opp.hp.toFixed(2)
+        console.log(`${this.name} attacked ${opp.name} using ${this.special_1} for ${this.atk * 0.5 * (1 + this.pStrike_count)} damage!`);
+        this.pStrike_count ++;
     }
 
     levelUp () {

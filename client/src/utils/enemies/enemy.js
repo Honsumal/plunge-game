@@ -11,11 +11,13 @@ class Enemy {
         this.special_1 = special_1;
         this.special_2 = special_2;
         this.special_3 = special_3;
+        this.aRavage = false;
     }
 
-    attack(opp, aRavage) {
-        opp.hp -= this.atk * (1 + aRavage * 0.2)
-        console.log(`${this.name} attacked ${opp.name} using ${this.standard} for ${this.atk * (1 + aRavage * 0.2)} damage!`)
+    attack(opp) {
+        opp.hp -= this.atk * (1 + this.aRavage * 0.2)
+        opp.hp.toFixed(2)
+        console.log(`${this.name} attacked ${opp.name} using ${this.standard} for ${this.atk * (1 + this.aRavage * 0.2)} damage!`)
     }
 
     turnStart(cheese) {

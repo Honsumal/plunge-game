@@ -12,10 +12,12 @@ class Character {
         this.special_2 = special_2;
         this.rotate = rotate;
         this.dipslay = false;
+        this.pStrike_count = 0;
     }
 
     attack(opp) {
         opp.hp -= this.atk
+        opp.hp.toFixed(2)
         console.log(`${this.name} attacked ${opp.name} using ${this.standard} for ${this.atk} damage!`)
     }
 
