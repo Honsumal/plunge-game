@@ -1,23 +1,17 @@
 const Mack = require('../allies/mack');
-const Drake = require('../allies/drake');
-const Melchor = require('../enemies/melchor');
+const Bars = require('../enemies/bars');
 const inquirer = require('inquirer');
 
-// let a = new Mack;
-// for (let i = 0; i < 4; i++) {
-//     a.levelUp()
-// }
-
-let a = new Drake;
-for (let i = 0; i < 4; i++) {
+let a = new Mack;
+for (let i = 0; i < 8; i++) {
     a.levelUp()
 }
-
-let e = new Melchor;
+let e = new Bars;
 
 let turn = '';
 
-let dipslay = false;
+let dipslay = false
+let eSlipstream = false;
 
 let turnCounter = 100;
 let turnCount = 1;
@@ -54,23 +48,11 @@ charTurn = [
         type: 'list',
         name: 'action',
         message: 'what would you like to do?',
-        when: a.name === 'Mack',
         choices: [
             'Batter',
             'Pugilistic Strike'
         ]
-    },
-    {
-        type: 'list',
-        name: 'action',
-        message: 'what would you like to do?',
-        when: a.name === 'Drake',
-        choices: [
-            'Dissonance',
-            'Willful Strike'
-        ]
     }
-
 ]
 
 async function fight () {
@@ -81,33 +63,25 @@ async function fight () {
 
     while (a.isAlive() && e.isAlive()) {
         console.log(`Turn ${turnCount}`)
-        if ((e.hp == e.maxHp * 0.5  && !dipslay) || (e.hp < e.maxHp * 0.5 && !dipslay)) {
-            dipslay = true
-            console.log(`Feeling the pressure, Melchor uses Dipslay! All allies have their speed halved!`)
+        if ((e.hp == e.maxHp * 0.7  && !eSlipstream) || (e.hp < e.maxHp * 0.7 && !eSlipstream)) {
+            eSlipstream = true
+            console.log(`Bars's fury rose to a fevour pitch! He cast Slipstream!`)
         }
 
         turn = turnFinder(a, e)
 
-        if (turn.name != "Melchor") {
-            a.turnStart(dipslay);
+        if (turn.name === "Mack") {;
+            a.turnStart();
             await inquirer.prompt(charTurn).then((answers) => {
                 switch (answers.action) {
                     case 'Batter': 
                         a.attack(e);
-                        break
                     case 'Pugilistic Strike':
                         a.spec_1(e);
-                        break
-                    case 'Dissonance':
-                        a.attack(e);
-                        break
-                    case 'Willful Strike': 
-                        a.spec_1(e);
-                        break
                 }
             })
-        } else {
-            e.turnStart();
+        } else if (turn.name === "Bars") {
+            e.turnStart(eSlipstream);
             e.strike(a);
         }
         a.printStats();
@@ -122,10 +96,8 @@ async function fight () {
         console.log (`Game Over!`)
     } else {
         console.log(`${e.name} has perished, ${a.name} is victorious!`)
-        a.levelUp();
-        a.hp = a.maxHp;
-        a.atk = a.baseAtk;
-        a.spd = a.baseSpd;
+        a.levelUp()
+        a.hp = a.maxHp
         console.log(`${a.name} has levelled up!`)
         a.printStats()
     }

@@ -1,19 +1,18 @@
 const Enemy = require('./enemy');
 
-class Melchor extends Enemy {
+class Bars extends Enemy {
     constructor () {
-        const name = "Melchor";
-        const epithet = "Slayer of Dips";
-        const level = 3;
-        const hp = 160;
-        const maxHp = 160;
-        const atk = 4;
-        const spd = 12;
-        const standard = "Dipstrike";
-        const special_1 = "Ravage";
-        const special_2 = "Dipslay";
+        const name = 'Bars';
+        const epithet = 'the Dragon';
+        const level = 5;
+        const hp = 200;
+        const maxHp = 200;
+        const atk = 6;
+        const spd = 15;
+        const standard = 'Fire Breath';
+        const special_1 = 'Ravage';
 
-        super (name, epithet, level, hp, maxHp, atk, spd, standard, special_1, special_2)
+        super (name, epithet, level, hp, maxHp, atk, spd, standard, special_1);
     };
 
     spec_1 (opp){
@@ -37,7 +36,6 @@ class Melchor extends Enemy {
             return this.spec_1(opp)
         }
     }
-
 }
 
-module.exports = Melchor
+module.exports = Bars

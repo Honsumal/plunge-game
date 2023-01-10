@@ -12,6 +12,7 @@ class Enemy {
         this.special_2 = special_2;
         this.special_3 = special_3;
         this.aRavage = false;
+        this.eSlipstream = false;
     }
 
     attack(opp) {
@@ -20,9 +21,11 @@ class Enemy {
         console.log(`${this.name} attacked ${opp.name} using ${this.standard} for ${this.atk * (1 + this.aRavage * 0.2)} damage!`)
     }
 
-    turnStart(cheese) {
-        if (cheese) {
-            this.hp += 0.00625 * this.maxHp
+    turnStart(eSlipstream) {
+        if (eSlipstream && !this.eSlipstream) {
+            this.spd = this.spd * 1.2;
+            this.spd.toFixed(2)
+            this.eSlipstream = true;
         }
     }
 

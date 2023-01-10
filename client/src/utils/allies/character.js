@@ -1,24 +1,40 @@
 class Character {
-    constructor (name, epithet, hp, maxHp, atk, spd, standard, special_1, special_2, rotate) {
+    constructor (name, epithet, hp, maxHp, atk, baseAtk, spd, baseSpd, standard, special_1, special_2, rotate) {
         this.name = name;
         this.epithet = epithet
         this.level = 1;
-        this.atk = atk;
         this.hp = hp;
         this.maxHp = maxHp;
+        this.atk = atk;
+        this.baseAtk = baseAtk;
         this.spd = spd;
+        this.baseSpd = baseSpd;
         this.standard = standard;
         this.special_1 = special_1;
         this.special_2 = special_2;
         this.rotate = rotate;
         this.dipslay = false;
         this.pStrike_count = 0;
+        this.wStrike_count = 0;
     }
 
     attack(opp) {
-        opp.hp -= this.atk
-        opp.hp.toFixed(2)
-        console.log(`${this.name} attacked ${opp.name} using ${this.standard} for ${this.atk} damage!`)
+        if (this.wStrike_count === 0) {
+            opp.hp -= this.atk;
+            opp.hp.toFixed(2);
+            console.log(`${this.name} attacked ${opp.name} using ${this.standard} for ${this.atk} damage!`);
+        } else {
+            opp.hp -= this.atk;
+            this.hp += this.atk * 0.3;
+            opp.hp.toFixed(2);
+            this.hp.toFixed(2);
+            console.log(`${this.name} attacked ${opp.name} using ${this.standard} for ${this.atk} damage!`);
+            console.log(`${this.name} recovered ${this.atk * 0.3} health!`);
+            this.wStrike_count --;
+            if (this.hp > this.maxHp) {
+                this.hp = this.maxHp;
+            }
+        }
     }
 
     rotate(next, active){
