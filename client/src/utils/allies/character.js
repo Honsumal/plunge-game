@@ -13,6 +13,7 @@ class Character {
         this.special_1 = special_1;
         this.special_2 = special_2;
         this.rotate = rotate;
+        this.isActive = false;
         this.dipslay = false;
         this.pStrike_count = 0;
         this.wStrike_count = 0;
@@ -37,9 +38,17 @@ class Character {
         }
     }
 
-    rotate(next, active){
-        if (active.character === "Mack") {
-            active.character = next;
+    rotateTo(next){
+        if (this.name === next.name) {
+            console.log(`${this.name} is already in combat!`)
+        }
+
+        if (next.isAlive()) {
+            this.isActive = false;
+            next.isActive = true;
+            console.log(`${this.name} retreated! ${next.name} stepped up to fight!`)
+        } else {
+            console.log(`${next.name} has fallen, ${this.name} cannot switch out!`)
         }
     }
 
