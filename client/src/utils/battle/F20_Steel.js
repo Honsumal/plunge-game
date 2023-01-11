@@ -52,33 +52,30 @@ function turnFinder (ally, enemy) {
     }
 }
 
-charTurn = [
-    {
-        type: 'list',
-        name: 'action',
-        message: 'what would you like to do?',
-        choices: [
-            active.standard,
-            active.special_1,
-            active.rotate
-        ]
-    },
-    {
-        type: 'list',
-        name: 'rotate',
-        message: 'Who do you want to switch in?',
-        when: (input) => input.action === active.rotate,
-        choices: [
-            'Mack',
-            'Drake',
-            'Back'
-        ]
-    }
-
-]
-
 async function playerTurn () {
-    await inquirer.prompt(charTurn).then((answers) => {
+    await inquirer.prompt([
+        {
+            type: 'list',
+            name: 'action',
+            message: 'what would you like to do?',
+            choices: [
+                active.standard,
+                active.special_1,
+                active.rotate
+            ]
+        },
+        {
+            type: 'list',
+            name: 'rotate',
+            message: 'Who do you want to switch in?',
+            when: (input) => input.action === active.rotate,
+            choices: [
+                'Mack',
+                'Drake',
+                'Back'
+            ]
+        }
+    ]).then((answers) => {
         switch (answers.action) {
             case 'Batter': case 'Dissonance':
                 active.attack(e);
@@ -88,14 +85,14 @@ async function playerTurn () {
                 break
             case 'Disengage': case 'Recall':
                 if (answers.rotate === 'Back') {
-                    return playerTurn()
+                    return playerTurn();
                 } else if (active.name === answers.rotate) {
-                    console.log(`${active.name} is already in combat!`)
-                    return tagOut()
+                    console.log(`${active.name} is already in combat!`);
+                    return tagOut();
 
                 } else if (a.name === answers.rotate && !a.isAlive() || b.name === answers.rotate && !b.isAlive()) {
-                    console.log(`${answers.rotate} has fallen, ${active.name} cannot switch out!`)
-                    return tagOut()
+                    console.log(`${answers.rotate} has fallen, ${active.name} cannot switch out!`);
+                    return tagOut();
 
                 } else {
                     if (a.name === answers.rotate) {
