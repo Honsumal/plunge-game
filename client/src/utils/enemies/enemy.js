@@ -11,14 +11,18 @@ class Enemy {
         this.special_1 = special_1;
         this.special_2 = special_2;
         this.special_3 = special_3;
-        this.aRavage = false;
         this.eSlipstream = false;
     }
 
     attack(opp) {
-        opp.hp -= this.atk * (1 + this.aRavage * 0.2)
+        opp.hp -= this.atk * (1 + opp.ravage * 0.2)
         opp.hp.toFixed(2)
-        console.log(`${this.name} attacked ${opp.name} using ${this.standard} for ${this.atk * (1 + this.aRavage * 0.2)} damage!`)
+        console.log(`${this.name} attacked ${opp.name} using ${this.standard} for ${this.atk * (1 + opp.ravage * 0.2)} damage!`)
+
+        if (opp.sStrike_count > 0) {
+            this.hp -= this.atk * (1 + opp.ravage * 0.2) * 0.3
+            console.log(`${this.name} took ${this.atk * (1 + opp.ravage * 0.2) * 0.3} damage from spikes!`)
+        }
     }
 
     turnStart(eSlipstream) {

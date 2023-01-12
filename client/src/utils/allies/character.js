@@ -15,8 +15,10 @@ class Character {
         this.rotate = rotate;
         this.isActive = false;
         this.dipslay = false;
+        this.ravage = false;
         this.pStrike_count = 0;
         this.wStrike_count = 0;
+        this.sStrike_count = 0;
     }
 
     attack(opp) {
@@ -56,7 +58,15 @@ class Character {
         if (dipslay && !this.dipslay) {
             this.spd = this.spd * 0.5;
             this.dipslay = true;
-        }
+        };
+
+        if (this.sStrike_count > 0) {
+            this.sStrike_count --;
+        };
+
+        if (this.wStrike_count > 0) {
+            this.wStrike_count --;
+        };
     }
 
     printStats() {

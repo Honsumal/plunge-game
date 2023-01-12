@@ -25,6 +25,7 @@ class Drake extends Character {
             this.hp += this.atk * 0.8 * 0.3;
             opp.hp.toFixed(2);
             this.hp.toFixed(2);
+            this.spd = this.spd * 0.7
             console.log(`${this.name} attacked ${opp.name} using ${this.special_1} for ${this.atk * 0.8} damage! Allied attacks now steal some health from enemies!`);
             this.wStrike_count = 4;
             if (this.hp > this.maxHp) {
@@ -35,9 +36,9 @@ class Drake extends Character {
             this.hp += this.atk * 0.8 * 0.3;
             opp.hp.toFixed(2);
             this.hp.toFixed(2);
+            this.spd = this.spd * 0.7
             console.log(`${this.name} attacked ${opp.name} using ${this.special_1} for ${this.atk * 0.8} damage!`);
             console.log(`${this.name} recovered ${this.atk * 0.8 * 0.3} health!`);
-            this.wStrike_count --;
             if (this.hp > this.maxHp) {
                 this.hp = this.maxHp;
             }
