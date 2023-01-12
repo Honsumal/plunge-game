@@ -4,36 +4,16 @@ const Lionel = require('../allies/lionel')
 const Melchor = require('../enemies/melchor');
 const inquirer = require('inquirer');
 
-function turnFinder (ally, enemy) {
+async function F20 (aLv, bLv, cLv) {
     let turnCounter = 100;
     let allyTurnCounter = 0;
     let enemyTurnCounter = 0;
-    
-    while (allyTurnCounter < turnCounter && enemyTurnCounter < turnCounter) {
-        if (allyTurnCounter > turnCounter && allyTurnCounter > enemyTurnCounter) {
-            //console.log (allyTurnCounter, enemyTurnCounter, 1)
-            allyTurnCounter -= turnCounter;
-            return ally
-        } else if (allyTurnCounter = turnCounter && allyTurnCounter > enemyTurnCounter) {
-            //console.log (allyTurnCounter, enemyTurnCounter, 2)
-            allyTurnCounter -= turnCounter;
-            return ally
-        } else if (enemyTurnCounter > turnCounter && enemyTurnCounter > allyTurnCounter) {
-            //console.log (allyTurnCounter, enemyTurnCounter, 3)
-            enemyTurnCounter -= turnCounter;
-            return enemy
-        } else if (enemyTurnCounter = turnCounter && enemyTurnCounter > allyTurnCounter) {
-            //console.log (allyTurnCounter, enemyTurnCounter, 4)
-            enemyTurnCounter -= turnCounter;
-            return enemy
-        }
-        allyTurnCounter += ally.spd;
-        enemyTurnCounter += enemy.spd;
-        //console.log(allyTurnCounter,enemyTurnCounter, 'unga')
-    }
-}
 
-async function F20 (aLv, bLv, cLv) {
+    let turn = '';
+    let dipslay = false;
+    let turnCount = 1;
+    let active = ''
+    
     async function playerTurn () {
         await inquirer.prompt([
             {
@@ -81,14 +61,17 @@ async function F20 (aLv, bLv, cLv) {
                         if (a.name === answers.rotate) {
                             active.rotateTo(a);
                             active = a;
+                            active.turnStart(dipslay);
                             break
                         } else if (b.name === answers.rotate) {
                             active.rotateTo(b);
                             active = b;
+                            active.turnStart(dipslay);
                             break
                         } else if (c.name === answers.rotate) {
                             active.rotateTo(c);
                             active = c;
+                            active.turnStart(dipslay);
                             break
                         }
                     }                     
@@ -114,7 +97,7 @@ async function F20 (aLv, bLv, cLv) {
                 console.log(`${active.name} is already in combat!`)
                 return tagOut()
 
-            } else if (a.name === answers.rotate && !a.isAlive() || b.name === answers.rotate && !b.isAlive()) {
+            } else if (a.name === answers.rotate && !a.isAlive() || b.name === answers.rotate && !b.isAlive() || c.name === answers.rotate && !c.isAlive()) {
                 console.log(`${answers.rotate} has fallen, ${active.name} cannot switch out!`)
                 return tagOut()
 
@@ -122,13 +105,85 @@ async function F20 (aLv, bLv, cLv) {
                 if (a.name === answers.rotate) {
                     active.rotateTo(a);
                     active = a;
+
+                    if (dipslay) {
+                        active.spd = active.baseSpd * 0.5
+                        active.dipslay = true
+                    }
+
+                    active.turnStart(dipslay);
                 } else if (b.name === answers.rotate) {
                     active.rotateTo(b);
                     active = b;
+                    if (dipslay) {
+                        active.spd = active.baseSpd * 0.5
+                        active.dipslay = true
+                    }
+                    active.turnStart(dipslay);
+                } else if (c.name === answers.rotate) {
+                    active.rotateTo(c);
+                    active = c;
+                    if (dipslay) {
+                        active.spd = active.baseSpd * 0.5
+                        active.dipslay = true
+                    }
+                    active.turnStart(dipslay);
                 }
             } 
         })
 
+    }
+    
+    async function startChoice() {
+        await inquirer.prompt([
+            {
+                type: 'list',
+                name: 'start',
+                message: 'Which character do you want to start with?',
+                choices: [
+                    a.name,
+                    b.name,
+                    c.name
+                ]
+            }
+        ]).then((answers) => {
+            if (answers.start === a.name) {
+                active = a;
+                a.active = true;
+            } else if (answers.start === b.name) {
+                active = b;
+                b.active = true;
+            } else {
+                active = c;
+                c.active = true;
+            }
+        })
+    }
+
+    function turnFinder (ally, enemy) {
+    
+        while (allyTurnCounter < turnCounter && enemyTurnCounter < turnCounter) {
+            if (allyTurnCounter > turnCounter && allyTurnCounter > enemyTurnCounter) {
+                //console.log (allyTurnCounter, enemyTurnCounter, 1)
+                allyTurnCounter -= turnCounter;
+                return ally
+            } else if (allyTurnCounter = turnCounter && allyTurnCounter > enemyTurnCounter) {
+                //console.log (allyTurnCounter, enemyTurnCounter, 2)
+                allyTurnCounter -= turnCounter;
+                return ally
+            } else if (enemyTurnCounter > turnCounter && enemyTurnCounter > allyTurnCounter) {
+                //console.log (allyTurnCounter, enemyTurnCounter, 3)
+                enemyTurnCounter -= turnCounter;
+                return enemy
+            } else if (enemyTurnCounter = turnCounter && enemyTurnCounter > allyTurnCounter) {
+                //console.log (allyTurnCounter, enemyTurnCounter, 4)
+                enemyTurnCounter -= turnCounter;
+                return enemy
+            }
+            allyTurnCounter += ally.spd;
+            enemyTurnCounter += enemy.spd;
+            //console.log(allyTurnCounter,enemyTurnCounter, 'unga')
+        }
     }
 
     let a = new Mack;
@@ -148,22 +203,14 @@ async function F20 (aLv, bLv, cLv) {
 
     let e = new Melchor;
 
-    let active = a;
-    a.isActive = true;
-
-    let turn = '';
-
-    let dipslay = false;
-
-    let turnCount = 1;
-
     console.log(`Battle Start! ${a.name}, ${a.epithet} & ${b.name}, ${b.epithet} & ${c.name}, ${c.epithet} vs ${e.name}, ${e.epithet}!`);
+    await startChoice();
     console.log(`${active.name} steps up to fight first!`)
     active.printStats();
     e.printStats();
     console.log(`----------------------------------------------------------------`);
 
-    while ((a.isAlive() || b.isAlive || c.isAlive) && e.isAlive()) {
+    while ((a.isAlive() || b.isAlive() || c.isAlive()) && e.isAlive()) {
         console.log(`Turn ${turnCount}`)
         if ((e.hp == e.maxHp * 0.5  && !dipslay) || (e.hp < e.maxHp * 0.5 && !dipslay)) {
             dipslay = true
@@ -172,7 +219,7 @@ async function F20 (aLv, bLv, cLv) {
 
         turn = turnFinder(active, e)
 
-        if (turn.name != "Melchor") {
+        if (turn.name != e.name) {
             active.turnStart(dipslay);
 
             await playerTurn();
@@ -181,7 +228,7 @@ async function F20 (aLv, bLv, cLv) {
             e.turnStart();
             e.strike(active);
 
-            if (!active.isAlive()) {
+            if (!active.isAlive() && (a.isAlive() || b.isAlive() || c.isAlive())) {
                 console.log(`${active.name} has been defeated!`)
                 await tagOut();
             }
@@ -222,3 +269,5 @@ async function F20 (aLv, bLv, cLv) {
 }
 
 F20(4, 4, 4)
+
+module.exports = F20

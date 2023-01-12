@@ -15,22 +15,27 @@ class Enemy {
     }
 
     attack(opp) {
-        opp.hp -= this.atk * (1 + opp.ravage * 0.2)
-        opp.hp.toFixed(2)
-        console.log(`${this.name} attacked ${opp.name} using ${this.standard} for ${this.atk * (1 + opp.ravage * 0.2)} damage!`)
+        opp.hp -= this.atk * (1 + opp.ravage * 0.2);
+        opp.hp = parseFloat(opp.hp.toFixed(2));
+        console.log(`${this.name} attacked ${opp.name} using ${this.standard} for ${(this.atk * (1 + opp.ravage * 0.2)).toFixed(2)} damage!`);
 
         if (opp.sStrike_count > 0) {
             this.hp -= this.atk * (1 + opp.ravage * 0.2) * 0.3
-            console.log(`${this.name} took ${this.atk * (1 + opp.ravage * 0.2) * 0.3} damage from spikes!`)
+            this.hp = parseFloat(this.hp.toFixed(2));
+            console.log(`${this.name} took ${(this.atk * (1 + opp.ravage * 0.2) * 0.3).toFixed(2)} damage from spikes!`)
         }
     }
 
     turnStart(eSlipstream) {
         if (eSlipstream && !this.eSlipstream) {
             this.spd = this.spd * 1.2;
-            this.spd.toFixed(2)
+            this.spd = parseFloat(this.spd.toFixed(2));
             this.eSlipstream = true;
         }
+
+        this.hp = parseFloat(this.hp.toFixed(2));
+        this.atk = parseFloat(this.atk.toFixed(2));
+        this.spd = parseFloat(this.spd.toFixed(2));
     }
 
     printStats() {

@@ -20,14 +20,14 @@ class Mack extends Character {
 
 
     spec_1(opp) {
-        opp.hp -= this.atk * 0.5 * (1 + this.pStrike_count * 0.5);
-        opp.hp.toFixed(2)
-        console.log(`${this.name} attacked ${opp.name} using ${this.special_1} for ${this.atk * 0.5 * (1 + this.pStrike_count * 0.5)} damage!`);
+        opp.hp -= this.atk * 0.5 * (1 + this.pStrike_count);
+        opp.hp = parseFloat(opp.hp.toFixed(2));
+        console.log(`${this.name} attacked ${opp.name} using ${this.special_1} for ${(this.atk * 0.5 * (1 + this.pStrike_count)).toFixed(2)} damage!`);
         this.pStrike_count ++;
 
         if(this.wStrike_count > 0) {
-            this.hp += this.atk * 0.5 * (1 + this.pStrike_count * 0.5) * 0.3;
-            console.log(`${this.name} recovered ${this.atk * 0.5 * (1 + this.pStrike_count * 0.5) * 0.3} health!`);
+            this.hp += this.atk * 0.5 * (1 + this.pStrike_count) * 0.3;
+            console.log(`${this.name} recovered ${(this.atk * 0.5 * (1 + this.pStrike_count) * 0.3).toFixed(2)} health!`);
 
             if (this.hp > this.maxHp) {
                 this.hp = this.maxHp;

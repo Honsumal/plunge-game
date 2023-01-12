@@ -24,16 +24,15 @@ class Character {
     attack(opp) {
         if (this.wStrike_count === 0) {
             opp.hp -= this.atk;
-            opp.hp.toFixed(2);
-            console.log(`${this.name} attacked ${opp.name} using ${this.standard} for ${this.atk} damage!`);
+            opp.hp = parseFloat(opp.hp.toFixed(2));
+            console.log(`${this.name} attacked ${opp.name} using ${this.standard} for ${(this.atk).toFixed(2)} damage!`);
         } else {
             opp.hp -= this.atk;
             this.hp += this.atk * 0.3;
-            opp.hp.toFixed(2);
-            this.hp.toFixed(2);
-            console.log(`${this.name} attacked ${opp.name} using ${this.standard} for ${this.atk} damage!`);
+            opp.hp = parseFloat(opp.hp.toFixed(2));
+            this.hp = parseFloat(this.hp.toFixed(2));
+            console.log(`${this.name} attacked ${opp.name} using ${this.standard} for ${(this.atk).toFixed(2)} damage!`);
             console.log(`${this.name} recovered ${this.atk * 0.3} health!`);
-            this.wStrike_count --;
             if (this.hp > this.maxHp) {
                 this.hp = this.maxHp;
             }
@@ -47,26 +46,47 @@ class Character {
 
         if (next.isAlive()) {
             this.isActive = false;
+            this.atk = this.baseAtk;
+            this.spd = this.baseSpd;
+
+            next.sStrike_count = this.sStrike_count;
+            next.wStrike_count = this.wStrike_count;
+
             next.isActive = true;
             console.log(`${this.name} retreated! ${next.name} stepped up to fight!`)
         } else {
-            console.log(`${next.name} has fallen, ${this.name} cannot switch out!`)
+            console.log(`${next.name} has already fallen, ${this.name} cannot switch out!`)
         }
     }
 
     turnStart (dipslay) {
         if (dipslay && !this.dipslay) {
             this.spd = this.spd * 0.5;
+            this.spd = parseFloat(this.spd.toFixed(2));
             this.dipslay = true;
         };
 
         if (this.sStrike_count > 0) {
             this.sStrike_count --;
+            if (this.sStrike_count > 0) {
+                console.log(`Spiky Strike active for ${this.sStrike_count} more turns!`)
+            } else {
+                console.log(`Spiky Strike has worn off!`)
+            }
         };
 
         if (this.wStrike_count > 0) {
             this.wStrike_count --;
+            if (this.wStrike_count > 0) {
+                console.log(`Willful Strike active for ${this.wStrike_count} more turns!`)
+            } else {
+                console.log(`Willful Strike has worn off!`)
+            }
         };
+
+        this.hp = parseFloat(this.hp.toFixed(2));
+        this.atk = parseFloat(this.atk.toFixed(2));
+        this.spd = parseFloat(this.spd.toFixed(2));
     }
 
     printStats() {

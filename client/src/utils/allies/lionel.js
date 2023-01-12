@@ -21,14 +21,14 @@ class Lionel extends Character {
     spec_1(opp) {
         if (this.sStrike_count === 0) {            
             opp.hp -= this.atk * 0.8;
-            opp.hp.toFixed(2);
-            this.spd = this.spd * 0.7;
-            console.log(`${this.name} attacked ${opp.name} using ${this.special_1} for ${this.atk * 0.8} damage! Enemy attacks will damage them!`);
-            this.sStrike_count = 4;
+            opp.hp = parseFloat(opp.hp.toFixed(2));
+            //this.spd = this.spd * 0.7;
+            console.log(`${this.name} attacked ${opp.name} using ${this.special_1} for ${(this.atk * 0.8).toFixed(2)} damage! Enemy attacks will damage them!`);
+            this.sStrike_count = 6;
 
             if(this.wStrike_count > 0) {
                 this.hp += this.atk * 0.8 * 0.3;
-                console.log(`${this.name} recovered ${this.atk * 0.8 * 0.3} health!`);
+                console.log(`${this.name} recovered ${(this.atk * 0.8 * 0.3).toFixed(2)} health!`);
 
                 if (this.hp > this.maxHp) {
                     this.hp = this.maxHp;
@@ -37,12 +37,12 @@ class Lionel extends Character {
             
         } else {
             opp.hp -= this.atk * 0.8;
-            opp.hp.toFixed(2);
-            this.spd = this.spd * 0.7;
-            console.log(`${this.name} attacked ${opp.name} using ${this.special_1} for ${this.atk * 0.8} damage!`);
+            opp.hp = parseFloat(opp.hp.toFixed(2));
+            //this.spd = this.spd * 0.7;
+            console.log(`${this.name} attacked ${opp.name} using ${this.special_1} for ${(this.atk * 0.8).toFixed(2)} damage!`);
             if(this.wStrike_count > 0) {
                 this.hp += this.atk * 0.8 * 0.3;
-                console.log(`${this.name} recovered ${this.atk * 0.8 * 0.3} health!`);
+                console.log(`${this.name} recovered ${(this.atk * 0.8 * 0.3).toFixed(2)} health!`);
 
                 if (this.hp > this.maxHp) {
                     this.hp = this.maxHp;
