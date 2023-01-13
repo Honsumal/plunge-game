@@ -50,6 +50,12 @@ class Drake extends Character {
         }
     }
 
+    //Slipstream
+    spec_2 () {
+        this.slipstream_count = 9;
+        this.spd *= 1.2
+    }
+
     levelUp () {
         this.level ++;
         this.hp ++;

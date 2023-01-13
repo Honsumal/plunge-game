@@ -49,9 +49,6 @@ class Enemy {
             this.wStrike --;
         }
 
-        // this.hp = this.hp;
-        // this.atk = this.atk;
-        // this.spd = this.spd;
     }
 
     printStats() {

@@ -16,9 +16,13 @@ class Character {
         this.isActive = false;
         this.dipslay = false;
         this.ravage = false;
+        this.protect = false;
+        this.barrier = false;
+        this.barrier_count = 0;
         this.pStrike_count = 0;
         this.wStrike_count = 0;
         this.sStrike_count = 0;
+        this.slipstream_count = 0;
     }
 
     attack(opp) {
@@ -63,6 +67,11 @@ class Character {
             next.sStrike_count = this.sStrike_count;
             next.wStrike_count = this.wStrike_count;
 
+            if (this.slipstream_count > 0) {
+                next.slipStream_count = this.slipstream_count;
+                next.spd *= 1.2
+            }
+
             next.isActive = true;
             console.log(`${this.name} retreated! ${next.name} stepped up to fight!`)
         } else {
@@ -94,9 +103,16 @@ class Character {
             }
         };
 
-        // this.hp = this.hp;
-        // this.atk = this.atk;
-        // this.spd = this.spd;
+        if(this.slipStream_count > 0) {
+            this.slipstream_count --;
+            if(this.slipstream_count > 0) {
+                console.log(`Slipstream active for ${this.slipstream_count} more turns!`)
+            } else {
+                this.spd /= 1.2;
+                console.log(`Slipstream has worn off!`);
+            }
+        }
+
     }
 
     printStats() {
