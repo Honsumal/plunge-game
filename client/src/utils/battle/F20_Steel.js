@@ -23,6 +23,7 @@ async function F20 (aLv, bLv, cLv) {
                 choices: [
                     active.standard,
                     active.special_1,
+                    active.special_2,
                     active.rotate
                 ]
             },
@@ -45,6 +46,9 @@ async function F20 (aLv, bLv, cLv) {
                     break
                 case active.special_1:
                     active.spec_1(e);
+                    break
+                case active.special_2:
+                    active.spec_2(e);
                     break
                 case active.rotate:
                     if (answers.rotate === 'Back') {
@@ -213,7 +217,9 @@ async function F20 (aLv, bLv, cLv) {
     while ((a.isAlive() || b.isAlive() || c.isAlive()) && e.isAlive()) {
         console.log(`Turn ${turnCount}`)
         if ((e.hp == e.maxHp * 0.5  && !dipslay) || (e.hp < e.maxHp * 0.5 && !dipslay)) {
-            dipslay = true
+            dipslay = true;
+            active.dipslay = true;
+            active.spd *= 0.5
             console.log(`Feeling the pressure, Melchor uses Dipslay! All allies have their speed halved!`)
         }
 

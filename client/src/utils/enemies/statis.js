@@ -19,52 +19,84 @@ class Statis extends Enemy {
 
     //Ravage
     spec_1 (opp){
-        opp.hp -= this.atk * 0.8 * (1 + opp.ravage * 0.2);
-        console.log(`${this.name} attacked ${opp.name} using ${this.special_1} for ${this.atk * 0.8 * (1 + opp.ravage * 0.2)} damage!`);
+        if (opp.protect) {
+            opp.protect = false;
+            console.log(`${this.name}'s attack bounced off the shield, cracking it!`)
+        } else {
+            opp.hp -= this.atk * 0.8 * (1 + opp.ravage * 0.2) * (1 - opp.barrier * 0.5);
+            console.log(`${this.name} attacked ${opp.name} using ${this.special_1} for ${this.atk * 0.8 * (1 + opp.ravage * 0.2) * (1 - opp.barrier * 0.5)} damage!`);
 
-        if (!opp.ravage) {
-            opp.ravage = true;
-            console.log(`${opp.name} has been ravaged and now takes extra damage!`)
-        };
-        
-        // If Willstrike
-        if (this.wStrike > 0) {
-            this.hp += this.atk * 0.8 * (1 + opp.ravage * 0.2) * 0.3;
-            console.log(`${this.name} drained ${this.atk * 0.8 * (1 + opp.ravage * 0.2) * 0.3} health!`);
-            if (this.hp > this.maxHp) {
-                this.hp = this.maxHp;
+            if (!opp.ravage) {
+                opp.ravage = true;
+                console.log(`${opp.name} has been ravaged and now takes extra damage!`)
+            };
+            
+            // If Willstrike
+            if (this.wStrike_count > 0) {
+                this.hp += this.atk * 0.8 * (1 + opp.ravage * 0.2) * (1 - opp.barrier * 0.5) * 0.3;
+                console.log(`${this.name} drained ${this.atk * 0.8 * (1 + opp.ravage * 0.2) * (1 - opp.barrier * 0.5) * 0.3} health!`);
+                if (this.hp > this.maxHp) {
+                    this.hp = this.maxHp;
+                }
             }
-        }
 
-        //If Opponent Spiky
-        if (opp.sStrike_count > 0) {
-            this.hp -= this.atk * 0.8 * (1 + opp.ravage * 0.2) * 0.3;
-            console.log(`${this.name} took ${this.atk * (1 + opp.ravage * 0.2) * 0.3} damage from spikes!`)
+            //If Opponent Spiky
+            if (opp.sStrike_count > 0) {
+                this.hp -= this.atk * 0.8 * (1 + opp.ravage * 0.2) * (1 - opp.barrier * 0.5) * 0.3;
+                console.log(`${this.name} took ${this.atk * (1 + opp.ravage * 0.2) * (1 - opp.barrier * 0.5) * 0.3} damage from spikes!`)
+            }
+
+            // If Opponent Barrier
+            if (opp.barrier) {
+                opp.barrier_count --;
+                if (opp.barrier_count === 0) {
+                    opp.barrier = false;
+                    console.log(`${this.name} broke through ${opp.name}'s barrier!`);
+                } else {
+                    console.log(`${opp.name}'s barrier can withstand ${opp.barrier_count} more hits!`)
+                }
+            }
         }       
     };
 
     //WStrike
     spec_2 (opp) {
-        opp.hp -= this.atk * 0.8 * (1 + opp.ravage * 0.2);
-        console.log(`${this.name} attacked ${opp.name} using ${this.special_2} for ${this.atk * 0.8 * (1 + opp.ravage * 0.2)} damage!`);
-        
-        if (this.wStrike === 0) {
-            this.wStrike = 3;
-            console.log(`${this.name}'s attacks now drain allies for some health!`)
-        }
+        if (opp.protect) {
+            opp.protect = false;
+            console.log(`${this.name}'s attack bounced off the shield, cracking it!`)
+        } else {
+            opp.hp -= this.atk * 0.8 * (1 + opp.ravage * 0.2) * (1 - opp.barrier * 0.5);
+            console.log(`${this.name} attacked ${opp.name} using ${this.special_2} for ${this.atk * 0.8 * (1 + opp.ravage * 0.2) * (1 - opp.barrier * 0.5)} damage!`);
+            
+            if (this.wStrike_count === 0) {
+                this.wStrike_count = 3;
+                console.log(`${this.name}'s attacks now drain allies for some health!`)
+            }
 
 
-        this.hp += this.atk * 0.8 * (1 + opp.ravage * 0.2) * 0.3;
-        console.log(`${this.name} drained ${this.atk * 0.8 * (1 + opp.ravage * 0.2) * 0.3} health!`);
-        if (this.hp > this.maxHp) {
-            this.hp = this.maxHp;
+            this.hp += this.atk * 0.8 * (1 + opp.ravage * 0.2) * (1 - opp.barrier * 0.5) * 0.3;
+            console.log(`${this.name} drained ${this.atk * 0.8 * (1 + opp.ravage * 0.2) * (1 - opp.barrier * 0.5) * 0.3} health!`);
+            if (this.hp > this.maxHp) {
+                this.hp = this.maxHp;
+            }
+            
+            //If Opponent Spiky
+            if (opp.sStrike_count > 0) {
+                this.hp -= this.atk * 0.8 * (1 + opp.ravage * 0.2) * (1 - opp.barrier * 0.5) * 0.3;
+                console.log(`${this.name} took ${this.atk * (1 + opp.ravage * 0.2) * (1 - opp.barrier * 0.5) * 0.3} damage from spikes!`)
+            }
+
+            // If Opponent Barrier
+            if (opp.barrier) {
+                opp.barrier_count --;
+                if (opp.barrier_count === 0) {
+                    opp.barrier = false;
+                    console.log(`${this.name} broke through ${opp.name}'s barrier!`);
+                } else {
+                    console.log(`${opp.name}'s barrier can withstand ${opp.barrier_count} more hits!`)
+                }
+            }
         }
-        
-        //If Opponent Spiky
-        if (opp.sStrike_count > 0) {
-            this.hp -= this.atk * 0.8 * (1 + opp.ravage * 0.2) * 0.3;
-            console.log(`${this.name} took ${this.atk * (1 + opp.ravage * 0.2) * 0.3} damage from spikes!`)
-        } 
     };
 
     strike (opp) {

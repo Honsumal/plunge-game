@@ -35,7 +35,7 @@ class Character {
             console.log(`${this.name} attacked ${opp.name} using ${this.standard} for ${this.atk * (1 + opp.ravage * 0.2) * (1 - opp.barrier * 0.5)} damage!`);
 
             // If Willstrike
-            if (this.wStrike > 0) {
+            if (this.wStrike_count > 0) {
                 this.hp += this.atk * 0.8 * (1 + opp.ravage * 0.2) * (1 - opp.barrier * 0.5) * 0.3;
                 console.log(`${this.name} drained ${this.atk * 0.8 * (1 + opp.ravage * 0.2) * (1 - opp.barrier * 0.5) * 0.3} health!`);
                 if (this.hp > this.maxHp) {
@@ -45,10 +45,12 @@ class Character {
 
             // If Opponent Barrier
             if (opp.barrier) {
-                opp.barrierCount --;
-                if (opp.barrierCount === 0) {
+                opp.barrier_count --;
+                if (opp.barrier_count === 0) {
                     opp.barrier = false;
                     console.log(`The allies broke through ${opp.name}'s barrier!`);
+                } else {
+                    console.log(`${opp.name}'s barrier can withstand ${opp.barrier_count} more hits!`)
                 }
             }
         }
@@ -69,7 +71,16 @@ class Character {
 
             if (this.slipstream_count > 0) {
                 next.slipStream_count = this.slipstream_count;
-                next.spd *= 1.2
+                next.spd *= 1.2;
+            }
+
+            if (this.protect) {
+                next.protect = true;
+            }
+
+            if (this.barrier) {
+                next.barrier = true;
+                next.barrier_count = this.barrier_count;
             }
 
             next.isActive = true;
@@ -81,7 +92,7 @@ class Character {
 
     turnStart (dipslay) {
         if (dipslay && !this.dipslay) {
-            this.spd = (this.spd * 0.5);
+            this.spd *= 0.5;
             this.dipslay = true;
         };
 
@@ -107,9 +118,10 @@ class Character {
             this.slipstream_count --;
             if(this.slipstream_count > 0) {
                 console.log(`Slipstream active for ${this.slipstream_count} more turns!`)
-            } else {
+            } else if (this.slipstream_count === 0) {
                 this.spd /= 1.2;
                 console.log(`Slipstream has worn off!`);
+                console.log(this.slipstream_count)
             }
         }
 

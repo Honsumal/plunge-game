@@ -25,6 +25,7 @@ async function F50 (aLv, bLv, cLv) {
                 choices: [
                     active.standard,
                     active.special_1,
+                    active.special_2,
                     active.rotate
                 ]
             },
@@ -47,6 +48,9 @@ async function F50 (aLv, bLv, cLv) {
                     break
                 case active.special_1:
                     active.spec_1(e);
+                    break
+                case active.special_2:
+                    active.spec_2(e);
                     break
                 case active.rotate:
                     if (answers.rotate === 'Back') {

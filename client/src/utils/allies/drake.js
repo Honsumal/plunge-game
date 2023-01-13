@@ -26,10 +26,10 @@ class Drake extends Character {
             console.log(`${this.name}'s attack bounced off the shield, cracking it!`)
         } else {
             opp.hp -= this.atk * 0.8 * (1 + opp.ravage * 0.2) * (1 - opp.barrier * 0.5);
-            console.log(`${this.name} attacked ${opp.name} using ${this.special_2} for ${this.atk * 0.8 * (1 + opp.ravage * 0.2) * (1 - opp.barrier * 0.5)} damage!`);
+            console.log(`${this.name} attacked ${opp.name} using ${this.special_1} for ${this.atk * 0.8 * (1 + opp.ravage * 0.2) * (1 - opp.barrier * 0.5)} damage!`);
             
-            if (this.wStrike === 0) {
-                this.wStrike = 6;
+            if (this.wStrike_count === 0) {
+                this.wStrike_count = 6;
                 console.log(`${this.name}'s attacks now drain allies for some health!`)
             }
 
@@ -41,10 +41,12 @@ class Drake extends Character {
 
             // If Opponent Barrier
             if (opp.barrier) {
-                opp.barrierCount --;
-                if (opp.barrierCount === 0) {
+                opp.barrier_count --;
+                if (opp.barrier_count === 0) {
                     opp.barrier = false;
                     console.log(`The allies broke through ${opp.name}'s barrier!`);
+                } else {
+                    console.log(`${opp.name}'s barrier can withstand ${opp.barrier_count} more hits!`)
                 }
             }
         }
@@ -54,6 +56,7 @@ class Drake extends Character {
     spec_2 () {
         this.slipstream_count = 9;
         this.spd *= 1.2
+        console.log(`${this.name} conjured up a magicks to increase allied speed!`)
     }
 
     levelUp () {

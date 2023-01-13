@@ -35,7 +35,7 @@ class Lionel extends Character {
             }
 
             // If Willstrike
-            if (this.wStrike > 0) {
+            if (this.wStrike_count > 0) {
                 this.hp += this.atk * 0.8 * (1 + opp.ravage * 0.2) * (1 - opp.barrier * 0.5) * 0.3;
                 console.log(`${this.name} drained ${this.atk * 0.8 * (1 + opp.ravage * 0.2) * (1 - opp.barrier * 0.5) * 0.3} health!`);
                 if (this.hp > this.maxHp) {
@@ -45,13 +45,22 @@ class Lionel extends Character {
 
             // If Opponent Barrier
             if (opp.barrier) {
-                opp.barrierCount --;
-                if (opp.barrierCount === 0) {
+                opp.barrier_count --;
+                if (opp.barrier_count === 0) {
                     opp.barrier = false;
                     console.log(`The allies broke through ${opp.name}'s barrier!`);
+                } else {
+                    console.log(`${opp.name}'s barrier can withstand ${opp.barrier_count} more hits!`)
                 }
             }
         }
+    }
+
+    spec_2 () {
+        this.protect = true;
+        this.barrier = true;
+        this.barrier_count = 5;
+        console.log(`${this.name} formed a barrier around the allies, nullifying some damage!`)
     }
 
     levelUp () {
