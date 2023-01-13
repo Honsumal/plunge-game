@@ -17,8 +17,8 @@ class Bars extends Enemy {
 
     //Ravage
     spec_1 (opp){
-        opp.hp -= parseFloat(this.atk * 0.8 * (1 + opp.ravage * 0.2)).toFixed(2);
-        console.log(`${this.name} attacked ${opp.name} using ${this.special_1} for ${parseFloat(this.atk * 0.8 * (1 + opp.ravage * 0.2)).toFixed(2)} damage!`);
+        opp.hp -= this.atk * 0.8 * (1 + opp.ravage * 0.2);
+        console.log(`${this.name} attacked ${opp.name} using ${this.special_1} for ${this.atk * 0.8 * (1 + opp.ravage * 0.2)} damage!`);
 
         if (!opp.ravage) {
             opp.ravage = true;
@@ -27,8 +27,8 @@ class Bars extends Enemy {
         
         //If Opponent Spiky
         if (opp.sStrike_count > 0) {
-            this.hp -= parseFloat(this.atk * 0.8 * (1 + opp.ravage * 0.2) * 0.3).toFixed(2);
-            console.log(`${this.name} took ${parseFloat(this.atk * (1 + opp.ravage * 0.2) * 0.3).toFixed(2)} damage from spikes!`)
+            this.hp -= this.atk * 0.8 * (1 + opp.ravage * 0.2) * 0.3;
+            console.log(`${this.name} took ${this.atk * (1 + opp.ravage * 0.2) * 0.3} damage from spikes!`)
         } 
     }
 

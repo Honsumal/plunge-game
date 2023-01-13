@@ -22,15 +22,30 @@ class Character {
     }
 
     attack(opp) {
-        opp.hp -= parseFloat(this.atk * (1 + opp.ravage * 0.2)).toFixed(2);
-        console.log(`${this.name} attacked ${opp.name} using ${this.standard} for ${parseFloat(this.atk * (1 + opp.ravage * 0.2)).toFixed(2)} damage!`);
+        //If Opponent Protect
+        if (opp.protect) {
+            opp.protect = false;
+            console.log(`${this.name}'s attack bounced off the shield, cracking it!`)
+        } else {
+            opp.hp -= this.atk * (1 + opp.ravage * 0.2) * (1 - opp.barrier * 0.5);
+            console.log(`${this.name} attacked ${opp.name} using ${this.standard} for ${this.atk * (1 + opp.ravage * 0.2) * (1 - opp.barrier * 0.5)} damage!`);
 
-        // If Willstrike
-        if (this.wStrike > 0) {
-            this.hp += parseFloat(this.atk * 0.8 * (1 + opp.ravage * 0.2) * 0.3).toFixed(2);
-            console.log(`${this.name} drained ${parseFloat(this.atk * 0.8 * (1 + opp.ravage * 0.2) * 0.3).toFixed(2)} health!`);
-            if (this.hp > this.maxHp) {
-                this.hp = this.maxHp;
+            // If Willstrike
+            if (this.wStrike > 0) {
+                this.hp += this.atk * 0.8 * (1 + opp.ravage * 0.2) * (1 - opp.barrier * 0.5) * 0.3;
+                console.log(`${this.name} drained ${this.atk * 0.8 * (1 + opp.ravage * 0.2) * (1 - opp.barrier * 0.5) * 0.3} health!`);
+                if (this.hp > this.maxHp) {
+                    this.hp = this.maxHp;
+                }
+            }
+
+            // If Opponent Barrier
+            if (opp.barrier) {
+                opp.barrierCount --;
+                if (opp.barrierCount === 0) {
+                    opp.barrier = false;
+                    console.log(`The allies broke through ${opp.name}'s barrier!`);
+                }
             }
         }
     }
@@ -57,7 +72,7 @@ class Character {
 
     turnStart (dipslay) {
         if (dipslay && !this.dipslay) {
-            this.spd = parseFloat((this.spd * 0.5).toFixed(2));
+            this.spd = (this.spd * 0.5);
             this.dipslay = true;
         };
 
@@ -79,9 +94,9 @@ class Character {
             }
         };
 
-        this.hp = parseFloat(this.hp.toFixed(2));
-        this.atk = parseFloat(this.atk.toFixed(2));
-        this.spd = parseFloat(this.spd.toFixed(2));
+        // this.hp = this.hp;
+        // this.atk = this.atk;
+        // this.spd = this.spd;
     }
 
     printStats() {

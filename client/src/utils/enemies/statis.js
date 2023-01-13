@@ -1,13 +1,13 @@
 const Enemy = require('./enemy');
 
-export default class Statis extends Enemy {
+class Statis extends Enemy {
     constructor () {
         const name = "Golba Statis";
         const epithet = "The Midnight Tempest";
         const level = 10;
-        const hp = 1000;
+        const hp = 700;
         const maxHp = 1000;
-        const atk = 30;
+        const atk = 18;
         const spd = 30;
         const standard = "Atrocity";
         const special_1 = "Ravage";
@@ -19,8 +19,8 @@ export default class Statis extends Enemy {
 
     //Ravage
     spec_1 (opp){
-        opp.hp -= parseFloat(this.atk * 0.8 * (1 + opp.ravage * 0.2)).toFixed(2);
-        console.log(`${this.name} attacked ${opp.name} using ${this.special_1} for ${parseFloat(this.atk * 0.8 * (1 + opp.ravage * 0.2)).toFixed(2)} damage!`);
+        opp.hp -= this.atk * 0.8 * (1 + opp.ravage * 0.2);
+        console.log(`${this.name} attacked ${opp.name} using ${this.special_1} for ${this.atk * 0.8 * (1 + opp.ravage * 0.2)} damage!`);
 
         if (!opp.ravage) {
             opp.ravage = true;
@@ -29,8 +29,8 @@ export default class Statis extends Enemy {
         
         // If Willstrike
         if (this.wStrike > 0) {
-            this.hp += parseFloat(this.atk * 0.8 * (1 + opp.ravage * 0.2) * 0.3).toFixed(2);
-            console.log(`${this.name} drained ${parseFloat(this.atk * 0.8 * (1 + opp.ravage * 0.2) * 0.3).toFixed(2)} health!`);
+            this.hp += this.atk * 0.8 * (1 + opp.ravage * 0.2) * 0.3;
+            console.log(`${this.name} drained ${this.atk * 0.8 * (1 + opp.ravage * 0.2) * 0.3} health!`);
             if (this.hp > this.maxHp) {
                 this.hp = this.maxHp;
             }
@@ -38,31 +38,32 @@ export default class Statis extends Enemy {
 
         //If Opponent Spiky
         if (opp.sStrike_count > 0) {
-            this.hp -= parseFloat(this.atk * 0.8 * (1 + opp.ravage * 0.2) * 0.3).toFixed(2);
-            console.log(`${this.name} took ${parseFloat(this.atk * (1 + opp.ravage * 0.2) * 0.3).toFixed(2)} damage from spikes!`)
+            this.hp -= this.atk * 0.8 * (1 + opp.ravage * 0.2) * 0.3;
+            console.log(`${this.name} took ${this.atk * (1 + opp.ravage * 0.2) * 0.3} damage from spikes!`)
         }       
     };
 
     //WStrike
     spec_2 (opp) {
-        opp.hp -= parseFloat(this.atk * 0.8 * (1 + opp.ravage * 0.2)).toFixed(2);
-        console.log(`${this.name} attacked ${opp.name} using ${this.special_2} for ${parseFloat(this.atk * 0.8 * (1 + opp.ravage * 0.2)).toFixed(2)} damage!`);
+        opp.hp -= this.atk * 0.8 * (1 + opp.ravage * 0.2);
+        console.log(`${this.name} attacked ${opp.name} using ${this.special_2} for ${this.atk * 0.8 * (1 + opp.ravage * 0.2)} damage!`);
         
         if (this.wStrike === 0) {
             this.wStrike = 3;
             console.log(`${this.name}'s attacks now drain allies for some health!`)
         }
 
-        this.hp += parseFloat(this.atk * 0.8 * (1 + opp.ravage * 0.2) * 0.3).toFixed(2);
-        console.log(`${this.name} drained ${parseFloat(this.atk * 0.8 * (1 + opp.ravage * 0.2) * 0.3).toFixed(2)} health!`);
+
+        this.hp += this.atk * 0.8 * (1 + opp.ravage * 0.2) * 0.3;
+        console.log(`${this.name} drained ${this.atk * 0.8 * (1 + opp.ravage * 0.2) * 0.3} health!`);
         if (this.hp > this.maxHp) {
             this.hp = this.maxHp;
         }
         
         //If Opponent Spiky
         if (opp.sStrike_count > 0) {
-            this.hp -= parseFloat(this.atk * 0.8 * (1 + opp.ravage * 0.2) * 0.3).toFixed(2);
-            console.log(`${this.name} took ${parseFloat(this.atk * (1 + opp.ravage * 0.2) * 0.3).toFixed(2)} damage from spikes!`)
+            this.hp -= this.atk * 0.8 * (1 + opp.ravage * 0.2) * 0.3;
+            console.log(`${this.name} took ${this.atk * (1 + opp.ravage * 0.2) * 0.3} damage from spikes!`)
         } 
     };
 
@@ -76,6 +77,6 @@ export default class Statis extends Enemy {
             return this.spec_2(opp);
         }
     }
-
-
 }
+
+module.exports = Statis;
