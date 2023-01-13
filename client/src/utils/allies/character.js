@@ -22,17 +22,13 @@ class Character {
     }
 
     attack(opp) {
-        if (this.wStrike_count === 0) {
-            opp.hp -= this.atk;
-            opp.hp = parseFloat(opp.hp.toFixed(2));
-            console.log(`${this.name} attacked ${opp.name} using ${this.standard} for ${(this.atk).toFixed(2)} damage!`);
-        } else {
-            opp.hp -= this.atk;
-            this.hp += this.atk * 0.3;
-            opp.hp = parseFloat(opp.hp.toFixed(2));
-            this.hp = parseFloat(this.hp.toFixed(2));
-            console.log(`${this.name} attacked ${opp.name} using ${this.standard} for ${(this.atk).toFixed(2)} damage!`);
-            console.log(`${this.name} recovered ${this.atk * 0.3} health!`);
+        opp.hp -= parseFloat(this.atk * (1 + opp.ravage * 0.2)).toFixed(2);
+        console.log(`${this.name} attacked ${opp.name} using ${this.standard} for ${parseFloat(this.atk * (1 + opp.ravage * 0.2)).toFixed(2)} damage!`);
+
+        // If Willstrike
+        if (this.wStrike > 0) {
+            this.hp += parseFloat(this.atk * 0.8 * (1 + opp.ravage * 0.2) * 0.3).toFixed(2);
+            console.log(`${this.name} drained ${parseFloat(this.atk * 0.8 * (1 + opp.ravage * 0.2) * 0.3).toFixed(2)} health!`);
             if (this.hp > this.maxHp) {
                 this.hp = this.maxHp;
             }
@@ -61,8 +57,7 @@ class Character {
 
     turnStart (dipslay) {
         if (dipslay && !this.dipslay) {
-            this.spd = this.spd * 0.5;
-            this.spd = parseFloat(this.spd.toFixed(2));
+            this.spd = parseFloat((this.spd * 0.5).toFixed(2));
             this.dipslay = true;
         };
 

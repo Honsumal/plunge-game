@@ -18,35 +18,23 @@ class Lionel extends Character {
         super (name, epithet, hp, maxHp, atk, baseAtk, spd, baseSpd, standard, special_1, special_2, rotate)
     };
 
+    //SStrike
     spec_1(opp) {
+        opp.hp -= parseFloat((this.atk * 0.8).toFixed(2));
+        console.log(`${this.name} attacked ${opp.name} using ${this.special_1} for ${(this.atk * 0.8).toFixed(2)} damage!`);
+        
+        
         if (this.sStrike_count === 0) {            
-            opp.hp -= this.atk * 0.8;
-            opp.hp = parseFloat(opp.hp.toFixed(2));
-            //this.spd = this.spd * 0.7;
-            console.log(`${this.name} attacked ${opp.name} using ${this.special_1} for ${(this.atk * 0.8).toFixed(2)} damage! Enemy attacks will damage them!`);
             this.sStrike_count = 6;
+            console.log(`Spikes from ${this.name}'s attack formed a shield around allies, injuring enemies who attack!`)
+        }
 
-            if(this.wStrike_count > 0) {
-                this.hp += this.atk * 0.8 * 0.3;
-                console.log(`${this.name} recovered ${(this.atk * 0.8 * 0.3).toFixed(2)} health!`);
-
-                if (this.hp > this.maxHp) {
-                    this.hp = this.maxHp;
-                }
-            }
-            
-        } else {
-            opp.hp -= this.atk * 0.8;
-            opp.hp = parseFloat(opp.hp.toFixed(2));
-            //this.spd = this.spd * 0.7;
-            console.log(`${this.name} attacked ${opp.name} using ${this.special_1} for ${(this.atk * 0.8).toFixed(2)} damage!`);
-            if(this.wStrike_count > 0) {
-                this.hp += this.atk * 0.8 * 0.3;
-                console.log(`${this.name} recovered ${(this.atk * 0.8 * 0.3).toFixed(2)} health!`);
-
-                if (this.hp > this.maxHp) {
-                    this.hp = this.maxHp;
-                }
+        // If Willstrike
+        if (this.wStrike > 0) {
+            this.hp += parseFloat(this.atk * 0.8 * (1 + opp.ravage * 0.2) * 0.3).toFixed(2);
+            console.log(`${this.name} drained ${parseFloat(this.atk * 0.8 * (1 + opp.ravage * 0.2) * 0.3).toFixed(2)} health!`);
+            if (this.hp > this.maxHp) {
+                this.hp = this.maxHp;
             }
         }
     }

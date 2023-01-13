@@ -18,22 +18,40 @@ class Mack extends Character {
         super (name, epithet, hp, maxHp, atk, baseAtk, spd, baseSpd, standard, special_1, special_2, rotate)
     };
 
-
+    //PStrike
     spec_1(opp) {
-        opp.hp -= this.atk * 0.5 * (1 + this.pStrike_count);
-        opp.hp = parseFloat(opp.hp.toFixed(2));
-        console.log(`${this.name} attacked ${opp.name} using ${this.special_1} for ${(this.atk * 0.5 * (1 + this.pStrike_count)).toFixed(2)} damage!`);
+        opp.hp -= parseFloat(this.atk * 0.5 * (1 + this.pStrike_count).toFixed(2));
+        console.log(`${this.name} attacked ${opp.name} using ${this.special_1} for ${parseFloat(this.atk * 0.5 * (1 + this.pStrike_count)).toFixed(2)} damage!`);
         this.pStrike_count ++;
 
-        if(this.wStrike_count > 0) {
-            this.hp += this.atk * 0.5 * (1 + this.pStrike_count) * 0.3;
-            console.log(`${this.name} recovered ${(this.atk * 0.5 * (1 + this.pStrike_count) * 0.3).toFixed(2)} health!`);
-
+        // If Willstrike
+        if (this.wStrike > 0) {
+            this.hp += parseFloat(this.atk * 0.8 * (1 + opp.ravage * 0.2) * 0.3).toFixed(2);
+            console.log(`${this.name} drained ${parseFloat(this.atk * 0.8 * (1 + opp.ravage * 0.2) * 0.3).toFixed(2)} health!`);
             if (this.hp > this.maxHp) {
                 this.hp = this.maxHp;
             }
         }
-    }
+    };
+
+    spec_2 (opp){
+        opp.hp -= parseFloat(this.atk * 0.8 * (1 + opp.ravage * 0.2)).toFixed(2);
+        console.log(`${this.name} attacked ${opp.name} using ${this.special_1} for ${parseFloat(this.atk * 0.8 * (1 + opp.ravage * 0.2)).toFixed(2)} damage!`);
+
+        if (!opp.ravage) {
+            opp.ravage = true;
+            console.log(`${opp.name} has been ravaged and now takes extra damage!`)
+        };
+        
+        // If Willstrike
+        if (this.wStrike > 0) {
+            this.hp += parseFloat(this.atk * 0.8 * (1 + opp.ravage * 0.2) * 0.3).toFixed(2);
+            console.log(`${this.name} drained ${parseFloat(this.atk * 0.8 * (1 + opp.ravage * 0.2) * 0.3).toFixed(2)} health!`);
+            if (this.hp > this.maxHp) {
+                this.hp = this.maxHp;
+            }
+        }
+    };
 
     levelUp () {
         this.level ++;

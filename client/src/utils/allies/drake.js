@@ -18,33 +18,20 @@ class Drake extends Character {
         super (name, epithet, hp, maxHp, atk, baseAtk, spd, baseSpd, standard, special_1, special_2, rotate)
     };
 
-
+    //WStrike
     spec_1(opp) {
-        if (this.wStrike_count === 0) {            
-            opp.hp -= this.atk * 0.8;
-            this.hp += this.atk * 0.8 * 0.3;
-            opp.hp = parseFloat(opp.hp.toFixed(2));
-            this.hp = parseFloat(this.hp.toFixed(2));
-            //this.spd = this.spd * 0.7;
-            this.spd = parseFloat(this.spd.toFixed(2));
-            console.log(`${this.name} attacked ${opp.name} using ${this.special_1} for ${(this.atk * 0.8).toFixed(2)} damage! Allied attacks now steal some health from enemies!`);
-            console.log(`${this.name} recovered ${(this.atk * 0.8 * 0.3).toFixed(2)} health!`)
-            this.wStrike_count = 6;
-            if (this.hp > this.maxHp) {
-                this.hp = this.maxHp;
-            }
-        } else {
-            opp.hp -= this.atk * 0.8;
-            this.hp += this.atk * 0.8 * 0.3;
-            opp.hs = parseFloat(opp.hp.toFixed(2));
-            this.hp = parseFloat(this.hp.toFixed(2));
-            this.spd = this.spd * 0.7
-            this.spd = parseFloat(this.spd.toFixed(2));
-            console.log(`${this.name} attacked ${opp.name} using ${this.special_1} for ${(this.atk * 0.8).toFixed(2)} damage!`);
-            console.log(`${this.name} recovered ${(this.atk * 0.8 * 0.3).toFixed(2)} health!`);
-            if (this.hp > this.maxHp) {
-                this.hp = this.maxHp;
-            }
+        opp.hp -= parseFloat(this.atk * 0.8 * (1 + opp.ravage * 0.2)).toFixed(2);
+        console.log(`${this.name} attacked ${opp.name} using ${this.special_2} for ${parseFloat(this.atk * 0.8 * (1 + opp.ravage * 0.2)).toFixed(2)} damage!`);
+        
+        if (this.wStrike === 0) {
+            this.wStrike = 6;
+            console.log(`${this.name}'s attacks now drain allies for some health!`)
+        }
+
+        this.hp += parseFloat(this.atk * 0.8 * (1 + opp.ravage * 0.2) * 0.3).toFixed(2);
+        console.log(`${this.name} drained ${parseFloat(this.atk * 0.8 * (1 + opp.ravage * 0.2) * 0.3).toFixed(2)} health!`);
+        if (this.hp > this.maxHp) {
+            this.hp = this.maxHp;
         }
     }
 
