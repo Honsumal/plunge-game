@@ -1,18 +1,16 @@
 const Mack = require('../allies/mack');
 const Drake = require('../allies/drake');
 const Lionel = require('../allies/lionel')
-const Statis = require('../enemies/statis');
+const Bars = require('../enemies/bars');
 const inquirer = require('inquirer');
 
-async function F50 (aLv, bLv, cLv) {
+async function F30 (aLv, bLv, cLv) {
     let turnCounter = 100;
     let allyTurnCounter = 0;
     let enemyTurnCounter = 0;
 
     let turn = '';
-    let dipslay = false;
     let eSlipstream = false;
-    let barrierActivated = false;
     let turnCount = 1;
     let active = '';
     
@@ -67,17 +65,17 @@ async function F50 (aLv, bLv, cLv) {
                         if (a.name === answers.rotate) {
                             active.rotateTo(a);
                             active = a;
-                            active.turnStart(dipslay);
+                            active.turnStart();
                             break
                         } else if (b.name === answers.rotate) {
                             active.rotateTo(b);
                             active = b;
-                            active.turnStart(dipslay);
+                            active.turnStart();
                             break
                         } else if (c.name === answers.rotate) {
                             active.rotateTo(c);
                             active = c;
-                            active.turnStart(dipslay);
+                            active.turnStart();
                             break
                         }
                     }                     
@@ -190,7 +188,7 @@ async function F50 (aLv, bLv, cLv) {
         c.levelUp();
     }
 
-    let e = new Statis;
+    let e = new Bars;
 
 
     console.log(`Battle Start! ${a.name}, ${a.epithet} & ${b.name}, ${b.epithet} & ${c.name}, ${c.epithet} vs ${e.name}, ${e.epithet}!`);
@@ -202,23 +200,9 @@ async function F50 (aLv, bLv, cLv) {
 
     while ((a.isAlive() || b.isAlive() || c.isAlive()) && e.isAlive()) {
         console.log(`Turn ${turnCount}`)
-        if ((e.hp == e.maxHp * 0.8  && !eSlipstream) || (e.hp < e.maxHp * 0.8 && !eSlipstream)) {
+        if ((e.hp == e.maxHp * 0.7  && !eSlipstream) || (e.hp < e.maxHp * 0.7 && !eSlipstream)) {
             eSlipstream = true
-            console.log(`The tempest roars, causing a wind to blow from behind Golba!`)
-        }
-
-        if ((e.hp == e.maxHp * 0.5  && !barrierActivated) || (e.hp < e.maxHp * 0.5 && !barrierActivated)) {
-            barrierActivated = true;
-            e.protect = true;
-            e.barrier = true;
-            e.barrierCount = 2;
-            console.log(`Feeling the pressure, Golba creates a barrier around himself!`)
-        }
-
-
-        if ((e.hp == e.maxHp * 0.25  && !dipslay) || (e.hp < e.maxHp * 0.25 && !dipslay)) {
-            dipslay = true
-            console.log(`On his last legs, Golba uses Midnight Wall! All allies have their speed halved!`)
+            console.log(`Bars's fury rose to a fevour pitch! He cast Slipstream!`)
         }
 
         turn = turnFinder(active, e)
@@ -272,6 +256,6 @@ async function F50 (aLv, bLv, cLv) {
     }
 }
 
-F50(18, 18, 18)
+//F30(8, 8, 8)
 
-module.exports = F50
+module.exports = F30

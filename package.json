@@ -1,25 +1,26 @@
 {
-  "name": "the-plunge",
-  "version": "0.0.1",
-  "description": "",
-  "engines": {
-    "node": "v16.17.1"
-  },
-  "main": "server/server.js",
+  "name": "the-lending-station",
+  "version": "1.0.0",
+  "description": "A tracker app for lending different items",
+  "main": "server.js",
   "scripts": {
-    "start": "node server/server.js",
-    "develop": "concurrently \"cd server && npm run watch\" \"cd client && npm start\"",
-    "install": "cd server && npm i && cd ../client && npm i",
-    "build": "cd client && npm run build"
-  },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "devDependencies": {
-    "concurrently": "^5.1.0"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node index.js"
   },
   "dependencies": {
-    "dotenv": "^16.0.3",
+    "@handlebars/allow-prototype-access": "^1.0.5",
+    "bootstrap": "^5.2.3",
+    "dayjs": "^1.11.6",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "express-handlebars": "^6.0.6",
+    "express-session": "^1.17.3",
     "inquirer": "^8.2.4"
-  }
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/sashdc/the-lending-station/issues"
+  },
+  "homepage": "https://github.com/sashdc/the-lending-station#readme"
 }

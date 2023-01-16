@@ -50,14 +50,14 @@ async function F20 (aLv, bLv, cLv) {
                 case active.special_2:
                     active.spec_2(e);
                     break
-                case active.rotate:
+                default:
                     if (answers.rotate === 'Back') {
                         return playerTurn();
                     } else if (active.name === answers.rotate) {
                         console.log(`${active.name} is already in combat!`);
                         return tagOut();
 
-                    } else if (a.name === answers.rotate && !a.isAlive() || b.name === answers.rotate && !b.isAlive() || c.name === answers.rotate && !c.isAlive()) {
+                    } else if ((a.name === answers.rotate && !a.isAlive()) || (b.name === answers.rotate && !b.isAlive()) || (c.name === answers.rotate && !c.isAlive())) {
                         console.log(`${answers.rotate} has fallen, ${active.name} cannot switch out!`);
                         return tagOut();
 
@@ -101,7 +101,7 @@ async function F20 (aLv, bLv, cLv) {
                 console.log(`${active.name} is already in combat!`)
                 return tagOut()
 
-            } else if (a.name === answers.rotate && !a.isAlive() || b.name === answers.rotate && !b.isAlive() || c.name === answers.rotate && !c.isAlive()) {
+            } else if ((a.name === answers.rotate && !a.isAlive()) || (b.name === answers.rotate && !b.isAlive()) || (c.name === answers.rotate && !c.isAlive())) {
                 console.log(`${answers.rotate} has fallen, ${active.name} cannot switch out!`)
                 return tagOut()
 
@@ -167,45 +167,52 @@ async function F20 (aLv, bLv, cLv) {
     function turnFinder (ally, enemy) {
     
         while (allyTurnCounter < turnCounter && enemyTurnCounter < turnCounter) {
-            if (allyTurnCounter > turnCounter && allyTurnCounter > enemyTurnCounter) {
-                //console.log (allyTurnCounter, enemyTurnCounter, 1)
-                allyTurnCounter -= turnCounter;
-                return ally
-            } else if (allyTurnCounter = turnCounter && allyTurnCounter > enemyTurnCounter) {
-                //console.log (allyTurnCounter, enemyTurnCounter, 2)
-                allyTurnCounter -= turnCounter;
-                return ally
-            } else if (enemyTurnCounter > turnCounter && enemyTurnCounter > allyTurnCounter) {
-                //console.log (allyTurnCounter, enemyTurnCounter, 3)
-                enemyTurnCounter -= turnCounter;
-                return enemy
-            } else if (enemyTurnCounter = turnCounter && enemyTurnCounter > allyTurnCounter) {
-                //console.log (allyTurnCounter, enemyTurnCounter, 4)
-                enemyTurnCounter -= turnCounter;
-                return enemy
-            }
+            
             allyTurnCounter += ally.spd;
             enemyTurnCounter += enemy.spd;
-            //console.log(allyTurnCounter,enemyTurnCounter, 'unga')
+            console.log(allyTurnCounter,enemyTurnCounter, 'unga')
         }
+
+        if (allyTurnCounter > turnCounter && allyTurnCounter > enemyTurnCounter) {
+            console.log (allyTurnCounter, enemyTurnCounter, 1);
+            allyTurnCounter -= turnCounter;
+            return ally
+        } else if (allyTurnCounter === turnCounter && allyTurnCounter > enemyTurnCounter) {
+            console.log (allyTurnCounter, enemyTurnCounter, 2);
+            allyTurnCounter -= turnCounter;
+            return ally
+        } else if (enemyTurnCounter > turnCounter && enemyTurnCounter > allyTurnCounter) {
+            console.log (allyTurnCounter, enemyTurnCounter, 3)
+            enemyTurnCounter -= turnCounter;
+            return enemy
+        } else if (enemyTurnCounter === turnCounter && enemyTurnCounter > allyTurnCounter) {
+            console.log (allyTurnCounter, enemyTurnCounter, 4);
+            enemyTurnCounter -= turnCounter;
+            return enemy
+        } else {
+            console.log(allyTurnCounter, enemyTurnCounter, 5);
+            allyTurnCounter -= turnCounter;
+            return ally
+        }
+        
     }
 
-    let a = new Mack;
+    let a = new Mack();
     for (let i = 0; i < aLv; i++) {
         a.levelUp();
     }
 
-    let b = new Drake;
+    let b = new Drake();
     for (let i = 0; i < bLv; i++) {
         b.levelUp();
     }
 
-    let c = new Lionel;
+    let c = new Lionel();
     for (let i = 0; i < cLv; i++) {
         c.levelUp();
     }
 
-    let e = new Melchor;
+    let e = new Melchor();
 
     console.log(`Battle Start! ${a.name}, ${a.epithet} & ${b.name}, ${b.epithet} & ${c.name}, ${c.epithet} vs ${e.name}, ${e.epithet}!`);
     await startChoice();
@@ -216,7 +223,7 @@ async function F20 (aLv, bLv, cLv) {
 
     while ((a.isAlive() || b.isAlive() || c.isAlive()) && e.isAlive()) {
         console.log(`Turn ${turnCount}`)
-        if ((e.hp == e.maxHp * 0.5  && !dipslay) || (e.hp < e.maxHp * 0.5 && !dipslay)) {
+        if ((e.hp === e.maxHp * 0.5  && !dipslay) || (e.hp < e.maxHp * 0.5 && !dipslay)) {
             dipslay = true;
             active.dipslay = true;
             active.spd *= 0.5
@@ -225,7 +232,7 @@ async function F20 (aLv, bLv, cLv) {
 
         turn = turnFinder(active, e)
 
-        if (turn.name != e.name) {
+        if (turn.name !== e.name) {
             active.turnStart(dipslay);
 
             await playerTurn();

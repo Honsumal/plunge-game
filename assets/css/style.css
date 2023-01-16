@@ -1,0 +1,146 @@
+:root{
+    --prs:#003049;
+    --mxr:#d62828;
+    --ora:#f77f00;
+    --myr:#fcbf49;
+    --lmm:#eae2b7;
+}
+
+* {
+    box-sizing: border-box;
+    font-size: 16px;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+
+body {
+    background-color: var(--prs);
+}
+
+.container{
+    background-color: var(--mxr);
+}
+
+.box2 {
+    background-color: var(--myr);
+}
+
+.box3 {
+    background-color: var(--lmm);
+}
+
+/* Page Header */
+h1 {
+    display: inline-block;
+    font-size: 24px;
+    color: var(--prs);    
+}
+
+/* Section Header */
+h2 {
+    font-size: 20px;
+    padding-top: 10px;
+    padding-left: 10px;
+}
+
+
+li {
+    display: inline-block;
+    margin-left: 25px; 
+    color: var(--lmm);
+}
+
+a {
+   text-decoration: none;
+   color:var(--lmm)
+}
+
+
+.centered {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+main {
+    width: 85%;
+    display: inline-block;
+}
+
+article {
+    margin-bottom: 20px;
+    padding: 50px;
+    height: fit-content;
+    background-color: var(--lmm);
+}
+
+article a {
+    font-size: 24px;
+    font-weight: bold;
+    color: var(--lmm);
+}
+
+
+textarea {
+    margin-left: 15px
+}
+
+.resume {
+    font-size: 20px;
+
+}
+
+.foot {
+    margin-top: 2.5%;
+    margin-left: -25px;
+}
+
+button {
+    position: relative;
+    margin-top: 25px;
+    margin-left: 48%;
+}
+
+/* Image Rules */
+.self {
+    height: 300px;
+}
+  
+.norm {
+    width: 400px;
+    margin-bottom: 25px;
+    border-radius: 10px;
+}
+
+/* Flexbox Rules */
+.row {
+
+    display: flex;
+    flex-wrap: wrap;
+    margin-top: 2%;
+}
+  
+.project{
+
+    flex: 1 0 100%;
+    padding: 10px;
+    text-align: center;
+}
+
+/* Nav button Rules */
+.home,
+.proj,
+.abt,
+.cont {
+    font-size: 25px;
+    color: var(--mxr);
+    transition: all .2s ease-in-out;
+}
+
+
+.home:hover,
+.proj:hover,
+.abt:hover,
+.cont:hover {
+    color:white;
+    transform: scale(1.25)
+}

@@ -1,16 +1,18 @@
 const Mack = require('../allies/mack');
 const Drake = require('../allies/drake');
 const Lionel = require('../allies/lionel')
-const Bars = require('../enemies/bars');
+const Statis = require('../enemies/statis');
 const inquirer = require('inquirer');
 
-async function F30 (aLv, bLv, cLv) {
+async function F50 (aLv, bLv, cLv) {
     let turnCounter = 100;
     let allyTurnCounter = 0;
     let enemyTurnCounter = 0;
 
     let turn = '';
+    let dipslay = false;
     let eSlipstream = false;
+    let barrierActivated = false;
     let turnCount = 1;
     let active = '';
     
@@ -188,7 +190,7 @@ async function F30 (aLv, bLv, cLv) {
         c.levelUp();
     }
 
-    let e = new Bars;
+    let e = new Statis;
 
 
     console.log(`Battle Start! ${a.name}, ${a.epithet} & ${b.name}, ${b.epithet} & ${c.name}, ${c.epithet} vs ${e.name}, ${e.epithet}!`);
@@ -200,9 +202,23 @@ async function F30 (aLv, bLv, cLv) {
 
     while ((a.isAlive() || b.isAlive() || c.isAlive()) && e.isAlive()) {
         console.log(`Turn ${turnCount}`)
-        if ((e.hp == e.maxHp * 0.7  && !eSlipstream) || (e.hp < e.maxHp * 0.7 && !eSlipstream)) {
+        if ((e.hp == e.maxHp * 0.8  && !eSlipstream) || (e.hp < e.maxHp * 0.8 && !eSlipstream)) {
             eSlipstream = true
-            console.log(`Bars's fury rose to a fevour pitch! He cast Slipstream!`)
+            console.log(`The tempest roars, causing a wind to blow from behind Golba!`)
+        }
+
+        if ((e.hp == e.maxHp * 0.5  && !barrierActivated) || (e.hp < e.maxHp * 0.5 && !barrierActivated)) {
+            barrierActivated = true;
+            e.protect = true;
+            e.barrier = true;
+            e.barrierCount = 2;
+            console.log(`Feeling the pressure, Golba creates a barrier around himself!`)
+        }
+
+
+        if ((e.hp == e.maxHp * 0.25  && !dipslay) || (e.hp < e.maxHp * 0.25 && !dipslay)) {
+            dipslay = true
+            console.log(`On his last legs, Golba uses Midnight Wall! All allies have their speed halved!`)
         }
 
         turn = turnFinder(active, e)
@@ -256,6 +272,6 @@ async function F30 (aLv, bLv, cLv) {
     }
 }
 
-F30(8, 8, 8)
+//F50(18, 18, 18)
 
-module.exports = F30
+module.exports = F50
