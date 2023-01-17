@@ -5,11 +5,12 @@
   "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node index.js"
+    "start": "node server.js"
   },
   "dependencies": {
     "@handlebars/allow-prototype-access": "^1.0.5",
     "bootstrap": "^5.2.3",
+    "bootstrap-icons": "^1.10.3",
     "dayjs": "^1.11.6",
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
@@ -18,9 +19,5 @@
     "inquirer": "^8.2.4"
   },
   "author": "",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/sashdc/the-lending-station/issues"
-  },
-  "homepage": "https://github.com/sashdc/the-lending-station#readme"
+  "license": "ISC"
 }

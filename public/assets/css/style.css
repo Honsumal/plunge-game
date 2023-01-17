@@ -22,10 +22,12 @@ body {
 
 .box2 {
     background-color: var(--myr);
+    display :block
 }
 
 .box3 {
     background-color: var(--lmm);
+    display:block;
 }
 
 /* Page Header */
@@ -54,16 +56,10 @@ a {
    color:var(--lmm)
 }
 
-
 .centered {
     display: flex;
     justify-content: center;
     align-items: center;
-}
-
-main {
-    width: 85%;
-    display: inline-block;
 }
 
 article {
@@ -84,10 +80,6 @@ textarea {
     margin-left: 15px
 }
 
-.resume {
-    font-size: 20px;
-
-}
 
 .foot {
     margin-top: 2.5%;
@@ -98,17 +90,6 @@ button {
     position: relative;
     margin-top: 25px;
     margin-left: 48%;
-}
-
-/* Image Rules */
-.self {
-    height: 300px;
-}
-  
-.norm {
-    width: 400px;
-    margin-bottom: 25px;
-    border-radius: 10px;
 }
 
 /* Flexbox Rules */

@@ -1,5 +1,5 @@
-const Mack = require('../allies/mack');
-const Melchor = require('../enemies/melchor');
+const Mack = require('../../allies/mack');
+const Melchor = require('../../enemies/melchor');
 
 let a = new Mack;
 for (let i = 0; i < 4; i++) {

@@ -1,7 +1,7 @@
 const Mack = require('../allies/mack');
 const Drake = require('../allies/drake');
 const Lionel = require('../allies/lionel')
-const Melchor = require('../enemies/melchor');
+const Melchor = require('../../../assets/js/enemies/melchor');
 const inquirer = require('inquirer');
 
 async function F20 (aLv, bLv, cLv) {
