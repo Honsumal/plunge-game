@@ -1,7 +1,7 @@
 import React, {useState} from 'react'
 import NavTabs from './NavTabs';
-import F20 from './views/F20';
-import StartMenu from './views/StartMenu'
+import F20 from '../views/F20';
+import StartMenu from '../views/StartMenu'
 
 
 export default function GameContainer() {

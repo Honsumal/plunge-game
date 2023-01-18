@@ -18,6 +18,7 @@ class Character {
         this.ravage = false;
         this.protect = false;
         this.barrier = false;
+        this.ally = true;
         this.barrier_count = 0;
         this.pStrike_count = 0;
         this.wStrike_count = 0;

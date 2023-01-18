@@ -13,9 +13,10 @@ class Enemy {
         this.special_3 = special_3;
         this.eSlipstream = false;
         this.barrier = false;
-        this.barrier_count = 0;
         this.protect = false;
         this.ravage = false;
+        this.ally = false;
+        this.barrier_count = 0;
         this.wStrike_count = 0;
     }
 
