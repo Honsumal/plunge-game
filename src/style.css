@@ -22,12 +22,21 @@ body {
 
 .box2 {
     background-color: var(--myr);
-    display :block
+    display:block;
 }
 
 .box3 {
     background-color: var(--lmm);
     display:block;
+}
+
+.buttonBox {
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.btn {
+    display: inline;
 }
 
 /* Page Header */
@@ -43,7 +52,6 @@ h2 {
     padding-top: 10px;
     padding-left: 10px;
 }
-
 
 li {
     display: inline-block;
@@ -84,12 +92,6 @@ textarea {
 .foot {
     margin-top: 2.5%;
     margin-left: -25px;
-}
-
-button {
-    position: relative;
-    margin-top: 25px;
-    margin-left: 48%;
 }
 
 /* Flexbox Rules */

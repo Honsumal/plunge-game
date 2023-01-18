@@ -4,7 +4,13 @@ const Lionel = require('../allies/lionel')
 const Melchor = require('../../../assets/js/enemies/melchor');
 const inquirer = require('inquirer');
 
+import Mack from '../allies/mack'
+import Drake from '../allies/drake'
+import Lionel from '../allies/lionel'
+import Melchor from '../allies/melchor'
+
 async function F20 (aLv, bLv, cLv) {
+    
     let turnCounter = 100;
     let allyTurnCounter = 0;
     let enemyTurnCounter = 0;
