@@ -160,10 +160,24 @@ export const useBattleSequence = (sequence, active, a, b, c, e, setRotating) => 
                     setAnnouncerMessage(`${e.name} attacked ${active.name} using ${e.standard} for ${e.atk * (1 + active.ravage * 0.2) * (1 - active.barrier * 0.5)} damage!`)
                     await wait(2500)
                     
+                    //If Opponent Spiky
+                    if (active.sStrike_count > 0) {
+
+                        e.hp -= e.atk * (1 + active.ravage * 0.2) * (1 - active.barrier * 0.5) * 0.3;
+                        setAnnouncerMessage(`${e.name} took ${e.atk * (1 + active.ravage * 0.2) * (1 - active.barrier * 0.5) * 0.3} damage from spikes!`)
+                    }
+                    
                 } else {
                     e.spec_1(active)
                     setAnnouncerMessage(`${e.name} attacked ${active.name} using ${e.special_1} for ${e.atk * 0.8 * (1 + active.ravage * 0.2) * (1 - active.barrier * 0.5)} damage!`)
-                    await wait(2500)
+                    //If Opponent Spiky
+                    if (active.sStrike_count > 0) {
+                        await wait(2500);
+                        e.hp -= e.atk * 0.8 * (1 + active.ravage * 0.2) * (1 - active.barrier * 0.5) * 0.3;
+                        setAnnouncerMessage(`${e.name} took ${e.atk * (1 + active.ravage * 0.2) * (1 - active.barrier * 0.5) * 0.3} damage from spikes!`)
+                    }
+
+                    await wait(2500);
                 }
 
                 if (!active.isAlive() && (a.isAlive() || b.isAlive() || c.isAlive())) {
