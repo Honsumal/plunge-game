@@ -157,7 +157,7 @@ export default function F20 () {
                     : <Actions 
                         active = {active}
                         onStandard={() => setSequence({ action: 'standard', turn })} 
-                        onSpec1={() => active.spec_1(e)} 
+                        onSpec1={() => setSequence({action: 'special_1', turn })} 
                         onSpec2={() => active.spec_2(e)} 
                         onRotate={() => setRotating(true)} /> }
 
