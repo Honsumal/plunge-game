@@ -171,7 +171,6 @@ async function F20 (aLv, bLv, cLv) {
     }
 
     function turnFinder (ally, enemy) {
-    
         while (allyTurnCounter < turnCounter && enemyTurnCounter < turnCounter) {
             
             allyTurnCounter += ally.spd;
