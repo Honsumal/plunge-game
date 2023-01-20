@@ -57,17 +57,6 @@ export const useBattleSequence = (sequence, active, a, b, c, e, setRotating) => 
             
     }
 
-    // function turnFinder(ally, enemy) {
-    //     if (turn === 0) {
-    //         console.log(allyTurnCounter)
-    //         setAllyTurnCounter(allyTurnCounter + 5)
-    //         console.log(allyTurnCounter)
-    //         return 1
-    //     } else {
-    //         return 0
-    //     }
-    // }
-
     useEffect (() => {
         const {action, turn} = sequence;
         
