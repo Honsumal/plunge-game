@@ -56,7 +56,7 @@ class Drake extends Character {
     spec_2 () {
         this.slipstream_count = 9;
         this.spd *= 1.2
-        console.log(`${this.name} conjured up a magicks to increase allied speed!`)
+        console.log(`${this.name} conjured up magicks to increase allied speed!`)
     }
 
     levelUp () {

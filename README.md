@@ -1,70 +1,63 @@
-# Getting Started with Create React App
+# The Plunge
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Description
+This application is a turn-based combat game built using REACT. The user controlls three characters to fight an enemy. Currrently, only one stage has been written, but the combat is fully functional. 
 
-## Available Scripts
+Future plans:
 
-In the project directory, you can run:
+MVP2:
+- Add 9 more stages for a total of 10 enemies. 2 Stages have already been written to work in CLI but not ported to the application yet.
+- Add a levelling mechanic for users to customize their characters as they play through the stages
+- Add functionality to allow players to pick which character they want to start the battle with
+- Fix the display of damage/stats to be all at 2 d.p.
 
-### `npm start`
+MVP3:
+- Add field effects to each stage
+- Add additonal character options, and allow user to pick 3 of the characters to go through the game
+- Add sprites/sfx to the battle
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+MVP4:
+- Add an arcade mode
+- Add some sort of scoring mechanic to the games
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## Table of Contents
 
-### `npm test`
+- [Installation](#installation)
+- [Usage](#usage)
+- [Credits](#credits)
+- [License](#license)
+- [Tests](#tests)
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Installation
 
-### `npm run build`
+This application is deployed on Github Pages and does not require any additional installations
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## Usage
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+The page is fully functional. All links and images have been tested and alt text has been provided where required. Below is an image of the screen you should arrive at on loading:
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+![finished-webpage](./public/finished-webpage.png)
 
-### `npm run eject`
+## Contributors
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+Here is a list of contributors to this application:
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+N/A
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+## License
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)
 
-## Learn More
+The MIT License: https://opensource.org/licenses/MIT
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+## Tests
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+N/A
 
-### Code Splitting
+## Questions
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+Here are two links to reach out to me:
 
-### Analyzing the Bundle Size
+Github: https://github.com/Honsumal
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+Email: 14leealastair@gmail.com

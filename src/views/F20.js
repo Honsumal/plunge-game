@@ -9,8 +9,9 @@ import Rotations from "../components/Rotations";
 import FightLog from "../components/FightLog";
 import { useBattleSequence } from "../hooks/useBattleSequence";
 import { wait } from "../utils/wait";
+import { Modal, Box, Typography, Button } from "@mui/material";
 
-export default function F20 () {
+export default function F20 ({toMenu}) {
     let aPrime = new Mack();
     
     let bPrime = new Drake();
@@ -23,79 +24,37 @@ export default function F20 () {
     for (let i = 0; i < 4; i++) {bPrime.levelUp()}
     for (let i = 0; i < 4; i++) {cPrime.levelUp()}
 
-    const [a, setA] = useState(aPrime)
-    const [b, setB] = useState(bPrime)
-    const [c, setC] = useState(cPrime)
-    const [e, setE] = useState(ePrime)
+    const [a] = useState(aPrime)
+    const [b] = useState(bPrime)
+    const [c] = useState(cPrime)
+    const [e] = useState(ePrime)
     
     const [active, setActive] = useState(a);
-    
-    //add all the other attacks
-    // const [playerTurn, setPlayerTurn] = useState(false);
-    const [rotating, setRotating] = useState(false);
     const [sequence, setSequence] = useState({})
+    const [rotating, setRotating] = useState(false)
 
-    //const [aDipslay, setADipslay] = useState(false);
-    // const [aRavage, setARavage] = useState(false);
-    // const [aProtect, setAProtect] = useState(false);
-    // const [aBarrier, setABarrier] = useState(false);
+    const [open, setOpen] = React.useState(false);
+    const handleOpen = () => setOpen(true);
+    const handleClose = () => setOpen(false);
 
-    // const [aBarrierCount, setABarrierCount] = useState(0);
-    // const [aPStrikeCount, setAPStrikeCount] = useState(0);
-    // const [aWStrikeCount, setAWStrikeCount] = useState(0);
-    // const [aSSTrikeCount, setASStrikeCount] = useState(0);
-    // const [aSlipstreamCount, setASlipstreamCount] = useState(0);
 
-    // const [eRavage, setERavage] = useState(false);
-    // const [eProtect, setEProtect] = useState(false);
-    // const [eBarrier, setEBarrier] = useState(false);
-    // const [eSlipstream, setEDSlipstream] = useState(false);
-
-    // const [eBarrierCount, setEBarrierCount] = useState(0);
-    // const [eWStrikeCount, setEWStrikeCount] = useState(0);
-
-    // const[aHp, setAHp] = useState(a.maxHp);
-    // const[aAtk, setAAtk] = useState(a.baseAtk);
-    // const[aSpd, setASpd] = useState(a.baseSpd);
-
-    // const[bHp, setBHp] = useState(b.maxHp);
-    // const[bAtk, setBAtk] = useState(b.baseAtk);
-    // const[bSpd, setBSpd] = useState(b.baseSpd);
-
-    // const[cHp, setCHp] = useState(c.maxHp);
-    // const[cAtk, setACtk] = useState(c.baseAtk);
-    // const[cSpd, setCSpd] = useState(c.baseSpd);
-
-    // const[eHp, setEHp] = useState(e.maxHp);
-    // const[eAtk, setEAtk] = useState(e.baseAtk);
-    // const[eSpd, setESpd] = useState(e.baseSpd);
-
-    function changeChar(nameNext) {
-        if (active.name === nameNext) {
-            console.log(`${active.name} is already in combat!`);
-        } else if ((a.name === nameNext && !a.isAlive()) || (b.name === nameNext && !b.isAlive()) || (c.name === nameNext && !c.isAlive())) {
-            console.log(`${nameNext} has fallen, ${active.name} cannot switch out!`);
-        } else {
-            if (a.name === nameNext) {
-                active.rotateTo(a);
-                setActive(a);
-            } else if (b.name === nameNext) {
-                active.rotateTo(b);
-                setActive(b);
-            } else if (c.name === nameNext) {
-                active.rotateTo(c);
-                setActive(c);
-            }
-            active.turnStart();
-            setRotating(false);
-        }  
-    }
+    const style = {
+        position: 'absolute',
+        top: '50%',
+        left: '50%',
+        transform: 'translate(-50%, -50%)',
+        width: 400,
+        bgcolor: 'background.paper',
+        border: '2px solid #000',
+        boxShadow: 24,
+        p: 4,
+      };
 
     const {
         turn,
         inSeq,
         announcerMessage
-    } = useBattleSequence(sequence, active, a, b, c, e, setRotating)
+    } = useBattleSequence(sequence, active, a, b, c, e, setRotating, setActive)
 
     useEffect(() => {
         if (turn === 1 && !inSeq) {
@@ -104,13 +63,13 @@ export default function F20 () {
       }, [turn, inSeq]);
     
       useEffect(() => {
-        if ((a.isAlive() || b.isAlive() || c.isAlive()) && e.isAlive()) {
+        if ((!a.isAlive() && !b.isAlive() && !c.isAlive()) || !e.isAlive()) {
           (async () => {
             await wait(1000);
-            // onGameEnd(playerHealth === 0 ? opponentStats : playerStats);
+            handleOpen()
           })();
         }
-      }, [active, e]);
+      }, [active.hp, e.hp]);
 
     return (
         <div>
@@ -147,24 +106,43 @@ export default function F20 () {
                 <h2>Actions:</h2>
                 <br></br>
 
-                {rotating 
+                {turn === 0 && rotating 
                     ? <Rotations 
-                        rMack={() => changeChar('Mack')} 
-                        rDrake={() => changeChar('Drake')} 
-                        rLionel={() => changeChar('Lionel')} 
+                        rMack={() => {setSequence({ action: 'rotating_1', turn })}} 
+                        rDrake={() => {setSequence({ action: 'rotating_2', turn })}} 
+                        rLionel={() => {setSequence({ action: 'rotating_3', turn })}} 
                         back={() => setRotating(false)} />
 
                     : <Actions 
                         active = {active}
                         onStandard={() => setSequence({ action: 'standard', turn })} 
                         onSpec1={() => setSequence({action: 'special_1', turn })} 
-                        onSpec2={() => active.spec_2(e)} 
+                        onSpec2={() => setSequence({action: 'special_2', turn })} 
                         onRotate={() => setRotating(true)} /> }
-
+                
+                {turn === 1 && <h1 className="centered">Wait</h1>}
                 <br></br>
             </div>
 
+            <Modal
+                open={open}
+                onClose={handleClose}
+                aria-labelledby="End Screen"
+                aria-describedby="Battle Result"
+            >
+                <Box sx={style} textAlign='center'>
+                <Typography id="instructions" variant="h2" component="h3">
+                    {!e.isAlive() 
+                        ? `You Won!`
+                        : `You Lost!` }
+                        
+                </Typography>
+
+                <Button variant="contained" onClick={toMenu}>Menu</Button>
+
+                </Box>
+            </Modal>
+
         </div>
-        
     )
 }

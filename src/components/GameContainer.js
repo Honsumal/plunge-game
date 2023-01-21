@@ -20,7 +20,7 @@ export default function GameContainer() {
                 <br></br>
                 
                 {mode === 'start' && <StartMenu onStart={() => setMode('f20')} />}
-                {mode === 'f20' && <F20 />}
+                {mode === 'f20' && <F20 toMenu={() => setMode('start')}/>}
                 {/* {mode === 'end' && <F20 />} */}
 
                 <br></br>
