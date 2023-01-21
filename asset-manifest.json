@@ -1,13 +1,13 @@
 {
   "files": {
-    "main.css": "/honsumal.github.io/plunge-game/static/css/main.809b9898.css",
-    "main.js": "/honsumal.github.io/plunge-game/static/js/main.f384ecad.js",
-    "index.html": "/honsumal.github.io/plunge-game/index.html",
-    "main.809b9898.css.map": "/honsumal.github.io/plunge-game/static/css/main.809b9898.css.map",
-    "main.f384ecad.js.map": "/honsumal.github.io/plunge-game/static/js/main.f384ecad.js.map"
+    "main.css": "/plunge-game/static/css/main.809b9898.css",
+    "main.js": "/plunge-game/static/js/main.3a5bac0e.js",
+    "index.html": "/plunge-game/index.html",
+    "main.809b9898.css.map": "/plunge-game/static/css/main.809b9898.css.map",
+    "main.3a5bac0e.js.map": "/plunge-game/static/js/main.3a5bac0e.js.map"
   },
   "entrypoints": [
     "static/css/main.809b9898.css",
-    "static/js/main.f384ecad.js"
+    "static/js/main.3a5bac0e.js"
   ]
 }
