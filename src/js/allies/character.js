@@ -1,4 +1,4 @@
-class Character {
+export default class Character {
     constructor (name, epithet, hp, maxHp, atk, baseAtk, spd, baseSpd, standard, special_1, special_2, rotate) {
         this.name = name;
         this.epithet = epithet
@@ -140,5 +140,3 @@ class Character {
         return (this.hp > 0)
     }
 }
-
-module.exports = Character

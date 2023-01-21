@@ -1,6 +1,6 @@
-const Enemy = require('./enemy');
+import Enemy from "./enemy";
 
-class Bars extends Enemy {
+export default class Bars extends Enemy {
     constructor () {
         const name = 'Bars';
         const epithet = 'the Dragon';
@@ -56,6 +56,4 @@ class Bars extends Enemy {
             return this.spec_1(opp)
         }
     }
-}
-
-module.exports = Bars
+}s

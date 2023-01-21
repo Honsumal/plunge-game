@@ -1,6 +1,6 @@
-const Enemy = require('./enemy');
+import Enemy from "./enemy";
 
-class Melchor extends Enemy {
+export default class Melchor extends Enemy {
     constructor () {
         const name = "Melchor";
         const epithet = "Slayer of Dips";
@@ -60,5 +60,3 @@ class Melchor extends Enemy {
     }
 
 }
-
-module.exports = Melchor

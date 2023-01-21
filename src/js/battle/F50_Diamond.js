@@ -271,7 +271,3 @@ async function F50 (aLv, bLv, cLv) {
         c.printStats()
     }
 }
-
-//F50(18, 18, 18)
-
-module.exports = F50

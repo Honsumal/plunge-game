@@ -1,4 +1,4 @@
-class Enemy {
+export default class Enemy {
     constructor(name, epithet, level, hp, maxHp, atk, spd, standard, special_1, special_2, special_3) {
         this.name = name;
         this.epithet = epithet
@@ -82,4 +82,3 @@ class Enemy {
     }
 }
 
-module.exports = Enemy

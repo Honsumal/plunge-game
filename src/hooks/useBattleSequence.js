@@ -156,6 +156,7 @@ export const useBattleSequence = (sequence, active, a, b, c, e, setRotating, set
                                 if(active.wStrike_count === 0) {
                                     active.wStrike_count = 6;
                                     setAnnouncerMessage (`Ally attacks now drain allies for some health!`)
+                                    await wait (2500);
                                 } else {
                                     setAnnouncerMessage(`${active.name} drained ${active.atk * 0.8 * (1 + e.ravage * 0.2) * (1 - e.barrier * 0.5) * 0.3} health!`);
                                     if (active.hp > active.maxHp) {
@@ -186,7 +187,6 @@ export const useBattleSequence = (sequence, active, a, b, c, e, setRotating, set
                                     await wait(2500);
                                 }
                             }
-                            
                             setInSeq(false);
 
                         })();

@@ -1,6 +1,6 @@
-const Character = require('./character');
+import Character from "./character";
 
-class Drake extends Character {
+export default class Drake extends Character {
     constructor () {
         const name = "Drake";
         const epithet = "the FlyLord";
@@ -69,5 +69,3 @@ class Drake extends Character {
         this.baseSpd += 2;       
     }
 }
-
-module.exports = Drake

@@ -1,6 +1,6 @@
-const Enemy = require('./enemy');
+import Enemy from "./enemy";
 
-class Statis extends Enemy {
+export default class Statis extends Enemy {
     constructor () {
         const name = "Golba Statis";
         const epithet = "The Midnight Tempest";
@@ -110,5 +110,3 @@ class Statis extends Enemy {
         }
     }
 }
-
-module.exports = Statis;

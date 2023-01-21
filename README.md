@@ -6,6 +6,7 @@ This application is a turn-based combat game built using REACT. The user control
 Future plans:
 
 MVP2:
+- Add health-based specials for stages so to change up a battle mid-combat
 - Add 9 more stages for a total of 10 enemies. 2 Stages have already been written to work in CLI but not ported to the application yet.
 - Add a levelling mechanic for users to customize their characters as they play through the stages
 - Add functionality to allow players to pick which character they want to start the battle with
