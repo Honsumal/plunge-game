@@ -1,8 +1,8 @@
-export default function PointBar ({ label, value, maxValue }) {
+export default function PointBar ({ combatant }) {
     return (
         <div>
-            <div className='label'>{label}</div>
-            <div>{value}/{maxValue}</div>
-        </div>
+            <div className='label'>Hp {combatant.hp}/{combatant.maxHp}</div>
+            <div> Atk: {combatant.atk} Spd: {combatant.spd}</div>
+        </div>        
     )
 }

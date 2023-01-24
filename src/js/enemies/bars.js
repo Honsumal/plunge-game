@@ -22,8 +22,8 @@ export default class Bars extends Enemy {
             opp.protect = false;
             console.log(`${this.name}'s attack bounced off the shield, cracking it!`)
         } else {
-            opp.hp -= this.atk * 0.8 * (1 + opp.ravage * 0.2) * (1 - opp.barrier * 0.5);
-            console.log(`${this.name} attacked ${opp.name} using ${this.special_1} for ${this.atk * 0.8 * (1 + opp.ravage * 0.2) * (1 - opp.barrier * 0.5)} damage!`);
+            opp.hp -= Math.floor(this.atk * 0.8 * (1 + opp.ravage * 0.2) * (1 - opp.barrier * 0.5));
+            console.log(`${this.name} attacked ${opp.name} using ${this.special_1} for ${Math.floor(this.atk * 0.8 * (1 + opp.ravage * 0.2) * (1 - opp.barrier * 0.5))} damage!`);
 
             if (!opp.ravage) {
                 opp.ravage = true;
@@ -32,12 +32,12 @@ export default class Bars extends Enemy {
             
             //If Opponent Spiky
             if (opp.sStrike_count > 0) {
-                this.hp -= this.atk * 0.8 * (1 + opp.ravage * 0.2) * (1 - opp.barrier * 0.5) * 0.3;
-                console.log(`${this.name} took ${this.atk * (1 + opp.ravage * 0.2) * (1 - opp.barrier * 0.5) * 0.3} damage from spikes!`)
+                this.hp -= Math.floor(this.atk * 0.8 * (1 + opp.ravage * 0.2) * (1 - opp.barrier * 0.5) * 0.3);
+                console.log(`${this.name} took ${Math.floor(this.atk * (1 + opp.ravage * 0.2) * (1 - opp.barrier * 0.5) * 0.3)} damage from spikes!`)
             } 
             // If Opponent Barrier
             if (opp.barrier) {
-                opp.barrier_count --;
+                //opp.barrier_count --;
                 if (opp.barrier_count === 0) {
                     opp.barrier = false;
                     console.log(`${this.name} broke through ${opp.name}'s barrier!`);

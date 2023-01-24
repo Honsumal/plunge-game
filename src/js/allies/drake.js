@@ -18,54 +18,13 @@ export default class Drake extends Character {
         super (name, epithet, hp, maxHp, atk, baseAtk, spd, baseSpd, standard, special_1, special_2, rotate)
     };
 
-    //WStrike
-    spec_1(opp) {
-        //If Opponent Protect
-        if (opp.protect) {
-            opp.protect = false;
-            console.log(`${this.name}'s attack bounced off the shield, cracking it!`)
-        } else {
-            opp.hp -= this.atk * 0.8 * (1 + opp.ravage * 0.2) * (1 - opp.barrier * 0.5);
-            console.log(`${this.name} attacked ${opp.name} using ${this.special_1} for ${this.atk * 0.8 * (1 + opp.ravage * 0.2) * (1 - opp.barrier * 0.5)} damage!`);
-            
-            if (this.wStrike_count === 0) {
-                this.wStrike_count = 6;
-                console.log(`${this.name}'s attacks now drain allies for some health!`)
-            }
-
-            this.hp += this.atk * 0.8 * (1 + opp.ravage * 0.2) * (1 - opp.barrier * 0.5) * 0.3;
-            console.log(`${this.name} drained ${this.atk * 0.8 * (1 + opp.ravage * 0.2) * (1 - opp.barrier * 0.5) * 0.3} health!`);
-            if (this.hp > this.maxHp) {
-                this.hp = this.maxHp;
-            }
-
-            // If Opponent Barrier
-            if (opp.barrier) {
-                opp.barrier_count --;
-                if (opp.barrier_count === 0) {
-                    opp.barrier = false;
-                    console.log(`The allies broke through ${opp.name}'s barrier!`);
-                } else {
-                    console.log(`${opp.name}'s barrier can withstand ${opp.barrier_count} more hits!`)
-                }
-            }
-        }
-    }
-
-    //Slipstream
-    spec_2 () {
-        this.slipstream_count = 9;
-        this.spd *= 1.2
-        console.log(`${this.name} conjured up magicks to increase allied speed!`)
-    }
-
     levelUp () {
         this.level ++;
-        this.hp ++;
-        this.maxHp ++;
-        this.atk += 3;
-        this.baseAtk += 3;
-        this.spd += 2;
-        this.baseSpd += 2;       
+        this.hp += 2;
+        this.maxHp += 2;
+        this.atk += 6;
+        this.baseAtk += 6;
+        this.spd += 4;
+        this.baseSpd += 4;       
     }
 }

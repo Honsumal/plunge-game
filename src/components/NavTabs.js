@@ -1,5 +1,5 @@
 import React from 'react';
-import {FaPercentage, FaDice, FaQuestionCircle} from 'react-icons/fa'
+import {FaDice, FaQuestionCircle} from 'react-icons/fa'
 import {Box, Typography, Modal} from '@mui/material';
 
 
@@ -10,7 +10,7 @@ export default function NavTabs({ currentCalculator, handleCalculatorChange }) {
     top: '50%',
     left: '50%',
     transform: 'translate(-50%, -50%)',
-    width: 400,
+    width: 600,
     bgcolor: 'background.paper',
     border: '2px solid #000',
     boxShadow: 24,
@@ -24,16 +24,6 @@ export default function NavTabs({ currentCalculator, handleCalculatorChange }) {
   return (
     <ul className="nav nav-tabs">
       <li><h1><a href='https://honsumal.github.io/portfolio/' className='headline'>Alastair Lee</a></h1></li>
-
-      <li className="nav-item">
-        <a
-          href="#confidence"
-          onClick={() => handleCalculatorChange('Confidence')}
-          className={currentCalculator === 'Confidence' ? 'nav-link active' : 'nav-link'}
-        >
-          <FaPercentage className = 'home'/>
-        </a>
-      </li>
     
       <li className="nav-item">
         <a
@@ -63,8 +53,16 @@ export default function NavTabs({ currentCalculator, handleCalculatorChange }) {
             Instructions:
           </Typography>
           <Typography id="usage instructions" sx={{ mt: 2 }}>
-            Input the your probability and either the number of tries (rolls), or desired confidence. Calculations made will be saved locally and displayed below the relevant calculator
+            Welcome to The Plunge! Control Mack, Drake, and Lionel to fight against the bosses on screen. Here's a summary of the different skills that are available to use:
           </Typography>
+          <Typography>- Batter, Dissonance, Hammer: Standard Attack</Typography>
+          <Typography>- Pugilistic Strike: Attack that initially begins with low damage but increases in damage with each use</Typography>
+          <Typography>- Willful Strike: Attack that causes successive allied attacks to drain some HP for 5 rounds</Typography>
+          <Typography>- Spiky Strike: Attack that creates a shield around the allies, causing enemies to take some damage on attacks</Typography>
+          <Typography>- Ravage: Attack that causes enemies to take more damage</Typography>
+          <Typography>- Slipstream: Supportive skill that increases allied speed for 5 rounds</Typography>
+          <Typography>- Barrier: Supportive skill that nullifies the next attack by the enemy, and protects the allies for the next 4 successive hits</Typography>
+          <Typography>- Disengage, Recall, Smoke Ball: Supportive skill that allows the user to switch to their specified ally</Typography>
         </Box>
       </Modal>
     </ul>    

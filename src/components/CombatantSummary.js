@@ -10,7 +10,7 @@ export default function CombatantSummary({ combatant })  {
             <div>{combatant.name}, {combatant.epithet}</div>
             <div>Lv: {combatant.level}</div>
 
-            <PointBar label="HP" value={combatant.hp} maxValue={combatant.maxHp} />
+            <PointBar combatant={combatant} />
         </div>
 
     )

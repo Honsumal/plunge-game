@@ -7,7 +7,7 @@ import CombatantSummary from "../components/CombatantSummary";
 import Actions from "../components/Actions";
 import Rotations from "../components/Rotations";
 import FightLog from "../components/FightLog";
-import { useBattleSequence } from "../hooks/useBattleSequence";
+import { useF20BattleSequence } from "../hooks/useF20BattleSequence";
 import { wait } from "../utils/wait";
 import { Modal, Box, Typography, Button } from "@mui/material";
 
@@ -20,9 +20,9 @@ export default function F20 ({toMenu}) {
     
     let ePrime = new Melchor();
 
-    for (let i = 0; i < 4; i++) {aPrime.levelUp()}
-    for (let i = 0; i < 4; i++) {bPrime.levelUp()}
-    for (let i = 0; i < 4; i++) {cPrime.levelUp()}
+    for (let i = 0; i < 2; i++) {aPrime.levelUp()}
+    for (let i = 0; i < 2; i++) {bPrime.levelUp()}
+    for (let i = 0; i < 2; i++) {cPrime.levelUp()}
 
     const [a] = useState(aPrime)
     const [b] = useState(bPrime)
@@ -54,7 +54,7 @@ export default function F20 ({toMenu}) {
         turn,
         inSeq,
         announcerMessage
-    } = useBattleSequence(sequence, active, a, b, c, e, setRotating, setActive)
+    } = useF20BattleSequence(sequence, active, a, b, c, e, setRotating, setActive)
 
     useEffect(() => {
         if (turn === 1 && !inSeq) {

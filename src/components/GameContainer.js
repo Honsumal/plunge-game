@@ -5,7 +5,7 @@ import StartMenu from '../views/StartMenu'
 
 
 export default function GameContainer() {
-    const [currentCalculator, setCurrentCalculator] = useState('Confidence');
+    const [currentCalculator, setCurrentCalculator] = useState('Rolls');
 
     const [mode, setMode] = useState('start')
     
@@ -21,7 +21,6 @@ export default function GameContainer() {
                 
                 {mode === 'start' && <StartMenu onStart={() => setMode('f20')} />}
                 {mode === 'f20' && <F20 toMenu={() => setMode('start')}/>}
-                {/* {mode === 'end' && <F20 />} */}
 
                 <br></br>
                 

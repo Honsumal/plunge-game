@@ -32,13 +32,13 @@ export default class Character {
             opp.protect = false;
             console.log(`${this.name}'s attack bounced off the shield, cracking it!`)
         } else {
-            opp.hp -= this.atk * (1 + opp.ravage * 0.2) * (1 - opp.barrier * 0.5);
-            console.log(`${this.name} attacked ${opp.name} using ${this.standard} for ${this.atk * (1 + opp.ravage * 0.2) * (1 - opp.barrier * 0.5)} damage!`);
+            opp.hp -= Math.floor(this.atk * (1 + opp.ravage * 0.2) * (1 - opp.barrier * 0.5));
+            console.log(`${this.name} attacked ${opp.name} using ${this.standard} for ${Math.floor(this.atk * (1 + opp.ravage * 0.2) * (1 - opp.barrier * 0.5))} damage!`);
 
             // If Willstrike
             if (this.wStrike_count > 0) {
-                this.hp += this.atk * 0.8 * (1 + opp.ravage * 0.2) * (1 - opp.barrier * 0.5) * 0.3;
-                console.log(`${this.name} drained ${this.atk * 0.8 * (1 + opp.ravage * 0.2) * (1 - opp.barrier * 0.5) * 0.3} health!`);
+                this.hp += Math.floor(this.atk * 0.8 * (1 + opp.ravage * 0.2) * (1 - opp.barrier * 0.5) * 0.3);
+                console.log(`${this.name} drained ${Math.floor(this.atk * 0.8 * (1 + opp.ravage * 0.2) * (1 - opp.barrier * 0.5) * 0.3)} health!`);
                 if (this.hp > this.maxHp) {
                     this.hp = this.maxHp;
                 }
@@ -57,7 +57,162 @@ export default class Character {
         }
     }
 
-    rotateTo(next){
+    spec_1(opp) {
+        console.log(this.special_1)
+        switch(this.special_1) {
+            case 'Pugilistic Strike':
+                if (opp.protect) {
+                    opp.protect = false;
+                    console.log(`${this.name}'s attack bounced off the shield, cracking it!`)
+                } else {
+                    opp.hp -= Math.floor(this.atk * 0.5 * (1 + this.pStrike_count) * (1 + opp.ravage * 0.2) * (1 - opp.barrier * 0.5));
+                    console.log(`${this.name} attacked ${opp.name} using ${this.special_1} for ${Math.floor(this.atk * 0.5 * (1 + this.pStrike_count) * (1 + opp.ravage * 0.2) * (1 - opp.barrier * 0.5))} damage!`);
+                    this.pStrike_count ++;
+        
+                    // If Willstrike
+                    if (this.wStrike_count > 0) {
+                        this.hp += Math.floor(this.atk * 0.5 * (1 + this.pStrike_count) * (1 + opp.ravage * 0.2) * (1 - opp.barrier * 0.5) * 0.3);
+                        console.log(`${this.name} drained ${Math.floor(this.atk  * 0.5 * (1 + this.pStrike_count) * (1 + opp.ravage * 0.2) * (1 - opp.barrier * 0.5) * 0.3)} health!`);
+                        if (this.hp > this.maxHp) {
+                            this.hp = this.maxHp;
+                        }
+                    }
+        
+                    // If Opponent Barrier
+                    if (opp.barrier) {
+                        opp.barrier_count --;
+                        if (opp.barrier_count === 0) {
+                            opp.barrier = false;
+                            console.log(`The allies broke through ${opp.name}'s barrier!`);
+                        } else {
+                            console.log(`${opp.name}'s barrier can withstand ${opp.barrier_count} more hits!`)
+                        }
+                    }
+                }
+                break;
+            case 'Willful Strike':
+                //If Opponent Protect
+                if (opp.protect) {
+                    opp.protect = false;
+                    console.log(`${this.name}'s attack bounced off the shield, cracking it!`)
+                } else {
+                    opp.hp -= Math.floor(this.atk * 0.8 * (1 + opp.ravage * 0.2) * (1 - opp.barrier * 0.5));
+                    console.log(`${this.name} attacked ${opp.name} using ${this.special_1} for ${Math.floor(this.atk * 0.8 * (1 + opp.ravage * 0.2) * (1 - opp.barrier * 0.5))} damage!`);
+                    
+                    if (this.wStrike_count === 0) {
+                        this.wStrike_count = 6;
+                        console.log(`${this.name}'s attacks now drain allies for some health!`)
+                    }
+        
+                    this.hp += Math.floor(this.atk * 0.8 * (1 + opp.ravage * 0.2) * (1 - opp.barrier * 0.5) * 0.3);
+                    console.log(`${this.name} drained ${Math.floor(this.atk * 0.8 * (1 + opp.ravage * 0.2) * (1 - opp.barrier * 0.5) * 0.3)} health!`);
+                    if (this.hp > this.maxHp) {
+                        this.hp = this.maxHp;
+                    }
+        
+                    // If Opponent Barrier
+                    if (opp.barrier) {
+                        opp.barrier_count --;
+                        if (opp.barrier_count === 0) {
+                            opp.barrier = false;
+                            console.log(`The allies broke through ${opp.name}'s barrier!`);
+                        } else {
+                            console.log(`${opp.name}'s barrier can withstand ${opp.barrier_count} more hits!`)
+                        }
+                    }
+                }
+                break;
+            case 'Spiky Strike': 
+                //If Opponent Protect
+                if (opp.protect) {
+                    opp.protect = false;
+                    console.log(`${this.name}'s attack bounced off the shield, cracking it!`)
+                } else {
+                    opp.hp -= Math.floor(this.atk * 0.8* (1 + opp.ravage * 0.2) * (1 - opp.barrier * 0.5));
+                    console.log(`${this.name} attacked ${opp.name} using ${this.special_1} for ${Math.floor(this.atk * 0.8* (1 + opp.ravage * 0.2) * (1 - opp.barrier * 0.5))} damage!`);
+                    
+                    
+                    if (this.sStrike_count === 0) {            
+                        this.sStrike_count = 6;
+                        console.log(`Spikes from ${this.name}'s attack formed a shield around allies, injuring enemies who attack!`)
+                    }
+
+                    // If Willstrike
+                    if (this.wStrike_count > 0) {
+                        this.hp += Math.floor(this.atk * 0.8 * (1 + opp.ravage * 0.2) * (1 - opp.barrier * 0.5) * 0.3);
+                        console.log(`${this.name} drained ${Math.floor(this.atk * 0.8 * (1 + opp.ravage * 0.2) * (1 - opp.barrier * 0.5) * 0.3)} health!`);
+                        if (this.hp > this.maxHp) {
+                            this.hp = this.maxHp;
+                        }
+                    }
+
+                    // If Opponent Barrier
+                    if (opp.barrier) {
+                        opp.barrier_count --;
+                        if (opp.barrier_count === 0) {
+                            opp.barrier = false;
+                            console.log(`The allies broke through ${opp.name}'s barrier!`);
+                        } else {
+                            console.log(`${opp.name}'s barrier can withstand ${opp.barrier_count} more hits!`)
+                        }
+                    }
+                }
+                
+        }
+    }
+
+    spec_2(opp) {
+        switch(this.special_2) {
+            case 'Ravage': 
+                //If Opponent Protect
+                if (opp.protect) {
+                    opp.protect = false;
+                    console.log(`${this.name}'s attack bounced off the shield, cracking it!`)
+                } else {
+                    opp.hp -= Math.floor(this.atk * 0.8 * (1 + opp.ravage * 0.2) * (1 - opp.barrier * 0.5));
+                    console.log(`${this.name} attacked ${opp.name} using ${this.special_2} for ${Math.floor(this.atk * 0.8 * (1 + opp.ravage * 0.2) * (1 - opp.barrier * 0.5))} damage!`);
+
+                    if (!opp.ravage) {
+                        opp.ravage = true;
+                        console.log(`${opp.name} has been ravaged and now takes extra damage!`)
+                    };
+                    
+                    // If Willstrike
+                    if (this.wStrike_count > 0) {
+                        this.hp += Math.floor(this.atk * 0.8 * (1 + opp.ravage * 0.2) * (1 - opp.barrier * 0.5) * 0.3);
+                        console.log(`${this.name} drained ${Math.floor(this.atk * 0.8 * (1 + opp.ravage * 0.2) * (1 - opp.barrier * 0.5) * 0.3)} health!`);
+                        if (this.hp > this.maxHp) {
+                            this.hp = this.maxHp;
+                        }
+                    }
+
+                    // If Opponent Barrier
+                    if (opp.barrier) {
+                        opp.barrier_count --;
+                        if (opp.barrier_count === 0) {
+                            opp.barrier = false;
+                            console.log(`The allies broke through ${opp.name}'s barrier!`);
+                        } else {
+                            console.log(`${opp.name}'s barrier can withstand ${opp.barrier_count} more hits!`)
+                        }
+                    }
+                }
+                break
+            case 'Slipstream':
+                this.slipstream_count = 9;
+                this.spd = Math.floor(this.spd * 1.2);                
+                console.log(`${this.name} conjured up magicks to increase allied speed!`)
+                break
+            case 'Barrier': 
+                this.protect = true;
+                this.barrier = true;
+                this.barrier_count = 5;
+                console.log(`${this.name} formed a barrier around the allies, nullifying some damage!`)
+                break
+        }
+    }
+
+    rotateTo(next) {
         if (this.name === next.name) {
             console.log(`${this.name} is already in combat!`)
         }
@@ -72,7 +227,7 @@ export default class Character {
 
             if (this.slipstream_count > 0) {
                 next.slipStream_count = this.slipstream_count;
-                next.spd *= 1.2;
+                next.spd = Math.floor(next.spd * 1.2);
             }
 
             if (this.protect) {
@@ -93,7 +248,7 @@ export default class Character {
 
     turnStart (dipslay) {
         if (dipslay && !this.dipslay) {
-            this.spd *= 0.5;
+            this.spd = Math.floor(this.spd * 0.5);
             this.dipslay = true;
         };
 
