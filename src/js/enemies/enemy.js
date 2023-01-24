@@ -1,5 +1,5 @@
 export default class Enemy {
-    constructor(name, epithet, level, hp, maxHp, atk, spd, standard, special_1, special_2, special_3) {
+    constructor(name, epithet, level, hp, maxHp, atk, spd, move_count, standard, special_1, special_2, special_3) {
         this.name = name;
         this.epithet = epithet
         this.level = level;
@@ -7,6 +7,7 @@ export default class Enemy {
         this.maxHp = maxHp;
         this.atk = atk;
         this.spd = spd;
+        this.move_count = move_count;
         this.standard = standard;
         this.special_1 = special_1;
         this.special_2 = special_2;
@@ -18,6 +19,7 @@ export default class Enemy {
         this.ally = false;
         this.barrier_count = 0;
         this.wStrike_count = 0;
+        
     }
 
     attack(opp) {

@@ -9,10 +9,11 @@ export default class Bars extends Enemy {
         const maxHp = 500;
         const atk = 19;
         const spd = 15;
+        const move_count = 2;
         const standard = 'Fire Breath';
         const special_1 = 'Ravage';
 
-        super (name, epithet, level, hp, maxHp, atk, spd, standard, special_1);
+        super (name, epithet, level, hp, maxHp, atk, spd, move_count, standard, special_1);
     };
 
     //Ravage
@@ -56,4 +57,4 @@ export default class Bars extends Enemy {
             return this.spec_1(opp)
         }
     }
-}s
+}

@@ -9,11 +9,12 @@ export default class Statis extends Enemy {
         const maxHp = 1000;
         const atk = 18;
         const spd = 30;
+        const move_count = 3;
         const standard = "Atrocity";
         const special_1 = "Ravage";
         const special_2 = "Willful Strike";
 
-        super (name, epithet, level, hp, maxHp, atk, spd, standard, special_1, special_2)
+        super (name, epithet, level, hp, maxHp, atk, spd, move_count, standard, special_1, special_2)
     
     };
 

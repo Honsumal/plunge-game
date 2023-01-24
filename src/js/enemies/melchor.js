@@ -9,11 +9,11 @@ export default class Melchor extends Enemy {
         const maxHp = 250;
         const atk = 12;
         const spd = 12;
+        const move_count = 2;
         const standard = "Dipstrike";
         const special_1 = "Ravage";
-        const special_2 = "Dipslay";
 
-        super (name, epithet, level, hp, maxHp, atk, spd, standard, special_1, special_2)
+        super (name, epithet, level, hp, maxHp, atk, spd, move_count, standard, special_1)
     };
 
     //Ravage
