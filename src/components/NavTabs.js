@@ -63,6 +63,7 @@ export default function NavTabs({ currentCalculator, handleCalculatorChange }) {
           <Typography>- Slipstream: Supportive skill that increases allied speed for 5 rounds</Typography>
           <Typography>- Barrier: Supportive skill that nullifies the next attack by the enemy, and protects the allies for the next 4 successive hits</Typography>
           <Typography>- Disengage, Recall, Smoke Ball: Supportive skill that allows the user to switch to their specified ally</Typography>
+          <Typography>Warning: If you try to switch to someone who can't come in, you will use up your turn!</Typography>
         </Box>
       </Modal>
     </ul>    

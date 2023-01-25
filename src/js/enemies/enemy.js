@@ -41,7 +41,7 @@ export default class Enemy {
             }
 
             //If Opponent Spiky
-            if (opp.sStrike_count > 0) {
+            if (opp.sStrike_count > 0 && this.standard !== 'Fire Breath') {
                 this.hp -= Math.floor(this.atk * 0.8 * (1 + opp.ravage * 0.2) * (1 - opp.barrier * 0.5) * 0.3);
                 console.log(`${this.name} took ${Math.floor(this.atk * (1 + opp.ravage * 0.2) * (1 - opp.barrier * 0.5) * 0.3)} damage from spikes!`)
             }
@@ -61,7 +61,7 @@ export default class Enemy {
 
     turnStart(eSlipstream) {
         if (eSlipstream && !this.eSlipstream) {
-            this.spd = this.spd * 1.2;
+            this.spd = this.spd * 1.5;
             this.eSlipstream = true;
         }
 

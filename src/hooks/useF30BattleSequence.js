@@ -5,10 +5,10 @@ import { playerAction } from "../utils/playerAction";
 import { useState, useEffect } from "react";
 
 
-export const useF20BattleSequence = (sequence, active, a, b, c, e, setRotating, setActive) => {
+export const useF30BattleSequence = (sequence, active, a, b, c, e, setRotating, setActive) => {
     const [turn, setTurn] = useState(0);
     const [inSeq, setInSeq] = useState(false)
-    const [dipslay, setDipslay] = useState (false)
+    const [slipstream, setSlipstream] = useState (false)
     const [announcerMessage, setAnnouncerMessage] = useState('')
 
     const [allyGlobalTurnCounter, setAllyTurnCounter] = useState(0)
@@ -27,14 +27,12 @@ export const useF20BattleSequence = (sequence, active, a, b, c, e, setRotating, 
         } else if (turn === 1) {
             (async () => {
                 setInSeq(true)
-                if ((e.hp < e.maxHp * 0.65 || e.hp === e.maxHp * 0.65) && !dipslay) {
-                    setDipslay(true);
-                    active.dipslay = true;
-                    active.spd *= 0.5;
-                    setAnnouncerMessage(`Feeling the pressure, Melchor uses Dipslay! All allies have their speed halved!`)
-                    await wait(3000)
+                if ((e.hp < e.maxHp * 0.8 || e.hp === e.maxHp * 0.8) && !slipstream) {
+                    setSlipstream(true);
+                    setAnnouncerMessage(`Bar's fury rose to fever pitch! Its elden roar summoned a tempest to blow from behind it!`)
+                    await wait(3500)
                 }
-                e.turnStart();
+                e.turnStart(slipstream);
                 let dice = Math.floor(Math.random() * 2);
                 if (dice === 0) {
                     //If Opponent Protect
@@ -46,13 +44,6 @@ export const useF20BattleSequence = (sequence, active, a, b, c, e, setRotating, 
                         e.attack(active)
                         setAnnouncerMessage(`${e.name} attacked ${active.name} using ${e.standard} for ${Math.floor(e.atk * (1 + active.ravage * 0.2) * (1 - active.barrier * 0.5))} damage!`)
                         await wait(2500);
-
-                        //If Opponent Spiky
-                        if (active.sStrike_count > 0) {
-                            e.hp -= Math.floor(e.atk * (1 + active.ravage * 0.2) * (1 - active.barrier * 0.5) * 0.3);
-                            setAnnouncerMessage(`${e.name} took ${Math.floor(e.atk * (1 + active.ravage * 0.2) * (1 - active.barrier * 0.5) * 0.3)} damage from spikes!`)
-                            await wait(2500);
-                        }
 
                         //If Opponent Barrier
                         if (active.barrier) {

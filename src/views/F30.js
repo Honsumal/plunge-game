@@ -3,7 +3,7 @@ import Mack from "../js/allies/mack";
 import Drake from "../js/allies/drake";
 import Lionel from "../js/allies/lionel";
 import Bars from "../js/enemies/bars";
-import { useF20BattleSequence } from "../hooks/useF20BattleSequence";
+import { useF30BattleSequence } from "../hooks/useF30BattleSequence";
 import { wait } from "../utils/wait";
 import { BattleField } from "../components/BattleField";
 
@@ -37,7 +37,7 @@ export default function F30 ({toMenu, toNext}) {
         turn,
         inSeq,
         announcerMessage
-    } = useF20BattleSequence(sequence, active, a, b, c, e, setRotating, setActive)
+    } = useF30BattleSequence(sequence, active, a, b, c, e, setRotating, setActive)
 
     useEffect(() => {
         if (turn === 1 && !inSeq) {

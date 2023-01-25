@@ -30,8 +30,11 @@ export default function F20 ({toMenu, toNext}) {
     const [rotating, setRotating] = useState(false)
 
     const [open, setOpen] = React.useState(false);
+    const [openStart, setOpenStart] = React.useState(true)
+    
     const handleOpen = () => setOpen(true);
-    const handleClose = () => setOpen(false);
+    // const handleClose = () => setOpen(false);
+    const handleCloseStart = () => setOpenStart (false)
 
     const {
         turn,
@@ -56,8 +59,7 @@ export default function F20 ({toMenu, toNext}) {
 
     return (
         <div>
-            <BattleField announcerMessage={announcerMessage} activechar={active} echar={e} setRotating={setRotating} setSequence={setSequence} handleClose={handleClose} turn={turn} rotating={rotating} toMenu={toMenu} toNext={toNext} open={open}/>
-
+            <BattleField announcerMessage={announcerMessage} activechar={active} echar={e} setRotating={setRotating} setSequence={setSequence} setActive={setActive} handleCloseStart={handleCloseStart} turn={turn} rotating={rotating} toMenu={toMenu} toNext={toNext} open={open} openStart={openStart} a={a} b={b} c={c} />
         </div>
     )
 }

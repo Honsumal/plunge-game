@@ -4,7 +4,7 @@ import Rotations from "../components/Rotations";
 import FightLog from "../components/FightLog";
 import { Modal, Box, Typography, Button } from "@mui/material";
 
-export function BattleField({announcerMessage, activechar, echar, setSequence, setRotating, handleClose, turn, rotating, toMenu, toNext, open}) {
+export function BattleField({announcerMessage, activechar, echar, setSequence, setRotating, setActive, handleCloseStart, turn, rotating, toMenu, toNext, open, openStart, a, b, c}) {
 
     const style = {
         position: 'absolute',
@@ -17,6 +17,7 @@ export function BattleField({announcerMessage, activechar, echar, setSequence, s
         boxShadow: 24,
         p: 4,
     };
+    
     return (
         <div>
             <div className="container box2">
@@ -72,7 +73,6 @@ export function BattleField({announcerMessage, activechar, echar, setSequence, s
 
             <Modal
                 open={open}
-                onClose={handleClose}
                 aria-labelledby="End Screen"
                 aria-describedby="Battle Result"
             >
@@ -88,6 +88,20 @@ export function BattleField({announcerMessage, activechar, echar, setSequence, s
 
                 <Button variant="contained" onClick={toNext}>Menu</Button>
 
+                </Box>
+            </Modal>
+
+            <Modal
+                open={openStart}
+                onClose={handleCloseStart}
+                aria-labelledby="Select Lead"
+                aria-describedby="Starter Selection"
+            >
+                <Box sx={style} textAlign='center' justifyContent='space-around'>
+                    <Typography>Select your starting fighter!</Typography>
+                    <Button variant="contained" onClick={() => {setActive(a); handleCloseStart()}}>{a.name}</Button>
+                    <Button variant="contained" onClick={() => {setActive(b); handleCloseStart()}}>{b.name}</Button>
+                    <Button variant="contained" onClick={() => {setActive(c); handleCloseStart()}}>{c.name}</Button>
                 </Box>
             </Modal>
 
