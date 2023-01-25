@@ -2,13 +2,13 @@ import { lifeChecker } from "./lifeChecker";
 import { wait } from "./wait";
 import { changeChar } from "./changeChar";
 
-export function playerAction(action, active, a, b, c, e, dipslay, setActive, setAnnouncerMessage, setInSeq, setRotating) {
+export function playerAction(action, active, a, b, c, e, setActive, setAnnouncerMessage, setInSeq, setRotating) {
     if (action) {
         switch(action) {
             case 'standard' :                       
                 (async () => {
                     setInSeq(true);
-                    active.turnStart(dipslay);
+                    active.turnStart();
                     active.attack(e);
                     setAnnouncerMessage(`${active.name} attacked ${e.name} using ${active.standard} for ${Math.floor(active.atk * (1 + e.ravage * 0.2) * (1 - e.barrier * 0.5))} damage!`);
                     await wait(2500);
@@ -27,7 +27,7 @@ export function playerAction(action, active, a, b, c, e, dipslay, setActive, set
             case 'special_1' :
                 (async () => {
                     setInSeq(true)
-                    active.turnStart(dipslay);
+                    active.turnStart();
                     active.spec_1(e)
                     if (active.special_1 === 'Pugilistic Strike') {
                         setAnnouncerMessage(`${active.name} attacked ${e.name} using ${active.special_1} for ${Math.floor(active.atk * 0.5 * (active.pStrike_count) * (1 + e.ravage * 0.2) * (1 - e.barrier * 0.5))} damage!`)
@@ -88,7 +88,7 @@ export function playerAction(action, active, a, b, c, e, dipslay, setActive, set
             case 'special_2': 
                 (async () => {
                     setInSeq(true);
-                    active.turnStart(dipslay);
+                    active.turnStart();
 
                     if (active.special_2 === 'Ravage') {
                         active.spec_2(e);

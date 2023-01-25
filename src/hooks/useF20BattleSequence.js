@@ -23,7 +23,7 @@ export const useF20BattleSequence = (sequence, active, a, b, c, e, setRotating, 
         setTurn(turnFinder(active, e, turnCounter, allyGlobalTurnCounter, enemyGlobalTurnCounter, setAllyTurnCounter, setEnemyTurnCounter))
 
         if(turn === 0) {
-            playerAction(action, active, a, b, c, e, dipslay, setActive, setAnnouncerMessage, setInSeq, setRotating)
+            playerAction(action, active, a, b, c, e, setActive, setAnnouncerMessage, setInSeq, setRotating)
         } else if (turn === 1) {
             (async () => {
                 setInSeq(true)

@@ -1,24 +1,24 @@
 import React, {useEffect, useState} from "react";
-import Mack from "../js/allies/mack"
-import Drake from "../js/allies/drake"
-import Lionel from "../js/allies/lionel"
-import Melchor from "../js/enemies/melchor"
+import Mack from "../js/allies/mack";
+import Drake from "../js/allies/drake";
+import Lionel from "../js/allies/lionel";
+import Bars from "../js/enemies/bars";
 import { useF20BattleSequence } from "../hooks/useF20BattleSequence";
 import { wait } from "../utils/wait";
 import { BattleField } from "../components/BattleField";
 
-export default function F20 ({toMenu, toNext}) {
+export default function F30 ({toMenu, toNext}) {
     let aPrime = new Mack();
     
     let bPrime = new Drake();
 
     let cPrime = new Lionel();
     
-    let ePrime = new Melchor();
+    let ePrime = new Bars();
 
-    for (let i = 0; i < 2; i++) {aPrime.levelUp()}
-    for (let i = 0; i < 2; i++) {bPrime.levelUp()}
-    for (let i = 0; i < 2; i++) {cPrime.levelUp()}
+    for (let i = 0; i < 4; i++) {aPrime.levelUp()}
+    for (let i = 0; i < 4; i++) {bPrime.levelUp()}
+    for (let i = 0; i < 4; i++) {cPrime.levelUp()}
 
     const [a] = useState(aPrime)
     const [b] = useState(bPrime)
@@ -56,7 +56,7 @@ export default function F20 ({toMenu, toNext}) {
 
     return (
         <div>
-            <BattleField announcerMessage={announcerMessage} activechar={active} echar={e} setRotating={setRotating} setSequence={setSequence} handleClose={handleClose} turn={turn} rotating={rotating} toMenu={toMenu} toNext={toNext} open={open}/>
+            <BattleField announcerMessage={announcerMessage} activechar={active} echar={e} setRotating={setRotating} setSequence={setSequence} handleClose={handleClose} turn={turn} rotating={rotating} toMenu={toMenu} open={open}/>
 
         </div>
     )

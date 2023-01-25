@@ -239,6 +239,11 @@ export default class Character {
                 next.barrier_count = this.barrier_count;
             }
 
+            if(this.dipslay) {
+                next.dipslay = true;
+                next.spd = Math.floor(next.spd * 0.5)
+            }
+
             next.isActive = true;
             console.log(`${this.name} retreated! ${next.name} stepped up to fight!`)
         } else {
@@ -246,12 +251,7 @@ export default class Character {
         }
     }
 
-    turnStart (dipslay) {
-        if (dipslay && !this.dipslay) {
-            this.spd = Math.floor(this.spd * 0.5);
-            this.dipslay = true;
-        };
-
+    turnStart () {
         if (this.sStrike_count > 0) {
             this.sStrike_count --;
             if (this.sStrike_count > 0) {
