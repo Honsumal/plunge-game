@@ -20,11 +20,11 @@ export default class Mack extends Character {
 
     levelUp () {
         this.level ++;
-        this.hp += 4;
         this.maxHp += 4;
-        this.atk += 2;
         this.baseAtk += 2;
-        this.spd += 6;  
-        this.baseSpd += 6;     
+        this.baseSpd += 6;
+        this.hp = this.maxHp;
+        this.atk = this.baseAtk;
+        this.spd = this.baseSpd;   
     }
 }

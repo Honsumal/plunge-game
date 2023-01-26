@@ -1,20 +1,20 @@
 import React, {useEffect, useState} from "react";
-import Mack from "../js/allies/mack";
-import Drake from "../js/allies/drake";
-import Lionel from "../js/allies/lionel";
-import Bars from "../js/enemies/bars";
-import { useF30BattleSequence } from "../hooks/useF30BattleSequence";
+import Mack from "../js/allies/mack"
+import Drake from "../js/allies/drake"
+import Lionel from "../js/allies/lionel"
+import Jerry from "../js/enemies/jerry"
+import { useF1BattleSequence } from "../hooks/useF1BattleSequence";
 import { BattleField } from "../components/BattleField";
 import { handleLevelUp } from "../utils/handleLevelUp";
 
-export default function F30 ({toMenu, toNext, aLv, setALv, bLv, setBLv, cLv, setCLv}) {
+export default function F1 ({toMenu, toNext, aLv, setALv, bLv, setBLv, cLv, setCLv}) {
     let aPrime = new Mack();
     
     let bPrime = new Drake();
 
     let cPrime = new Lionel();
     
-    let ePrime = new Bars();
+    let ePrime = new Jerry();
 
     for (let i = 0; i < aLv - 1; i++) {aPrime.levelUp()}
     for (let i = 0; i < bLv - 1; i++) {bPrime.levelUp()}
@@ -32,7 +32,7 @@ export default function F30 ({toMenu, toNext, aLv, setALv, bLv, setBLv, cLv, set
 
     const [open, setOpen] = React.useState(false);
     const [openStart, setOpenStart] = React.useState(true)
-
+    
     const handleOpen = () => setOpen(true);
     const handleCloseStart = () => setOpenStart (false)
 
@@ -40,7 +40,7 @@ export default function F30 ({toMenu, toNext, aLv, setALv, bLv, setBLv, cLv, set
         turn,
         inSeq,
         announcerMessage
-    } = useF30BattleSequence(sequence, active, a, b, c, e, setRotating, setActive)
+    } = useF1BattleSequence(sequence, active, a, b, c, e, setRotating, setActive)
 
     useEffect(() => {
         if (turn === 1 && !inSeq && e.isAlive()) {
@@ -64,7 +64,6 @@ export default function F30 ({toMenu, toNext, aLv, setALv, bLv, setBLv, cLv, set
     return (
         <div>
             <BattleField announcerMessage={announcerMessage} activechar={active} echar={e} setRotating={setRotating} setSequence={setSequence} setActive={setActive} handleCloseStart={handleCloseStart} turn={turn} rotating={rotating} toMenu={toMenu} toNext={toNext} open={open} openStart={openStart} a={a} b={b} c={c} />
-
         </div>
     )
 }

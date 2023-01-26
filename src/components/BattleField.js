@@ -11,7 +11,7 @@ export function BattleField({announcerMessage, activechar, echar, setSequence, s
         top: '50%',
         left: '50%',
         transform: 'translate(-50%, -50%)',
-        width: 400,
+        width: 600,
         bgcolor: 'background.paper',
         border: '2px solid #000',
         boxShadow: 24,
@@ -22,7 +22,7 @@ export function BattleField({announcerMessage, activechar, echar, setSequence, s
         <div>
             <div className="container box2">
                 <h2>Fight Log</h2>
-                <FightLog message={announcerMessage || `What will ${activechar.name} do?`}/>
+                <FightLog message={announcerMessage || `V.S. ${echar.name}!`}/>
                 <br></br>
             </div>
 
@@ -77,17 +77,28 @@ export function BattleField({announcerMessage, activechar, echar, setSequence, s
                 aria-describedby="Battle Result"
             >
                 <Box sx={style} textAlign='center'>
-                <Typography id="instructions" variant="h2" component="h3">
-                    {!echar.isAlive() 
-                        ? `You Won!`
-                        : `You Lost!` }
-                        
-                </Typography>
+                    <Typography id="instructions" variant="h2" component="h3">
+                        {!echar.isAlive() 
+                            ? `You Won!`
+                            : `You Lost!` }
+                            
+                    </Typography>
 
-                <Button variant="contained" onClick={toMenu}>Menu</Button>
+                    <br></br>
 
-                <Button variant="contained" onClick={toNext}>Menu</Button>
+                    <Box sx={{ display: 'flex', justifyContent: 'space-around' }}>
+                        <CombatantSummary combatant={a}/>
+                        <CombatantSummary combatant={b}/>
+                        <CombatantSummary combatant={c}/>
+                    </Box>
 
+                    <br></br>
+
+                    <Box sx={{ display: 'flex', justifyContent: 'space-evenly' }}>
+                        <Button variant="contained" onClick={toMenu}>Menu</Button>
+
+                        <Button variant="contained" onClick={toNext}>Next Challenge!</Button>
+                    </Box>                      
                 </Box>
             </Modal>
 
@@ -97,11 +108,15 @@ export function BattleField({announcerMessage, activechar, echar, setSequence, s
                 aria-labelledby="Select Lead"
                 aria-describedby="Starter Selection"
             >
-                <Box sx={style} textAlign='center' justifyContent='space-around'>
+                <Box sx={style} textAlign='center' >
                     <Typography>Select your starting fighter!</Typography>
-                    <Button variant="contained" onClick={() => {setActive(a); handleCloseStart()}}>{a.name}</Button>
-                    <Button variant="contained" onClick={() => {setActive(b); handleCloseStart()}}>{b.name}</Button>
-                    <Button variant="contained" onClick={() => {setActive(c); handleCloseStart()}}>{c.name}</Button>
+                    <br></br>
+                    <Box sx={{ display: 'flex', justifyContent: 'space-evenly' }}>
+                        <Button variant="contained" onClick={() => {setActive(a); handleCloseStart()}}>{a.name}</Button>
+                        <Button variant="contained" onClick={() => {setActive(b); handleCloseStart()}}>{b.name}</Button>
+                        <Button variant="contained" onClick={() => {setActive(c); handleCloseStart()}}>{c.name}</Button>
+                    </Box>
+                    
                 </Box>
             </Modal>
 

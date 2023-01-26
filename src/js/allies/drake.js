@@ -20,11 +20,11 @@ export default class Drake extends Character {
 
     levelUp () {
         this.level ++;
-        this.hp += 2;
         this.maxHp += 2;
-        this.atk += 6;
         this.baseAtk += 6;
-        this.spd += 4;
-        this.baseSpd += 4;       
+        this.baseSpd += 4;
+        this.hp = this.maxHp;
+        this.atk = this.baseAtk;
+        this.spd = this.baseSpd;       
     }
 }

@@ -4,10 +4,10 @@ import Drake from "../js/allies/drake"
 import Lionel from "../js/allies/lionel"
 import Melchor from "../js/enemies/melchor"
 import { useF20BattleSequence } from "../hooks/useF20BattleSequence";
-import { wait } from "../utils/wait";
 import { BattleField } from "../components/BattleField";
+import { handleLevelUp } from "../utils/handleLevelUp";
 
-export default function F20 ({toMenu, toNext}) {
+export default function F20 ({toMenu, toNext, aLv, setALv, bLv, setBLv, cLv, setCLv}) {
     let aPrime = new Mack();
     
     let bPrime = new Drake();
@@ -16,9 +16,9 @@ export default function F20 ({toMenu, toNext}) {
     
     let ePrime = new Melchor();
 
-    for (let i = 0; i < 2; i++) {aPrime.levelUp()}
-    for (let i = 0; i < 2; i++) {bPrime.levelUp()}
-    for (let i = 0; i < 2; i++) {cPrime.levelUp()}
+    for (let i = 0; i < aLv - 1; i++) {aPrime.levelUp()}
+    for (let i = 0; i < bLv - 1; i++) {bPrime.levelUp()}
+    for (let i = 0; i < cLv - 1; i++) {cPrime.levelUp()}
 
     const [a] = useState(aPrime)
     const [b] = useState(bPrime)
@@ -28,12 +28,12 @@ export default function F20 ({toMenu, toNext}) {
     const [active, setActive] = useState(a);
     const [sequence, setSequence] = useState({})
     const [rotating, setRotating] = useState(false)
+    const [roundOver, setRoundOver] = useState(false)
 
     const [open, setOpen] = React.useState(false);
     const [openStart, setOpenStart] = React.useState(true)
     
     const handleOpen = () => setOpen(true);
-    // const handleClose = () => setOpen(false);
     const handleCloseStart = () => setOpenStart (false)
 
     const {
@@ -43,17 +43,21 @@ export default function F20 ({toMenu, toNext}) {
     } = useF20BattleSequence(sequence, active, a, b, c, e, setRotating, setActive)
 
     useEffect(() => {
-        if (turn === 1 && !inSeq) {
+        if (turn === 1 && !inSeq && e.isAlive()) {
           setSequence({ turn, mode: 'ai' });
         }
       }, [turn, inSeq]);
     
       useEffect(() => {
         if ((!a.isAlive() && !b.isAlive() && !c.isAlive()) || !e.isAlive()) {
-          (async () => {
-            await wait(1000);
-            handleOpen()
-          })();
+          if (!roundOver){
+            handleOpen();
+            handleLevelUp(a, b, c);
+            setALv(a.level);
+            setBLv(b.level);
+            setCLv(c.level);
+            setRoundOver(true)
+          }              
         }
       }, [active.hp, e.hp]);
 

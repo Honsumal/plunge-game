@@ -24,6 +24,7 @@ export default class Character {
         this.wStrike_count = 0;
         this.sStrike_count = 0;
         this.slipstream_count = 0;
+        this.turnCount = 0;
     }
 
     attack(opp) {
@@ -281,6 +282,7 @@ export default class Character {
             }
         }
 
+        this.turnCount ++;
     }
 
     printStats() {

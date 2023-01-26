@@ -20,11 +20,11 @@ export default class Lionel extends Character {
 
     levelUp () {
         this.level ++;
-        this.hp += 6;
         this.maxHp += 6;
-        this.atk += 4;
         this.baseAtk += 4;
-        this.spd += 2;
-        this.baseSpd += 2;       
+        this.baseSpd += 2;
+        this.hp = this.maxHp;
+        this.atk = this.baseAtk;
+        this.spd = this.baseSpd;    
     }
 }

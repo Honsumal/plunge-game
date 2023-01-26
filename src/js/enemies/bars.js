@@ -4,7 +4,7 @@ export default class Bars extends Enemy {
     constructor () {
         const name = 'Bars';
         const epithet = 'the Dragon';
-        const level = 5;
+        const level = 7;
         const hp = 500;
         const maxHp = 500;
         const atk = 19;
