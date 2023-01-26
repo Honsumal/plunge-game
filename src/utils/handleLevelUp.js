@@ -64,5 +64,5 @@ export function handleLevelUp (a, b, c) {
         c.levelUp();
     }
 
-    //console.log(a.level, b.level, c.level)
+    console.log(a.level, b.level, c.level)
 }

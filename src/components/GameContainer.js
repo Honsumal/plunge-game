@@ -2,6 +2,7 @@ import React, {useState} from 'react'
 import NavTabs from './NavTabs';
 import StartMenu from '../views/StartMenu';
 import F1 from '../views/F1';
+import F8 from '../views/F8';
 import F20 from '../views/F20';
 import F30 from '../views/F30';
 
@@ -25,8 +26,9 @@ export default function GameContainer() {
             <div className='container'>
                 <br></br>
                 
-                {mode === 'start' && <StartMenu onF1={() => setMode('f1')} onTest={() => setMode('f1')} aLv={aLv} setALv={setAlv} bLv={bLv} setBLv={setBlv} cLv={cLv} setCLv={setClv}/>}
-                {mode === 'f1' && <F1 toMenu={() => setMode('start')} toNext={() => setMode('f20')} aLv={aLv} setALv={setAlv} bLv={bLv} setBLv={setBlv} cLv={cLv} setCLv={setClv}/>}
+                {mode === 'start' && <StartMenu onF1={() => setMode('f1')} onTest={() => setMode('f8')} aLv={aLv} setALv={setAlv} bLv={bLv} setBLv={setBlv} cLv={cLv} setCLv={setClv}/>}
+                {mode === 'f1' && <F1 toMenu={() => setMode('start')} toNext={() => setMode('f8')} aLv={aLv} setALv={setAlv} bLv={bLv} setBLv={setBlv} cLv={cLv} setCLv={setClv}/>}
+                {mode === 'f8' && <F8 toMenu={() => setMode('start')} toNext={() => setMode('f20')} aLv={aLv} setALv={setAlv} bLv={bLv} setBLv={setBlv} cLv={cLv} setCLv={setClv}/>}
                 {mode === 'f20' && <F20 toMenu={() => setMode('start')} toNext={() => setMode('f30')} aLv={aLv} setALv={setAlv} bLv={bLv} setBLv={setBlv} cLv={cLv} setCLv={setClv}/>}
                 {mode === 'f30' && <F30 toMenu={() => setMode('start')} toNext={() => setMode('f50')} aLv={aLv} setALv={setAlv} bLv={bLv} setBLv={setBlv} cLv={cLv} setCLv={setClv}/>}
                 <br></br>

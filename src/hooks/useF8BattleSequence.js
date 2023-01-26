@@ -5,7 +5,7 @@ import { playerAction } from "../utils/playerAction";
 import { useState, useEffect } from "react";
 
 
-export const useF1BattleSequence = (sequence, active, a, b, c, e, setRotating, setActive) => {
+export const useF8BattleSequence = (sequence, active, a, b, c, e, setRotating, setActive) => {
     const [turn, setTurn] = useState(0);
     const [inSeq, setInSeq] = useState(false)
     const [announcerMessage, setAnnouncerMessage] = useState('')
