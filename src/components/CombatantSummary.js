@@ -6,7 +6,7 @@ export default function CombatantSummary({ combatant })  {
     const lmm = '#eae2b7'
 
     return (
-        <div style={{ backgroundColor: combatant.ally ? lmm : ora}} className='card'>
+        <div style={{ backgroundColor: combatant.ally ? lmm : ora, padding: 10}} className='card'>
             <div>{combatant.name}, {combatant.epithet}</div>
             <div>Lv: {combatant.level}</div>
 

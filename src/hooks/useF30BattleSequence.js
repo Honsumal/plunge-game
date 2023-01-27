@@ -7,8 +7,10 @@ import { useState, useEffect } from "react";
 
 export const useF30BattleSequence = (sequence, active, a, b, c, e, setRotating, setActive) => {
     const [turn, setTurn] = useState(0);
+    const [round, setRound] = useState(0);
     const [inSeq, setInSeq] = useState(false)
     const [slipstream, setSlipstream] = useState (false)
+    const [ferocity, setFerocity] = useState (false)
     const [announcerMessage, setAnnouncerMessage] = useState('')
 
     const [allyGlobalTurnCounter, setAllyTurnCounter] = useState(0)
@@ -21,20 +23,31 @@ export const useF30BattleSequence = (sequence, active, a, b, c, e, setRotating, 
         const {action, turn} = sequence;
         
         setTurn(turnFinder(active, e, turnCounter, allyGlobalTurnCounter, enemyGlobalTurnCounter, setAllyTurnCounter, setEnemyTurnCounter))
+        setRound(round + 1)
 
         if(turn === 0) {
-            playerAction(action, active, a, b, c, e, setActive, setAnnouncerMessage, setInSeq, setRotating)
+            playerAction(action, active, a, b, c, e, setActive, setAnnouncerMessage, setInSeq, setRotating, round)
         } else if (turn === 1) {
             (async () => {
                 setInSeq(true)
                 if ((e.hp < e.maxHp * 0.8 || e.hp === e.maxHp * 0.8) && !slipstream) {
                     setSlipstream(true);
-                    setAnnouncerMessage(`Bar's fury rose to fever pitch! Its elden roar summoned a tempest to blow from behind it!`)
+                    e.spd = Math.floor(e.spd * 1.7)
+                    setAnnouncerMessage(`Bars's fury rose to fever pitch! Its elden roar stimulated the draconic energies around it, increasing its speed!`)
+                    await wait(4000)
+                }
+
+                if ((e.hp < e.maxHp * 0.4 || e.hp === e.maxHp * 0.4) && !ferocity) {
+                    setFerocity(true);
+                    e.atk = Math.floor(e.atk * (1 + 0.1 * (a.pStrike_count + b.pStrike_count + c.pStrike_count))) 
+                    console.log(a.pStrike_count)
+                    setAnnouncerMessage(`Bars's fury overflows! It absorbed its enemies' fury to increase its power!`)
                     await wait(3500)
                 }
-                e.turnStart(slipstream);
-                let dice = Math.floor(Math.random() * 2);
-                if (dice === 0) {
+    
+                e.turnStart();
+                let dice = Math.floor(Math.random() * 4);
+                if (dice === 0 || dice === 1) {
                     //If Opponent Protect
                     if (active.protect) {
                         active.protect = false;
@@ -58,7 +71,7 @@ export const useF30BattleSequence = (sequence, active, a, b, c, e, setRotating, 
                             }
                         }
                     } 
-                } else {
+                } else if (dice === 3) {
                     //If Opponent Protect
                     if (active.protect) {
                         active.protect = false;
@@ -92,6 +105,10 @@ export const useF30BattleSequence = (sequence, active, a, b, c, e, setRotating, 
                             }
                         }
                     }
+                } else {
+                    e.protect = true;
+                    setAnnouncerMessage(`Round ${round}: Bars insticts flare, allowing it to dodge the next attack!`)
+                    await wait (2500)
                 }
 
                 if (!active.isAlive() && (a.isAlive() || b.isAlive() || c.isAlive())) {

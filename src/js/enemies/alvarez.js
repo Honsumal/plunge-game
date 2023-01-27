@@ -4,7 +4,7 @@ export default class Alvarez extends Enemy {
     constructor () {
         const name = "Alvarez";
         const epithet = "the Biohazard";
-        const level = 6;
+        const level = 4;
         const hp = 500;
         const maxHp = 500;
         const atk = 10;

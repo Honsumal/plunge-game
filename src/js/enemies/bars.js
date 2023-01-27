@@ -4,20 +4,24 @@ export default class Bars extends Enemy {
     constructor () {
         const name = 'Bars';
         const epithet = 'the Dragon';
-        const level = 7;
-        const hp = 500;
-        const maxHp = 500;
+        const level = 5;
+        const hp = 400;
+        const maxHp = 400;
         const atk = 19;
-        const spd = 15;
+        const spd = 17;
         const move_count = 2;
         const standard = 'Fire Breath';
         const special_1 = 'Ravage';
+        const special_2 = 'Detect'
 
-        super (name, epithet, level, hp, maxHp, atk, spd, move_count, standard, special_1);
+        super (name, epithet, level, hp, maxHp, atk, spd, move_count, standard, special_1, special_2);
     };
 
     //Ravage
     spec_1 (opp){
+        if (this.protect){
+            this.protect = false;
+        }
         //If Opponent Protect
         if (opp.protect) {
             opp.protect = false;
@@ -49,12 +53,18 @@ export default class Bars extends Enemy {
         }
     }
 
+    spec_2 () {
+        this.protect = true;
+    }
+
     strike (opp) {
-        let dice = Math.floor(Math.random() * 2);
-        if (dice === 0) {
+        let dice = Math.floor(Math.random() * 4);
+        if (dice === 0 || dice  === 1) {
             return this.attack(opp)
-        } else {
+        } else if (dice === 2) {
             return this.spec_1(opp)
+        } else {
+            return this.spec_2()
         }
     }
 }

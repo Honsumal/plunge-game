@@ -48,12 +48,12 @@ export default class Character {
 
             // If Opponent Barrier
             if (opp.barrier) {
-                opp.barrier_count --;
+                //opp.barrier_count --;
                 if (opp.barrier_count === 0) {
                     opp.barrier = false;
                     console.log(`The allies broke through ${opp.name}'s barrier!`);
                 } else {
-                    console.log(`${opp.name}'s barrier can withstand ${opp.barrier_count} more hits!`)
+                    console.log(`${opp.name}'s barrier can withstand ${opp.barrier_count - 1} more hits!`)
                 }
             }
         }
@@ -81,12 +81,12 @@ export default class Character {
         
                     // If Opponent Barrier
                     if (opp.barrier) {
-                        opp.barrier_count --;
+                        //opp.barrier_count --;
                         if (opp.barrier_count === 0) {
                             opp.barrier = false;
                             console.log(`The allies broke through ${opp.name}'s barrier!`);
                         } else {
-                            console.log(`${opp.name}'s barrier can withstand ${opp.barrier_count} more hits!`)
+                            console.log(`${opp.name}'s barrier can withstand ${opp.barrier_count - 1} more hits!`)
                         }
                     }
                 }
@@ -113,12 +113,12 @@ export default class Character {
         
                     // If Opponent Barrier
                     if (opp.barrier) {
-                        opp.barrier_count --;
+                        //opp.barrier_count --;
                         if (opp.barrier_count === 0) {
                             opp.barrier = false;
                             console.log(`The allies broke through ${opp.name}'s barrier!`);
                         } else {
-                            console.log(`${opp.name}'s barrier can withstand ${opp.barrier_count} more hits!`)
+                            console.log(`${opp.name}'s barrier can withstand ${opp.barrier_count - 1} more hits!`)
                         }
                     }
                 }
@@ -149,12 +149,12 @@ export default class Character {
 
                     // If Opponent Barrier
                     if (opp.barrier) {
-                        opp.barrier_count --;
+                        //opp.barrier_count --;
                         if (opp.barrier_count === 0) {
                             opp.barrier = false;
                             console.log(`The allies broke through ${opp.name}'s barrier!`);
                         } else {
-                            console.log(`${opp.name}'s barrier can withstand ${opp.barrier_count} more hits!`)
+                            console.log(`${opp.name}'s barrier can withstand ${opp.barrier_count - 1} more hits!`)
                         }
                     }
                 }
@@ -189,12 +189,12 @@ export default class Character {
 
                     // If Opponent Barrier
                     if (opp.barrier) {
-                        opp.barrier_count --;
+                        //opp.barrier_count --;
                         if (opp.barrier_count === 0) {
                             opp.barrier = false;
                             console.log(`The allies broke through ${opp.name}'s barrier!`);
                         } else {
-                            console.log(`${opp.name}'s barrier can withstand ${opp.barrier_count} more hits!`)
+                            console.log(`${opp.name}'s barrier can withstand ${opp.barrier_count - 1} more hits!`)
                         }
                     }
                 }

@@ -60,13 +60,17 @@ export default class Enemy {
     }
 
     turnStart(eSlipstream) {
-        if (eSlipstream && !this.eSlipstream) {
-            this.spd = this.spd * 1.5;
-            this.eSlipstream = true;
+        if (this.name === 'Bars' && this.protect) {
+            this.protect = false;
         }
 
-        if (this.wStrike > 0) {
-            this.wStrike --;
+        // if (eSlipstream && !this.eSlipstream) {
+        //     this.spd = Math.floor(this.spd * 1.7);
+        //     this.eSlipstream = true;
+        // }
+
+        if (this.wStrike_count > 0) {
+            this.wStrike_count --;
         }
 
     }

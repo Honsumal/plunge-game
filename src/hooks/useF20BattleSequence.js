@@ -7,9 +7,10 @@ import { useState, useEffect } from "react";
 
 export const useF20BattleSequence = (sequence, active, a, b, c, e, setRotating, setActive) => {
     const [turn, setTurn] = useState(0);
-    const [inSeq, setInSeq] = useState(false)
-    const [dipslay, setDipslay] = useState (false)
-    const [announcerMessage, setAnnouncerMessage] = useState('')
+    const [round, setRound] = useState(0);
+    const [inSeq, setInSeq] = useState(false);
+    const [dipslay, setDipslay] = useState (false);
+    const [announcerMessage, setAnnouncerMessage] = useState('');
 
     const [allyGlobalTurnCounter, setAllyTurnCounter] = useState(0)
     const [enemyGlobalTurnCounter, setEnemyTurnCounter] = useState(0)
@@ -21,9 +22,10 @@ export const useF20BattleSequence = (sequence, active, a, b, c, e, setRotating, 
         const {action, turn} = sequence;
         
         setTurn(turnFinder(active, e, turnCounter, allyGlobalTurnCounter, enemyGlobalTurnCounter, setAllyTurnCounter, setEnemyTurnCounter))
+        setRound(round + 1);
 
         if(turn === 0) {
-            playerAction(action, active, a, b, c, e, setActive, setAnnouncerMessage, setInSeq, setRotating)
+            playerAction(action, active, a, b, c, e, setActive, setAnnouncerMessage, setInSeq, setRotating, round)
         } else if (turn === 1) {
             (async () => {
                 setInSeq(true)

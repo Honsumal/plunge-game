@@ -4,7 +4,7 @@ export default class Melchor extends Enemy {
     constructor () {
         const name = "Melchor";
         const epithet = "Slayer of Dips";
-        const level = 5;
+        const level = 3;
         const hp = 250;
         const maxHp = 250;
         const atk = 12;
