@@ -2,19 +2,19 @@ import React, {useEffect, useState} from "react";
 import Mack from "../js/allies/mack";
 import Drake from "../js/allies/drake";
 import Lionel from "../js/allies/lionel";
-import Bars from "../js/enemies/bars";
-import { useF30BattleSequence } from "../hooks/useF30BattleSequence";
+import Elvin from "../js/enemies/Elvin"
+import { useF34BattleSequence } from "../hooks/useF34BattleSequence";
 import { BattleField } from "../components/BattleField";
 import { handleLevelUp } from "../utils/handleLevelUp";
 
-export default function F30 ({toMenu, toNext, aLv, setALv, bLv, setBLv, cLv, setCLv}) {
+export default function F34 ({toMenu, toNext, aLv, setALv, bLv, setBLv, cLv, setCLv}) {
     let aPrime = new Mack();
     
     let bPrime = new Drake();
 
     let cPrime = new Lionel();
     
-    let ePrime = new Bars();
+    let ePrime = new Elvin();
 
     for (let i = 0; i < aLv - 1; i++) {aPrime.levelUp()}
     for (let i = 0; i < bLv - 1; i++) {bPrime.levelUp()}
@@ -40,7 +40,7 @@ export default function F30 ({toMenu, toNext, aLv, setALv, bLv, setBLv, cLv, set
         turn,
         inSeq,
         announcerMessage
-    } = useF30BattleSequence(sequence, active, a, b, c, e, setRotating, setActive)
+    } = useF34BattleSequence(sequence, active, a, b, c, e, setRotating, setActive)
 
     useEffect(() => {
         if (turn === 1 && !inSeq && e.isAlive()) {
@@ -52,10 +52,12 @@ export default function F30 ({toMenu, toNext, aLv, setALv, bLv, setBLv, cLv, set
         if ((!a.isAlive() && !b.isAlive() && !c.isAlive()) || !e.isAlive()) {
           if (!roundOver){
             handleOpen();
-            handleLevelUp(a, b, c);
-            setALv(a.level);
-            setBLv(b.level);
-            setCLv(c.level);
+            if(!e.isAlive()){
+              handleLevelUp(a, b, c);
+              setALv(a.level);
+              setBLv(b.level);
+              setCLv(c.level);
+            }
             setRoundOver(true)
           }              
         }

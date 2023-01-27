@@ -38,7 +38,7 @@ export default class Bars extends Enemy {
             //If Opponent Spiky
             if (opp.sStrike_count > 0) {
                 this.hp -= Math.floor(this.atk * 0.8 * (1 + opp.ravage * 0.2) * (1 - opp.barrier * 0.5) * 0.3);
-                console.log(`${this.name} took ${Math.floor(this.atk * (1 + opp.ravage * 0.2) * (1 - opp.barrier * 0.5) * 0.3)} damage from spikes!`)
+                console.log(`${this.name} took ${Math.floor(this.atk * 0.8 * (1 + opp.ravage * 0.2) * (1 - opp.barrier * 0.5) * 0.3)} damage from spikes!`)
             } 
             // If Opponent Barrier
             if (opp.barrier) {

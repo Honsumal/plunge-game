@@ -52,10 +52,12 @@ export default function F30 ({toMenu, toNext, aLv, setALv, bLv, setBLv, cLv, set
         if ((!a.isAlive() && !b.isAlive() && !c.isAlive()) || !e.isAlive()) {
           if (!roundOver){
             handleOpen();
-            handleLevelUp(a, b, c);
-            setALv(a.level);
-            setBLv(b.level);
-            setCLv(c.level);
+            if(!e.isAlive()){
+              handleLevelUp(a, b, c);
+              setALv(a.level);
+              setBLv(b.level);
+              setCLv(c.level);
+            }
             setRoundOver(true)
           }              
         }
