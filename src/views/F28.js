@@ -2,19 +2,19 @@ import React, {useEffect, useState} from "react";
 import Mack from "../js/allies/mack"
 import Drake from "../js/allies/drake"
 import Lionel from "../js/allies/lionel"
-import Pambu from "../js/enemies/pambu";
-import { useF8BattleSequence } from "../hooks/useF8BattleSequence";
+import Alvarez from "../js/enemies/alvarez";
+import { useF28BattleSequence } from "../hooks/useF28BattleSequence";
 import { BattleField } from "../components/BattleField";
 import { handleLevelUp } from "../utils/handleLevelUp";
 
-export default function F8 ({toMenu, toNext, aLv, setALv, bLv, setBLv, cLv, setCLv}) {
+export default function F28 ({toMenu, toNext, aLv, setALv, bLv, setBLv, cLv, setCLv}) {
     let aPrime = new Mack();
     
     let bPrime = new Drake();
 
     let cPrime = new Lionel();
     
-    let ePrime = new Pambu();
+    let ePrime = new Alvarez();
 
     for (let i = 0; i < aLv - 1; i++) {aPrime.levelUp()}
     for (let i = 0; i < bLv - 1; i++) {bPrime.levelUp()}
@@ -40,7 +40,7 @@ export default function F8 ({toMenu, toNext, aLv, setALv, bLv, setBLv, cLv, setC
         turn,
         inSeq,
         announcerMessage
-    } = useF8BattleSequence(sequence, active, a, b, c, e, setRotating, setActive)
+    } = useF28BattleSequence(sequence, active, a, b, c, e, setRotating, setActive)
 
     useEffect(() => {
         if (turn === 1 && !inSeq && e.isAlive()) {
@@ -63,7 +63,7 @@ export default function F8 ({toMenu, toNext, aLv, setALv, bLv, setBLv, cLv, setC
 
     return (
         <div>
-            <BattleField announcerMessage={announcerMessage} activechar={active} echar={e} setRotating={setRotating} setSequence={setSequence} setActive={setActive} handleCloseStart={handleCloseStart} turn={turn} rotating={rotating} toMenu={toMenu} toNext={toNext} open={open} openStart={openStart} a={a} b={b} c={c} floor={8}/>
+            <BattleField announcerMessage={announcerMessage} activechar={active} echar={e} setRotating={setRotating} setSequence={setSequence} setActive={setActive} handleCloseStart={handleCloseStart} turn={turn} rotating={rotating} toMenu={toMenu} toNext={toNext} open={open} openStart={openStart} a={a} b={b} c={c} floor = {28}/>
         </div>
     )
 }

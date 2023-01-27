@@ -4,7 +4,7 @@ import Rotations from "../components/Rotations";
 import FightLog from "../components/FightLog";
 import { Modal, Box, Typography, Button } from "@mui/material";
 
-export function BattleField({announcerMessage, activechar, echar, setSequence, setRotating, setActive, handleCloseStart, turn, rotating, toMenu, toNext, open, openStart, a, b, c}) {
+export function BattleField({announcerMessage, activechar, echar, setSequence, setRotating, setActive, handleCloseStart, turn, rotating, toMenu, toNext, open, openStart, a, b, c, floor}) {
 
     const style = {
         position: 'absolute',
@@ -22,7 +22,7 @@ export function BattleField({announcerMessage, activechar, echar, setSequence, s
         <div>
             <div className="container box2">
                 <h2>Fight Log</h2>
-                <FightLog message={announcerMessage || `V.S. ${echar.name}!`}/>
+                <FightLog message={announcerMessage || `Entered Floor ${floor}: V.S. ${echar.name}!`} turn={turn}/>
                 <br></br>
             </div>
 

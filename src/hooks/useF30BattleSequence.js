@@ -38,11 +38,11 @@ export const useF30BattleSequence = (sequence, active, a, b, c, e, setRotating, 
                     //If Opponent Protect
                     if (active.protect) {
                         active.protect = false;
-                        setAnnouncerMessage(`${e.name}'s attack bounced off the shield, cracking it!`)
+                        setAnnouncerMessage(`Round ${round}: ${e.name}'s attack bounced off the shield, cracking it!`)
                         await wait(2500);
                     } else{
                         e.attack(active)
-                        setAnnouncerMessage(`${e.name} attacked ${active.name} using ${e.standard} for ${Math.floor(e.atk * (1 + active.ravage * 0.2) * (1 - active.barrier * 0.5))} damage!`)
+                        setAnnouncerMessage(`Round ${round}: ${e.name} attacked ${active.name} using ${e.standard} for ${Math.floor(e.atk * (1 + active.ravage * 0.2) * (1 - active.barrier * 0.5))} damage!`)
                         await wait(2500);
 
                         //If Opponent Barrier
@@ -62,10 +62,10 @@ export const useF30BattleSequence = (sequence, active, a, b, c, e, setRotating, 
                     //If Opponent Protect
                     if (active.protect) {
                         active.protect = false;
-                        setAnnouncerMessage(`${e.name}'s attack bounced off the shield, cracking it!`);
+                        setAnnouncerMessage(`Round ${round}: ${e.name}'s attack bounced off the shield, cracking it!`);
                         await wait(2500);
                     } else {
-                        setAnnouncerMessage(`${e.name} attacked ${active.name} using ${e.special_1} for ${Math.floor(e.atk * 0.8 * (1 + active.ravage * 0.2) * (1 - active.barrier * 0.5))} damage!`);
+                        setAnnouncerMessage(`Round ${round}: ${e.name} attacked ${active.name} using ${e.special_1} for ${Math.floor(e.atk * 0.8 * (1 + active.ravage * 0.2) * (1 - active.barrier * 0.5))} damage!`);
                         e.spec_1(active)
                         await wait(2500);
 

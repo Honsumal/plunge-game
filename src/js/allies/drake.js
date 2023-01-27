@@ -23,8 +23,9 @@ export default class Drake extends Character {
         this.maxHp += 2;
         this.baseAtk += 6;
         this.baseSpd += 4;
+        this.turnCount = 0;  
         this.hp = this.maxHp;
         this.atk = this.baseAtk;
-        this.spd = this.baseSpd;       
+        this.spd = this.baseSpd; 
     }
 }

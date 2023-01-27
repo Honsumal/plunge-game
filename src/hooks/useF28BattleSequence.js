@@ -5,10 +5,10 @@ import { playerAction } from "../utils/playerAction";
 import { useState, useEffect } from "react";
 
 
-export const useF20BattleSequence = (sequence, active, a, b, c, e, setRotating, setActive) => {
+export const useF28BattleSequence = (sequence, active, a, b, c, e, setRotating, setActive) => {
     const [turn, setTurn] = useState(0);
     const [inSeq, setInSeq] = useState(false)
-    const [dipslay, setDipslay] = useState (false)
+    //const [dipslay, setDipslay] = useState (false)
     const [announcerMessage, setAnnouncerMessage] = useState('')
 
     const [allyGlobalTurnCounter, setAllyTurnCounter] = useState(0)
@@ -27,16 +27,17 @@ export const useF20BattleSequence = (sequence, active, a, b, c, e, setRotating, 
         } else if (turn === 1) {
             (async () => {
                 setInSeq(true)
-                if ((e.hp < e.maxHp * 0.65 || e.hp === e.maxHp * 0.65) && !dipslay) {
-                    setDipslay(true);
-                    active.dipslay = true;
-                    active.spd *= 0.5;
-                    setAnnouncerMessage(`Feeling the pressure, Melchor uses Dipslay! All allies have their speed halved!`)
-                    await wait(3000)
-                }
+                // //Make Discharge
+                // if ((e.hp < e.maxHp * 0.65 || e.hp === e.maxHp * 0.65) && !dipslay) {
+                //     setDipslay(true);
+                //     active.dipslay = true;
+                //     active.spd *= 0.5;
+                //     setAnnouncerMessage(`Feeling the pressure, Melchor uses Dipslay! All allies have their speed halved!`)
+                //     await wait(3000)
+                // }
                 e.turnStart();
-                let dice = Math.floor(Math.random() * 2);
-                if (dice === 0) {
+                let dice = Math.floor(Math.random() * 3);
+                if (dice === 0 || dice === 1) {
                     //If Opponent Protect
                     if (active.protect) {
                         active.protect = false;
@@ -68,39 +69,21 @@ export const useF20BattleSequence = (sequence, active, a, b, c, e, setRotating, 
                         }
                     } 
                 } else {
-                    //If Opponent Protect
-                    if (active.protect) {
-                        active.protect = false;
-                        setAnnouncerMessage(`Round ${round}: ${e.name}'s attack bounced off the shield, cracking it!`);
-                        await wait(2500);
-                    } else {
-                        setAnnouncerMessage(`Round ${round}: ${e.name} attacked ${active.name} using ${e.special_1} for ${Math.floor(e.atk * 0.8 * (1 + active.ravage * 0.2) * (1 - active.barrier * 0.5))} damage!`);
-                        e.spec_1(active)
-                        await wait(2500);
+                    //Ignore Protect & Barrier
+                    setAnnouncerMessage(`Round ${round}: ${e.name} attacked ${active.name} using ${e.special_1} for ${Math.floor(e.atk * 0.5 * (1 + active.ravage * 0.2) )} damage!`);
+                    e.spec_1(active)
+                    await wait(2500);
 
-                        //Set Opponent Ravage
-                        setAnnouncerMessage(`${active.name} has been ravaged, taking extra damage!`);
+                    //Set Opponent Rot
+                    setAnnouncerMessage(`${active.name} has been infected, taking damage over time!`);
+                    await wait(2500);
+
+                    //If Opponent Spiky
+                    if (active.sStrike_count > 0) {
+                        e.hp -= Math.floor(e.atk * 0.8 * (1 + active.ravage * 0.2) * 0.3);
+                        setAnnouncerMessage(`${e.name} took ${Math.floor(e.atk * (1 + active.ravage * 0.2) * 0.3)} damage from spikes!`);
                         await wait(2500);
-
-                        //If Opponent Spiky
-                        if (active.sStrike_count > 0) {
-                            e.hp -= Math.floor(e.atk * 0.8 * (1 + active.ravage * 0.2) * (1 - active.barrier * 0.5) * 0.3);
-                            setAnnouncerMessage(`${e.name} took ${Math.floor(e.atk * (1 + active.ravage * 0.2) * (1 - active.barrier * 0.5) * 0.3)} damage from spikes!`);
-                            await wait(2500);
-                        }
-
-                        if (active.barrier) {
-                            active.barrier_count --;
-                            if (active.barrier_count === 0) {
-                                active.barrier = false;
-                                setAnnouncerMessage(`${e.name} broke through ${active.name}'s barrier!`);
-                                await wait(2500);
-                            } else {
-                                setAnnouncerMessage(`${active.name}'s barrier can withstand ${active.barrier_count} more hits!`)
-                                await wait(2500);
-                            }
-                        }
-                    }
+                    }                    
                 }
 
                 if (!active.isAlive() && (a.isAlive() || b.isAlive() || c.isAlive())) {

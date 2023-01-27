@@ -15,6 +15,7 @@ export default class Character {
         this.rotate = rotate;
         this.isActive = false;
         this.dipslay = false;
+        this.rot = false;
         this.ravage = false;
         this.protect = false;
         this.barrier = false;
@@ -59,21 +60,20 @@ export default class Character {
     }
 
     spec_1(opp) {
-        console.log(this.special_1)
         switch(this.special_1) {
             case 'Pugilistic Strike':
                 if (opp.protect) {
                     opp.protect = false;
                     console.log(`${this.name}'s attack bounced off the shield, cracking it!`)
                 } else {
-                    opp.hp -= Math.floor(this.atk * 0.5 * (1 + this.pStrike_count) * (1 + opp.ravage * 0.2) * (1 - opp.barrier * 0.5));
-                    console.log(`${this.name} attacked ${opp.name} using ${this.special_1} for ${Math.floor(this.atk * 0.5 * (1 + this.pStrike_count) * (1 + opp.ravage * 0.2) * (1 - opp.barrier * 0.5))} damage!`);
+                    opp.hp -= Math.floor(this.atk * 0.5 * (1 + this.pStrike_count * 0.5) * (1 + opp.ravage * 0.2) * (1 - opp.barrier * 0.5));
+                    console.log(`${this.name} attacked ${opp.name} using ${this.special_1} for ${Math.floor(this.atk * 0.5 * (1 + this.pStrike_count * 0.5) * (1 + opp.ravage * 0.2) * (1 - opp.barrier * 0.5))} damage!`);
                     this.pStrike_count ++;
         
                     // If Willstrike
                     if (this.wStrike_count > 0) {
-                        this.hp += Math.floor(this.atk * 0.5 * (1 + this.pStrike_count) * (1 + opp.ravage * 0.2) * (1 - opp.barrier * 0.5) * 0.3);
-                        console.log(`${this.name} drained ${Math.floor(this.atk  * 0.5 * (1 + this.pStrike_count) * (1 + opp.ravage * 0.2) * (1 - opp.barrier * 0.5) * 0.3)} health!`);
+                        this.hp += Math.floor(this.atk * 0.5 * (1 + this.pStrike_count * 0.5) * (1 + opp.ravage * 0.2) * (1 - opp.barrier * 0.5) * 0.3);
+                        console.log(`${this.name} drained ${Math.floor(this.atk  * 0.5 * (1 + this.pStrike_count * 0.5) * (1 + opp.ravage * 0.2) * (1 - opp.barrier * 0.5) * 0.3)} health!`);
                         if (this.hp > this.maxHp) {
                             this.hp = this.maxHp;
                         }
@@ -222,6 +222,7 @@ export default class Character {
             this.isActive = false;
             this.atk = this.baseAtk;
             this.spd = this.baseSpd;
+            this.rot = false;
 
             next.sStrike_count = this.sStrike_count;
             next.wStrike_count = this.wStrike_count;
@@ -280,6 +281,10 @@ export default class Character {
                 console.log(`Slipstream has worn off!`);
                 console.log(this.slipstream_count)
             }
+        }
+
+        if(this.rot) {
+            this.hp -= Math.floor(this.maxHp * 0.125)
         }
 
         this.turnCount ++;

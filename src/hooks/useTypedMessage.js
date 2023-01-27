@@ -1,11 +1,13 @@
 import { useEffect, useState } from "react";
 import {wait} from "../utils/wait";
 
-export const useTypedMessage = message => {
+export const useTypedMessage = (message) => {
     const [typedMessage, setTypedMessage] = useState('');
   
     useEffect(() => {
       setTypedMessage('');
+
+      //console.log(message)
   
       if (message.length) {
         (async () => {

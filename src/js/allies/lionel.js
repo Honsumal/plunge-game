@@ -23,6 +23,7 @@ export default class Lionel extends Character {
         this.maxHp += 6;
         this.baseAtk += 4;
         this.baseSpd += 2;
+        this.turnCount = 0;
         this.hp = this.maxHp;
         this.atk = this.baseAtk;
         this.spd = this.baseSpd;    

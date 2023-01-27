@@ -31,11 +31,11 @@ export const useF8BattleSequence = (sequence, active, a, b, c, e, setRotating, s
                 //If Opponent Protect
                 if (active.protect) {
                     active.protect = false;
-                    setAnnouncerMessage(`${e.name}'s attack bounced off the shield, cracking it!`)
+                    setAnnouncerMessage(`Round ${round}: ${e.name}'s attack bounced off the shield, cracking it!`)
                     await wait(2500);
                 } else{
                     e.attack(active)
-                    setAnnouncerMessage(`${e.name} attacked ${active.name} using ${e.standard} for ${Math.floor(e.atk * (1 + active.ravage * 0.2) * (1 - active.barrier * 0.5))} damage!`)
+                    setAnnouncerMessage(`Round ${round}: ${e.name} attacked ${active.name} using ${e.standard} for ${Math.floor(e.atk * (1 + active.ravage * 0.2) * (1 - active.barrier * 0.5))} damage!`)
                     await wait(2500);
 
                     //If Opponent Spiky

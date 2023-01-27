@@ -8,7 +8,7 @@ export default class Jerry extends Enemy {
         const hp = 100;
         const maxHp = 100;
         const atk = 6;
-        const spd = 6;
+        const spd = 15;
         const move_count = 1;
         const standard = 'Ashen Cloud';
 

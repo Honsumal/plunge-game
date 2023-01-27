@@ -23,6 +23,7 @@ export default class Mack extends Character {
         this.maxHp += 4;
         this.baseAtk += 2;
         this.baseSpd += 6;
+        this.turnCount = 0;
         this.hp = this.maxHp;
         this.atk = this.baseAtk;
         this.spd = this.baseSpd;   

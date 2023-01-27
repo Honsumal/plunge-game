@@ -7,6 +7,7 @@ import { useState, useEffect } from "react";
 
 export const useF1BattleSequence = (sequence, active, a, b, c, e, setRotating, setActive) => {
     const [turn, setTurn] = useState(0);
+    const [round, setRound] = useState(0);
     const [inSeq, setInSeq] = useState(false)
     const [announcerMessage, setAnnouncerMessage] = useState('')
 
@@ -19,10 +20,13 @@ export const useF1BattleSequence = (sequence, active, a, b, c, e, setRotating, s
         
         const {action, turn} = sequence;
         
-        setTurn(turnFinder(active, e, turnCounter, allyGlobalTurnCounter, enemyGlobalTurnCounter, setAllyTurnCounter, setEnemyTurnCounter))
+        setTurn(turnFinder(active, e, turnCounter, allyGlobalTurnCounter, enemyGlobalTurnCounter, setAllyTurnCounter, setEnemyTurnCounter));
+
+        setRound(round + 1);
+
 
         if(turn === 0) {
-            playerAction(action, active, a, b, c, e, setActive, setAnnouncerMessage, setInSeq, setRotating)
+            playerAction(action, active, a, b, c, e, setActive, setAnnouncerMessage, setInSeq, setRotating, round)
         } else if (turn === 1) {
             (async () => {
                 setInSeq(true)
@@ -31,11 +35,11 @@ export const useF1BattleSequence = (sequence, active, a, b, c, e, setRotating, s
                 //If Opponent Protect
                 if (active.protect) {
                     active.protect = false;
-                    setAnnouncerMessage(`${e.name}'s attack bounced off the shield, cracking it!`)
+                    setAnnouncerMessage(`Round ${round}: ${e.name}'s attack bounced off the shield, cracking it!`)
                     await wait(2500);
                 } else{
                     e.attack(active)
-                    setAnnouncerMessage(`${e.name} attacked ${active.name} using ${e.standard} for ${Math.floor(e.atk * (1 + active.ravage * 0.2) * (1 - active.barrier * 0.5))} damage!`)
+                    setAnnouncerMessage(`Round ${round}: ${e.name} attacked ${active.name} using ${e.standard} for ${Math.floor(e.atk * (1 + active.ravage * 0.2) * (1 - active.barrier * 0.5))} damage!`)
                     await wait(2500);
 
                     //If Opponent Spiky

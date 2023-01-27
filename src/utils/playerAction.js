@@ -1,6 +1,7 @@
 import { lifeChecker } from "./lifeChecker";
 import { wait } from "./wait";
 import { changeChar } from "./changeChar";
+import { turnEnd } from "./turnEnd";
 
 export function playerAction(action, active, a, b, c, e, setActive, setAnnouncerMessage, setInSeq, setRotating) {
     if (action) {
@@ -14,7 +15,7 @@ export function playerAction(action, active, a, b, c, e, setActive, setAnnouncer
                     await wait(2500);
                     //If Willstrike
                     if (active.wStrike_count > 0) {
-                        active.hp += Math.floor(active.atk * (1 + e.ravage * 0.2) * (1 - e.barrier * 0.5) * 0.3);
+                        //active.hp += Math.floor(active.atk * (1 + e.ravage * 0.2) * (1 - e.barrier * 0.5) * 0.3);
                         setAnnouncerMessage(`${active.name} drained ${Math.floor(active.atk * 0.8 * (1 + e.ravage * 0.2) * (1 - e.barrier * 0.5) * 0.3)} health!`);
                         if (active.hp > active.maxHp) {
                             active.hp = active.maxHp;
@@ -23,6 +24,7 @@ export function playerAction(action, active, a, b, c, e, setActive, setAnnouncer
                     }
                     setInSeq(false);                            
                 })().then(() => lifeChecker(a, b, c, e, setAnnouncerMessage));
+                //turnEnd(active, setAnnouncerMessage);
                 break
             case 'special_1' :
                 (async () => {
@@ -30,13 +32,13 @@ export function playerAction(action, active, a, b, c, e, setActive, setAnnouncer
                     active.turnStart();
                     active.spec_1(e)
                     if (active.special_1 === 'Pugilistic Strike') {
-                        setAnnouncerMessage(`${active.name} attacked ${e.name} using ${active.special_1} for ${Math.floor(active.atk * 0.5 * (active.pStrike_count) * (1 + e.ravage * 0.2) * (1 - e.barrier * 0.5))} damage!`)
+                        setAnnouncerMessage(`${active.name} attacked ${e.name} using ${active.special_1} for ${Math.floor(active.atk * 0.5 * (1 + (active.pStrike_count - 1) * 0.5) * (1 + e.ravage * 0.2) * (1 - e.barrier * 0.5))} damage!`)
                         await wait(2500);
                         
                         //If Willstrike
                         if (active.wStrike_count > 0) {
-                            active.hp += Math.floor(active.atk * 0.5 * (1 + active.pStrike_count) * (1 + e.ravage * 0.2) * (1 - e.barrier * 0.5) * 0.3);
-                            setAnnouncerMessage(`${active.name} drained ${Math.floor(active.atk * 0.5 * (active.pStrike_count) * (1 + e.ravage * 0.2) * (1 - e.barrier * 0.5) * 0.3)} health!`);
+                            //active.hp += Math.floor(active.atk * 0.5 * (1 + active.pStrike_count) * (1 + e.ravage * 0.2) * (1 - e.barrier * 0.5) * 0.3);
+                            setAnnouncerMessage(`${active.name} drained ${Math.floor(active.atk * 0.5 * (1 + (active.pStrike_count - 1) * 0.5) * (1 + e.ravage * 0.2) * (1 - e.barrier * 0.5) * 0.3)} health!`);
                             if (active.hp > active.maxHp) {
                                 active.hp = active.maxHp;
                             }
@@ -73,14 +75,15 @@ export function playerAction(action, active, a, b, c, e, setActive, setAnnouncer
                         
                         //If Willstrike
                         if (active.wStrike_count > 0) {
-                            active.hp += Math.floor(active.atk * 0.8 * (1 + e.ravage * 0.2) * (1 - e.barrier * 0.5) * 0.3);
+                            //active.hp += Math.floor(active.atk * 0.8 * (1 + e.ravage * 0.2) * (1 - e.barrier * 0.5) * 0.3);
                             setAnnouncerMessage(`${active.name} drained ${Math.floor(active.atk * 0.8 * (1 + e.ravage * 0.2) * (1 - e.barrier * 0.5) * 0.3)} health!`);
                             if (active.hp > active.maxHp) {
                                 active.hp = active.maxHp;
                             }
                             await wait(2500);
                         }
-                    }
+                    };
+                    //turnEnd(active, setAnnouncerMessage);
                     setInSeq(false);
 
                 })().then(() => lifeChecker(a, b, c, e, setAnnouncerMessage));
@@ -105,7 +108,7 @@ export function playerAction(action, active, a, b, c, e, setActive, setAnnouncer
                         //If Willstrike
                         if (active.wStrike_count > 0) {
                             await wait(2500);
-                            active.hp += Math.floor(active.atk * 0.8 * (1 + e.ravage * 0.2) * (1 - e.barrier * 0.5) * 0.3);
+                            //active.hp += Math.floor(active.atk * 0.8 * (1 + e.ravage * 0.2) * (1 - e.barrier * 0.5) * 0.3);
                             setAnnouncerMessage(`${active.name} drained ${Math.floor(active.atk * 0.8 * (1 + e.ravage * 0.2) * (1 - e.barrier * 0.5) * 0.3)} health!`);
                             if (active.hp > active.maxHp) {
                                 active.hp = active.maxHp;
@@ -121,6 +124,7 @@ export function playerAction(action, active, a, b, c, e, setActive, setAnnouncer
                         setAnnouncerMessage(`${active.name} formed a barrier around the allies, nullifying some damage!`);
                         await wait(2500);
                     }
+                    //turnEnd(active, setAnnouncerMessage);
                     setInSeq(false)
                 })().then(() => lifeChecker(a, b, c, e, setAnnouncerMessage));
                 break
