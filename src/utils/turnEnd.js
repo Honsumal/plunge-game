@@ -41,7 +41,7 @@ export async function turnEnd (active, setAnnouncerMessage) {
         await wait (2500);
     }
     
-    //active.turnCount ++;
+    active.turnCount ++;
     console.log(active.turnCount)
     //setAnnouncerMessage(``)
 }

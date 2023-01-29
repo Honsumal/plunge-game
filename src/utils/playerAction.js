@@ -9,7 +9,7 @@ export function playerAction(action, active, a, b, c, e, setActive, setAnnouncer
             case 'standard' :                       
                 (async () => {
                     setInSeq(true);
-                    active.turnStart();
+                    //active.turnStart();
                     //If Opponent Protect
                     if(e.protect){
                         e.protect = false;
@@ -43,15 +43,16 @@ export function playerAction(action, active, a, b, c, e, setActive, setAnnouncer
                         }
                         
                     }
-                    
+                    await turnEnd(active, setAnnouncerMessage);
+                    //await wait(2500);
                     setInSeq(false);                            
                 })().then(() => lifeChecker(a, b, c, e, setAnnouncerMessage));
-                //turnEnd(active, setAnnouncerMessage);
+                
                 break
             case 'special_1' :
                 (async () => {
                     setInSeq(true)
-                    active.turnStart();
+                    //active.turnStart();
                     //If Opponent Protect
                     if(e.protect){
                         e.protect = false;
@@ -124,7 +125,8 @@ export function playerAction(action, active, a, b, c, e, setActive, setAnnouncer
                             }
                         }
                     }
-                    //turnEnd(active, setAnnouncerMessage);
+                    await turnEnd(active, setAnnouncerMessage);
+                    //await wait(2500);
                     setInSeq(false);
 
                 })().then(() => lifeChecker(a, b, c, e, setAnnouncerMessage));
@@ -132,7 +134,7 @@ export function playerAction(action, active, a, b, c, e, setActive, setAnnouncer
             case 'special_2': 
                 (async () => {
                     setInSeq(true);
-                    active.turnStart();
+                    //active.turnStart();
 
                     if (active.special_2 === 'Ravage') {
                         //If Opponent Protect
@@ -184,7 +186,8 @@ export function playerAction(action, active, a, b, c, e, setActive, setAnnouncer
                         setAnnouncerMessage(`Round ${round}: ${active.name} formed a barrier around the allies, nullifying some damage!`);
                         await wait(2500);
                     }
-                    //turnEnd(active, setAnnouncerMessage);
+                    await turnEnd(active, setAnnouncerMessage);
+                    //await wait(2500);
                     setInSeq(false)
                 })().then(() => lifeChecker(a, b, c, e, setAnnouncerMessage));
                 break

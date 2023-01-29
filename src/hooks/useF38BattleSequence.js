@@ -26,7 +26,7 @@ export const useF38BattleSequence = (sequence, active, a, b, c, e, setRotating, 
         setRound(round + 1)
 
         if(turn === 0) {
-            playerAction(action, active, a, b, c, e, setActive, setAnnouncerMessage, setInSeq, setRotating, round)
+            playerAction(action, active, a, b, c, e, setActive, setAnnouncerMessage, setInSeq, setRotating, round);
         } else if (turn === 1) {
             (async () => {
                 setInSeq(true)
