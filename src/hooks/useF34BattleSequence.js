@@ -62,7 +62,6 @@ export const useF34BattleSequence = (sequence, active, a, b, c, e, setRotating, 
                                 await wait(2500);
                             }
                         }
-
                     }
 
                 } else {

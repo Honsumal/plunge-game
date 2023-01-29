@@ -7,7 +7,7 @@ export default class Bars extends Enemy {
         const level = 5;
         const hp = 400;
         const maxHp = 400;
-        const atk = 19;
+        const atk = 16;
         const spd = 17;
         const move_count = 2;
         const standard = 'Fire Breath';

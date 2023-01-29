@@ -15,6 +15,7 @@ export default class Character {
         this.rotate = rotate;
         this.isActive = false;
         this.dipslay = false;
+        this.doomed = false;
         this.rot = false;
         this.ravage = false;
         this.protect = false;
@@ -26,6 +27,7 @@ export default class Character {
         this.sStrike_count = 0;
         this.slipstream_count = 0;
         this.turnCount = 0;
+        this.doomCount = 10;
     }
 
     attack(opp) {
@@ -39,8 +41,8 @@ export default class Character {
 
             // If Willstrike
             if (this.wStrike_count > 0) {
-                this.hp += Math.floor(this.atk * 0.8 * (1 + opp.ravage * 0.2) * (1 - opp.barrier * 0.5) * (1 - this.rot * 0.7) * 0.3);
-                console.log(`${this.name} drained ${Math.floor(this.atk * 0.8 * (1 + opp.ravage * 0.2) * (1 - opp.barrier * 0.5) * (1 - this.rot * 0.7) * 0.3)} health!`);
+                this.hp += Math.floor(this.atk * 0.8 * (1 + opp.ravage * 0.2) * (1 - opp.barrier * 0.5) * (1 - this.rot * 0.7) * 0.15);
+                console.log(`${this.name} drained ${Math.floor(this.atk * 0.8 * (1 + opp.ravage * 0.2) * (1 - opp.barrier * 0.5) * (1 - this.rot * 0.7) * 0.15)} health!`);
                 if (this.hp > this.maxHp) {
                     this.hp = this.maxHp;
                 }
@@ -72,8 +74,8 @@ export default class Character {
         
                     // If Willstrike
                     if (this.wStrike_count > 0) {
-                        this.hp += Math.floor(this.atk * 0.5 * (1 + this.pStrike_count * 0.5) * (1 + opp.ravage * 0.2) * (1 - opp.barrier * 0.5) * (1 - this.rot * 0.7) * 0.3);
-                        console.log(`${this.name} drained ${Math.floor(this.atk  * 0.5 * (1 + this.pStrike_count * 0.5) * (1 + opp.ravage * 0.2) * (1 - opp.barrier * 0.5) * (1 - this.rot * 0.7) * 0.3)} health!`);
+                        this.hp += Math.floor(this.atk * 0.5 * (1 + this.pStrike_count * 0.5) * (1 + opp.ravage * 0.2) * (1 - opp.barrier * 0.5) * (1 - this.rot * 0.7) * 0.15);
+                        console.log(`${this.name} drained ${Math.floor(this.atk  * 0.5 * (1 + this.pStrike_count * 0.5) * (1 + opp.ravage * 0.2) * (1 - opp.barrier * 0.5) * (1 - this.rot * 0.7) * 0.15)} health!`);
                         if (this.hp > this.maxHp) {
                             this.hp = this.maxHp;
                         }
@@ -105,8 +107,8 @@ export default class Character {
                         console.log(`${this.name}'s attacks now drain allies for some health!`)
                     }
         
-                    this.hp += Math.floor(this.atk * 0.8 * (1 + opp.ravage * 0.2) * (1 - opp.barrier * 0.5) * (1 - this.rot * 0.7) * 0.3);
-                    console.log(`${this.name} drained ${Math.floor(this.atk * 0.8 * (1 + opp.ravage * 0.2) * (1 - opp.barrier * 0.5) * (1 - this.rot * 0.7) * 0.3)} health!`);
+                    this.hp += Math.floor(this.atk * 0.8 * (1 + opp.ravage * 0.2) * (1 - opp.barrier * 0.5) * (1 - this.rot * 0.7) * 0.15);
+                    console.log(`${this.name} drained ${Math.floor(this.atk * 0.8 * (1 + opp.ravage * 0.2) * (1 - opp.barrier * 0.5) * (1 - this.rot * 0.7) * 0.15)} health!`);
                     if (this.hp > this.maxHp) {
                         this.hp = this.maxHp;
                     }
@@ -140,8 +142,8 @@ export default class Character {
 
                     // If Willstrike
                     if (this.wStrike_count > 0) {
-                        this.hp += Math.floor(this.atk * 0.8 * (1 + opp.ravage * 0.2) * (1 - opp.barrier * 0.5) * (1 - this.rot * 0.7) * 0.3);
-                        console.log(`${this.name} drained ${Math.floor(this.atk * 0.8 * (1 + opp.ravage * 0.2) * (1 - opp.barrier * 0.5) * (1 - this.rot * 0.7) * 0.3)} health!`);
+                        this.hp += Math.floor(this.atk * 0.8 * (1 + opp.ravage * 0.2) * (1 - opp.barrier * 0.5) * (1 - this.rot * 0.7) * 0.15);
+                        console.log(`${this.name} drained ${Math.floor(this.atk * 0.8 * (1 + opp.ravage * 0.2) * (1 - opp.barrier * 0.5) * (1 - this.rot * 0.7) * 0.15)} health!`);
                         if (this.hp > this.maxHp) {
                             this.hp = this.maxHp;
                         }
@@ -180,8 +182,8 @@ export default class Character {
                     
                     // If Willstrike
                     if (this.wStrike_count > 0) {
-                        this.hp += Math.floor(this.atk * 0.8 * (1 + opp.ravage * 0.2) * (1 - opp.barrier * 0.5) * 0.3);
-                        console.log(`${this.name} drained ${Math.floor(this.atk * 0.8 * (1 + opp.ravage * 0.2) * (1 - opp.barrier * 0.5) * (1 - this.rot * 0.7) * 0.3)} health!`);
+                        this.hp += Math.floor(this.atk * 0.8 * (1 + opp.ravage * 0.2) * (1 - opp.barrier * 0.5)*  (1 - this.rot * 0.7) * 0.15);
+                        console.log(`${this.name} drained ${Math.floor(this.atk * 0.8 * (1 + opp.ravage * 0.2) * (1 - opp.barrier * 0.5) * (1 - this.rot * 0.7) * 0.15)} health!`);
                         if (this.hp > this.maxHp) {
                             this.hp = this.maxHp;
                         }
@@ -213,7 +215,7 @@ export default class Character {
         }
     }
 
-    rotateTo(next) {
+    rotateTo(next, rocks) {
         if (this.name === next.name) {
             console.log(`${this.name} is already in combat!`)
         }
@@ -223,6 +225,7 @@ export default class Character {
             this.atk = this.baseAtk;
             this.spd = this.baseSpd;
             this.rot = false;
+            this.doomed = false;
 
             next.sStrike_count = this.sStrike_count;
             next.wStrike_count = this.wStrike_count;
@@ -246,8 +249,14 @@ export default class Character {
                 next.spd = Math.floor(next.spd * 0.5)
             }
 
+
             next.isActive = true;
             console.log(`${this.name} retreated! ${next.name} stepped up to fight!`)
+
+            if(rocks){
+                next.hp -= (Math.floor(next.maxHp * 0.125))
+                console.log(`${next.name} took damage from the hazards!`)
+            }
         } else {
             console.log(`${next.name} has already fallen, ${this.name} cannot switch out!`)
         }

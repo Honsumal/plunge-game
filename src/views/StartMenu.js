@@ -13,9 +13,9 @@ export default function StartMenu ({ onF1, onTest }) {
 
             <Box sx = {{ display: 'flex', justifyContent: 'space-evenly' }}>
 
-                <Button variant="contained" onClick={onF1}>Fight Jerry!</Button>
+                <Button variant="contained" onClick={onF1}>Start Anew!</Button>
 
-                <Button variant="contained" onClick={onTest}>Fight Test!</Button>
+                <Button variant="contained" onClick={onTest}>Continue!</Button>
 
             </Box>
         </Box>

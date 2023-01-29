@@ -41,7 +41,7 @@ export default class Enemy {
             }
 
             //If Opponent Spiky
-            if (opp.sStrike_count > 0 && (this.standard !== 'Ashen Cloud' || this.standard !== 'Fire Breath')) {
+            if (opp.sStrike_count > 0 && (this.standard !== 'Ashen Cloud' || this.standard !== 'Fire Breath' || this.standard !== 'Aquamarine Arbalest')) {
                 this.hp -= Math.floor(this.atk * 0.8 * (1 + opp.ravage * 0.2) * (1 - opp.barrier * 0.5) * 0.3);
                 console.log(`${this.name} took ${Math.floor(this.atk * (1 + opp.ravage * 0.2) * (1 - opp.barrier * 0.5) * 0.3)} damage from spikes!`)
             }
@@ -60,7 +60,7 @@ export default class Enemy {
     }
 
     turnStart(eSlipstream) {
-        if (this.name === 'Bars' && this.protect) {
+        if ((this.name === 'Bars' || this.name === 'Kurosawa') && this.protect) {
             this.protect = false;
         }
 

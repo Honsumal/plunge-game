@@ -3,7 +3,7 @@ import { wait } from "./wait";
 import { changeChar } from "./changeChar";
 import { turnEnd } from "./turnEnd";
 
-export function playerAction(action, active, a, b, c, e, setActive, setAnnouncerMessage, setInSeq, setRotating, round) {
+export function playerAction(action, active, a, b, c, e, setActive, setAnnouncerMessage, setInSeq, setRotating, round, rocks) {
     if (action) {
         switch(action) {
             case 'standard' :                       
@@ -22,7 +22,7 @@ export function playerAction(action, active, a, b, c, e, setActive, setAnnouncer
                         //If Willstrike
                         if (active.wStrike_count > 0) {
                             //active.hp += Math.floor(active.atk * (1 + e.ravage * 0.2) * (1 - e.barrier * 0.5) * 0.3);
-                            setAnnouncerMessage(`${active.name} drained ${Math.floor(active.atk * 0.8 * (1 + e.ravage * 0.2) * (1 - e.barrier * 0.5) * (1 - active.rot * 0.7) * 0.3)} health!`);
+                            setAnnouncerMessage(`${active.name} drained ${Math.floor(active.atk * 0.8 * (1 + e.ravage * 0.2) * (1 - e.barrier * 0.5) * (1 - active.rot * 0.7) * 0.15)} health!`);
                             if (active.hp > active.maxHp) {
                                 active.hp = active.maxHp;
                             }
@@ -66,7 +66,7 @@ export function playerAction(action, active, a, b, c, e, setActive, setAnnouncer
                             //If Willstrike
                             if (active.wStrike_count > 0) {
                                 //active.hp += Math.floor(active.atk * 0.5 * (1 + active.pStrike_count) * (1 + e.ravage * 0.2) * (1 - e.barrier * 0.5) * 0.3);
-                                setAnnouncerMessage(`${active.name} drained ${Math.floor(active.atk * 0.5 * (1 + (active.pStrike_count - 1) * 0.5) * (1 + e.ravage * 0.2) * (1 - e.barrier * 0.5) * (1 - active.rot * 0.7) * 0.3)} health!`);
+                                setAnnouncerMessage(`${active.name} drained ${Math.floor(active.atk * 0.5 * (1 + (active.pStrike_count - 1) * 0.5) * (1 + e.ravage * 0.2) * (1 - e.barrier * 0.5) * (1 - active.rot * 0.7) * 0.15)} health!`);
                                 if (active.hp > active.maxHp) {
                                     active.hp = active.maxHp;
                                 }
@@ -82,7 +82,7 @@ export function playerAction(action, active, a, b, c, e, setActive, setAnnouncer
                                 setAnnouncerMessage (`Ally attacks now drain allies for some health!`)
                                 await wait (2500);
                             } else {
-                                setAnnouncerMessage(`${active.name} drained ${Math.floor(active.atk * 0.8 * (1 + e.ravage * 0.2) * (1 - e.barrier * 0.5) * (1 - active.rot * 0.7) * 0.3)} health!`);
+                                setAnnouncerMessage(`${active.name} drained ${Math.floor(active.atk * 0.8 * (1 + e.ravage * 0.2) * (1 - e.barrier * 0.5) * (1 - active.rot * 0.7) * 0.15)} health!`);
                                 if (active.hp > active.maxHp) {
                                     active.hp = active.maxHp;
                                 }
@@ -104,7 +104,7 @@ export function playerAction(action, active, a, b, c, e, setActive, setAnnouncer
                             //If Willstrike
                             if (active.wStrike_count > 0) {
                                 //active.hp += Math.floor(active.atk * 0.8 * (1 + e.ravage * 0.2) * (1 - e.barrier * 0.5) * 0.3);
-                                setAnnouncerMessage(`${active.name} drained ${Math.floor(active.atk * 0.8 * (1 + e.ravage * 0.2) * (1 - e.barrier * 0.5) * (1 - active.rot * 0.7) * 0.3)} health!`);
+                                setAnnouncerMessage(`${active.name} drained ${Math.floor(active.atk * 0.8 * (1 + e.ravage * 0.2) * (1 - e.barrier * 0.5) * (1 - active.rot * 0.7) * 0.15)} health!`);
                                 if (active.hp > active.maxHp) {
                                     active.hp = active.maxHp;
                                 }
@@ -157,7 +157,7 @@ export function playerAction(action, active, a, b, c, e, setActive, setAnnouncer
                             if (active.wStrike_count > 0) {
                                 await wait(2500);
                                 //active.hp += Math.floor(active.atk * 0.8 * (1 + e.ravage * 0.2) * (1 - e.barrier * 0.5) * 0.3);
-                                setAnnouncerMessage(`${active.name} drained ${Math.floor(active.atk * 0.8 * (1 + e.ravage * 0.2) * (1 - e.barrier * 0.5) * (1 - active.rot * 0.7) * 0.3)} health!`);
+                                setAnnouncerMessage(`${active.name} drained ${Math.floor(active.atk * 0.8 * (1 + e.ravage * 0.2) * (1 - e.barrier * 0.5) * (1 - active.rot * 0.7) * 0.15)} health!`);
                                 if (active.hp > active.maxHp) {
                                     active.hp = active.maxHp;
                                 }
@@ -193,19 +193,19 @@ export function playerAction(action, active, a, b, c, e, setActive, setAnnouncer
                 break
             case 'rotating_1':
                 (async () => {
-                    changeChar('Mack', active, a, b, c, setInSeq, setActive, setAnnouncerMessage);
+                    changeChar('Mack', active, a, b, c, setInSeq, setActive, setAnnouncerMessage, rocks);
                     setRotating(false);
                 })();
                 break
             case 'rotating_2':
                 (async () => {
-                    changeChar('Drake', active, a, b, c, setInSeq, setActive, setAnnouncerMessage);
+                    changeChar('Drake', active, a, b, c, setInSeq, setActive, setAnnouncerMessage, rocks);
                     setRotating(false);
                 })();
                 break
             case 'rotating_3':
                 (async () => {
-                    changeChar('Lionel', active, a, b, c, setInSeq, setActive, setAnnouncerMessage);
+                    changeChar('Lionel', active, a, b, c, setInSeq, setActive, setAnnouncerMessage, rocks);
                     setRotating(false);
                 })();
                 break

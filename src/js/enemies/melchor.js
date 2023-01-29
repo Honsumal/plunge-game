@@ -7,7 +7,7 @@ export default class Melchor extends Enemy {
         const level = 3;
         const hp = 250;
         const maxHp = 250;
-        const atk = 12;
+        const atk = 10;
         const spd = 12;
         const move_count = 2;
         const standard = "Dipstrike";

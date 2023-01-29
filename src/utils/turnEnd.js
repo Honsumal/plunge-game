@@ -40,6 +40,18 @@ export async function turnEnd (active, setAnnouncerMessage) {
         setAnnouncerMessage(`${active.name} took damage from the infection!`)
         await wait (2500);
     }
+
+    if(active.doomed) {
+        active.doom_count --;
+        if (active.doom_count === 0) {
+            active.hp -= active.maxHp;
+            setAnnouncerMessage(`${active.name}'s elegy was sung!`)
+            await wait (2500);
+        } else {
+            setAnnouncerMessage(`${active.name} is doomed in ${active.doom_count} turns!`);
+            await wait(2500);
+        }
+    }
     
     active.turnCount ++;
     console.log(active.turnCount)
