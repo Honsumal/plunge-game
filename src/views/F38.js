@@ -1,20 +1,20 @@
 import React, {useEffect, useState} from "react";
-import Mack from "../js/allies/mack"
-import Drake from "../js/allies/drake"
-import Lionel from "../js/allies/lionel"
-import Jerry from "../js/enemies/jerry"
-import { useF1BattleSequence } from "../hooks/useF1BattleSequence";
+import Mack from "../js/allies/mack";
+import Drake from "../js/allies/drake";
+import Lionel from "../js/allies/lionel";
+import { useF38BattleSequence } from "../hooks/useF38BattleSequence";
 import { BattleField } from "../components/BattleField";
 import { handleLevelUp } from "../utils/handleLevelUp";
+import Naldhe from "../js/enemies/nald'he";
 
-export default function F1 ({toMenu, toNext, aLv, setALv, bLv, setBLv, cLv, setCLv}) {
+export default function F38 ({toMenu, toNext, aLv, setALv, bLv, setBLv, cLv, setCLv}) {
     let aPrime = new Mack();
     
     let bPrime = new Drake();
 
     let cPrime = new Lionel();
     
-    let ePrime = new Jerry();
+    let ePrime = new Naldhe();
 
     for (let i = 0; i < aLv - 1; i++) {aPrime.levelUp()}
     for (let i = 0; i < bLv - 1; i++) {bPrime.levelUp()}
@@ -32,7 +32,7 @@ export default function F1 ({toMenu, toNext, aLv, setALv, bLv, setBLv, cLv, setC
 
     const [open, setOpen] = React.useState(false);
     const [openStart, setOpenStart] = React.useState(true)
-    
+
     const handleOpen = () => setOpen(true);
     const handleCloseStart = () => setOpenStart (false)
 
@@ -40,7 +40,7 @@ export default function F1 ({toMenu, toNext, aLv, setALv, bLv, setBLv, cLv, setC
         turn,
         inSeq,
         announcerMessage
-    } = useF1BattleSequence(sequence, active, a, b, c, e, setRotating, setActive)
+    } = useF38BattleSequence(sequence, active, a, b, c, e, setRotating, setActive)
 
     useEffect(() => {
         if (turn === 1 && !inSeq && e.isAlive()) {
@@ -53,7 +53,7 @@ export default function F1 ({toMenu, toNext, aLv, setALv, bLv, setBLv, cLv, setC
           if (!roundOver){
             handleOpen();
             if(!e.isAlive()){
-              handleLevelUp(a, b, c, 1);
+              handleLevelUp(a, b, c, 7);
               setALv(a.level);
               setBLv(b.level);
               setCLv(c.level);
@@ -65,7 +65,8 @@ export default function F1 ({toMenu, toNext, aLv, setALv, bLv, setBLv, cLv, setC
 
     return (
         <div>
-            <BattleField announcerMessage={announcerMessage} activechar={active} echar={e} setRotating={setRotating} setSequence={setSequence} setActive={setActive} handleCloseStart={handleCloseStart} turn={turn} rotating={rotating} toMenu={toMenu} toNext={toNext} open={open} openStart={openStart} a={a} b={b} c={c} floor={1}/>
+            <BattleField announcerMessage={announcerMessage} activechar={active} echar={e} setRotating={setRotating} setSequence={setSequence} setActive={setActive} handleCloseStart={handleCloseStart} turn={turn} rotating={rotating} toMenu={toMenu} toNext={toNext} open={open} openStart={openStart} a={a} b={b} c={c} floor={38}/>
+
         </div>
     )
 }

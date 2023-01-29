@@ -53,7 +53,7 @@ export default function F8 ({toMenu, toNext, aLv, setALv, bLv, setBLv, cLv, setC
           if (!roundOver){
             handleOpen();
             if(!e.isAlive()){
-              handleLevelUp(a, b, c);
+              handleLevelUp(a, b, c, 2);
               setALv(a.level);
               setBLv(b.level);
               setCLv(c.level);

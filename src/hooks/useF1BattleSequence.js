@@ -44,7 +44,7 @@ export const useF1BattleSequence = (sequence, active, a, b, c, e, setRotating, s
 
                     //If Opponent Spiky
                     if (active.sStrike_count > 0) {
-                        e.hp -= Math.floor(e.atk * (1 + active.ravage * 0.2) * (1 - active.barrier * 0.5) * 0.3);
+                        //e.hp -= Math.floor(e.atk * (1 + active.ravage * 0.2) * (1 - active.barrier * 0.5) * 0.3);
                         setAnnouncerMessage(`${e.name} took ${Math.floor(e.atk * (1 + active.ravage * 0.2) * (1 - active.barrier * 0.5) * 0.3)} damage from spikes!`)
                         await wait(2500);
                     }

@@ -6,7 +6,7 @@ export default function StartMenu ({ onF1, onTest }) {
         <Box>
             <Box sx = {{ display: 'flex', justifyContent: 'center' }}>
                 
-                <Typography>Welcome! Click the question mark above for instructions! When you're ready, challenge Melchor!</Typography>
+                <Typography>Welcome! Click the question mark above for instructions! When you're ready, challenge Jerry!</Typography>
 
             </Box>
             <br></br>

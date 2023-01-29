@@ -2,13 +2,13 @@ import Enemy from "./enemy";
 
 export default class Elvin extends Enemy {
     constructor () {
-        const name = 'Bars';
+        const name = 'Elvin';
         const epithet = 'the Blob';
-        const level = 5;
+        const level = 6;
         const hp = 700;
         const maxHp = 700;
         const atk = 25;
-        const spd = 6;
+        const spd = 16;
         const move_count = 2;
         const standard = 'Wall Slam';
         const special_1 = 'Concuss';
@@ -24,19 +24,20 @@ export default class Elvin extends Enemy {
             this.concussCharge = true;
             console.log(`Elvin is charging up a massive attack!`)
         } else {
+            this.concussCharge = false;
             //If Opponent Protect
             if (opp.protect) {
                 opp.protect = false;
                 console.log(`${this.name}'s attack bounced off the shield, cracking it!`)
             } else {
-                opp.hp -= Math.floor(this.atk * 1.5 * (1 + opp.ravage * 0.2) * (1 - opp.barrier * 0.5))
-                console.log(`${this.name} attacked ${opp.name} using ${this.special_1} for ${Math.floor(this.atk * 1.5 * (1 + opp.ravage * 0.2) * (1 - opp.barrier * 0.5))} damage!`)
+                opp.hp -= Math.floor(this.atk * 2 * (1 + opp.ravage * 0.2) * (1 - opp.barrier * 0.5))
+                console.log(`${this.name} attacked ${opp.name} using ${this.special_1} for ${Math.floor(this.atk * 2 * (1 + opp.ravage * 0.2) * (1 - opp.barrier * 0.5))} damage!`)
                 //If Opponent Spiky
                 if (opp.sStrike_count > 0) {
-                    this.hp -= Math.floor(this.atk * 1.5 * (1 + opp.ravage * 0.2) * (1 - opp.barrier * 0.5) * 0.3);
-                    console.log(`${this.name} took ${Math.floor(this.atk * 1.5 (1 + opp.ravage * 0.2) * (1 - opp.barrier * 0.5) * 0.3)} damage from spikes!`)
+                    this.hp -= Math.floor(this.atk * 2 * (1 + opp.ravage * 0.2) * (1 - opp.barrier * 0.5) * 0.3);
+                    console.log(`${this.name} took ${Math.floor(this.atk * 2 (1 + opp.ravage * 0.2) * (1 - opp.barrier * 0.5) * 0.3)} damage from spikes!`)
                 } 
-                
+
                 // If Opponent Barrier
                 if (opp.barrier) {
                     //opp.barrier_count --;

@@ -36,7 +36,7 @@ export async function turnEnd (active, setAnnouncerMessage) {
     }
 
     if (active.rot) {
-        active.hp -= Math.floor(active.maxHp * 0.125);
+        active.hp -= Math.floor(active.maxHp * 0.25);
         setAnnouncerMessage(`${active.name} took damage from the infection!`)
         await wait (2500);
     }

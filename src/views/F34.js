@@ -2,7 +2,7 @@ import React, {useEffect, useState} from "react";
 import Mack from "../js/allies/mack";
 import Drake from "../js/allies/drake";
 import Lionel from "../js/allies/lionel";
-import Elvin from "../js/enemies/Elvin"
+import Elvin from "../js/enemies/elvin"
 import { useF34BattleSequence } from "../hooks/useF34BattleSequence";
 import { BattleField } from "../components/BattleField";
 import { handleLevelUp } from "../utils/handleLevelUp";
@@ -53,7 +53,7 @@ export default function F34 ({toMenu, toNext, aLv, setALv, bLv, setBLv, cLv, set
           if (!roundOver){
             handleOpen();
             if(!e.isAlive()){
-              handleLevelUp(a, b, c);
+              handleLevelUp(a, b, c, 6);
               setALv(a.level);
               setBLv(b.level);
               setCLv(c.level);
@@ -65,7 +65,7 @@ export default function F34 ({toMenu, toNext, aLv, setALv, bLv, setBLv, cLv, set
 
     return (
         <div>
-            <BattleField announcerMessage={announcerMessage} activechar={active} echar={e} setRotating={setRotating} setSequence={setSequence} setActive={setActive} handleCloseStart={handleCloseStart} turn={turn} rotating={rotating} toMenu={toMenu} toNext={toNext} open={open} openStart={openStart} a={a} b={b} c={c} floor={30}/>
+            <BattleField announcerMessage={announcerMessage} activechar={active} echar={e} setRotating={setRotating} setSequence={setSequence} setActive={setActive} handleCloseStart={handleCloseStart} turn={turn} rotating={rotating} toMenu={toMenu} toNext={toNext} open={open} openStart={openStart} a={a} b={b} c={c} floor={34}/>
 
         </div>
     )

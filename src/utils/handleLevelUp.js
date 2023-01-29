@@ -1,4 +1,4 @@
-export function handleLevelUp (a, b, c) {
+export function handleLevelUp (a, b, c, stage) {
     console.log (a.turnCount, b.turnCount, c.turnCount)
 
     if (a.turnCount > b.turnCount && b.turnCount > c.turnCount) {
@@ -63,6 +63,10 @@ export function handleLevelUp (a, b, c) {
         c.levelUp();
         c.levelUp();
     }
+
+    if(a.level < stage - 1) {a.levelUp()}
+    if(b.level < stage - 1) {b.levelUp()}
+    if(c.level < stage - 1) {c.levelUp()}
 
     console.log(a.level, b.level, c.level)
 }

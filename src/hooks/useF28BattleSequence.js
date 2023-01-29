@@ -28,14 +28,6 @@ export const useF28BattleSequence = (sequence, active, a, b, c, e, setRotating, 
         } else if (turn === 1) {
             (async () => {
                 setInSeq(true)
-                // //Make Discharge
-                // if ((e.hp < e.maxHp * 0.65 || e.hp === e.maxHp * 0.65) && !dipslay) {
-                //     setDipslay(true);
-                //     active.dipslay = true;
-                //     active.spd *= 0.5;
-                //     setAnnouncerMessage(`Feeling the pressure, Melchor uses Dipslay! All allies have their speed halved!`)
-                //     await wait(3000)
-                // }
                 e.turnStart();
                 let dice = Math.floor(Math.random() * 3);
                 if (dice === 0 || dice === 1) {
@@ -51,7 +43,7 @@ export const useF28BattleSequence = (sequence, active, a, b, c, e, setRotating, 
 
                         //If Opponent Spiky
                         if (active.sStrike_count > 0) {
-                            e.hp -= Math.floor(e.atk * (1 + active.ravage * 0.2) * (1 - active.barrier * 0.5) * 0.3);
+                            //e.hp -= Math.floor(e.atk * (1 + active.ravage * 0.2) * (1 - active.barrier * 0.5) * 0.3);
                             setAnnouncerMessage(`${e.name} took ${Math.floor(e.atk * (1 + active.ravage * 0.2) * (1 - active.barrier * 0.5) * 0.3)} damage from spikes!`)
                             await wait(2500);
                         }
@@ -81,7 +73,7 @@ export const useF28BattleSequence = (sequence, active, a, b, c, e, setRotating, 
 
                     //If Opponent Spiky
                     if (active.sStrike_count > 0) {
-                        e.hp -= Math.floor(e.atk * 0.8 * (1 + active.ravage * 0.2) * 0.3);
+                        //e.hp -= Math.floor(e.atk * 0.8 * (1 + active.ravage * 0.2) * 0.3);
                         setAnnouncerMessage(`${e.name} took ${Math.floor(e.atk * (1 + active.ravage * 0.2) * 0.3)} damage from spikes!`);
                         await wait(2500);
                     }                    

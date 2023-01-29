@@ -39,8 +39,8 @@ export default class Character {
 
             // If Willstrike
             if (this.wStrike_count > 0) {
-                this.hp += Math.floor(this.atk * 0.8 * (1 + opp.ravage * 0.2) * (1 - opp.barrier * 0.5) * 0.3);
-                console.log(`${this.name} drained ${Math.floor(this.atk * 0.8 * (1 + opp.ravage * 0.2) * (1 - opp.barrier * 0.5) * 0.3)} health!`);
+                this.hp += Math.floor(this.atk * 0.8 * (1 + opp.ravage * 0.2) * (1 - opp.barrier * 0.5) * (1 - this.rot * 0.7) * 0.3);
+                console.log(`${this.name} drained ${Math.floor(this.atk * 0.8 * (1 + opp.ravage * 0.2) * (1 - opp.barrier * 0.5) * (1 - this.rot * 0.7) * 0.3)} health!`);
                 if (this.hp > this.maxHp) {
                     this.hp = this.maxHp;
                 }
@@ -72,8 +72,8 @@ export default class Character {
         
                     // If Willstrike
                     if (this.wStrike_count > 0) {
-                        this.hp += Math.floor(this.atk * 0.5 * (1 + this.pStrike_count * 0.5) * (1 + opp.ravage * 0.2) * (1 - opp.barrier * 0.5) * 0.3);
-                        console.log(`${this.name} drained ${Math.floor(this.atk  * 0.5 * (1 + this.pStrike_count * 0.5) * (1 + opp.ravage * 0.2) * (1 - opp.barrier * 0.5) * 0.3)} health!`);
+                        this.hp += Math.floor(this.atk * 0.5 * (1 + this.pStrike_count * 0.5) * (1 + opp.ravage * 0.2) * (1 - opp.barrier * 0.5) * (1 - this.rot * 0.7) * 0.3);
+                        console.log(`${this.name} drained ${Math.floor(this.atk  * 0.5 * (1 + this.pStrike_count * 0.5) * (1 + opp.ravage * 0.2) * (1 - opp.barrier * 0.5) * (1 - this.rot * 0.7) * 0.3)} health!`);
                         if (this.hp > this.maxHp) {
                             this.hp = this.maxHp;
                         }
@@ -105,8 +105,8 @@ export default class Character {
                         console.log(`${this.name}'s attacks now drain allies for some health!`)
                     }
         
-                    this.hp += Math.floor(this.atk * 0.8 * (1 + opp.ravage * 0.2) * (1 - opp.barrier * 0.5) * 0.3);
-                    console.log(`${this.name} drained ${Math.floor(this.atk * 0.8 * (1 + opp.ravage * 0.2) * (1 - opp.barrier * 0.5) * 0.3)} health!`);
+                    this.hp += Math.floor(this.atk * 0.8 * (1 + opp.ravage * 0.2) * (1 - opp.barrier * 0.5) * (1 - this.rot * 0.7) * 0.3);
+                    console.log(`${this.name} drained ${Math.floor(this.atk * 0.8 * (1 + opp.ravage * 0.2) * (1 - opp.barrier * 0.5) * (1 - this.rot * 0.7) * 0.3)} health!`);
                     if (this.hp > this.maxHp) {
                         this.hp = this.maxHp;
                     }
@@ -140,8 +140,8 @@ export default class Character {
 
                     // If Willstrike
                     if (this.wStrike_count > 0) {
-                        this.hp += Math.floor(this.atk * 0.8 * (1 + opp.ravage * 0.2) * (1 - opp.barrier * 0.5) * 0.3);
-                        console.log(`${this.name} drained ${Math.floor(this.atk * 0.8 * (1 + opp.ravage * 0.2) * (1 - opp.barrier * 0.5) * 0.3)} health!`);
+                        this.hp += Math.floor(this.atk * 0.8 * (1 + opp.ravage * 0.2) * (1 - opp.barrier * 0.5) * (1 - this.rot * 0.7) * 0.3);
+                        console.log(`${this.name} drained ${Math.floor(this.atk * 0.8 * (1 + opp.ravage * 0.2) * (1 - opp.barrier * 0.5) * (1 - this.rot * 0.7) * 0.3)} health!`);
                         if (this.hp > this.maxHp) {
                             this.hp = this.maxHp;
                         }
@@ -181,7 +181,7 @@ export default class Character {
                     // If Willstrike
                     if (this.wStrike_count > 0) {
                         this.hp += Math.floor(this.atk * 0.8 * (1 + opp.ravage * 0.2) * (1 - opp.barrier * 0.5) * 0.3);
-                        console.log(`${this.name} drained ${Math.floor(this.atk * 0.8 * (1 + opp.ravage * 0.2) * (1 - opp.barrier * 0.5) * 0.3)} health!`);
+                        console.log(`${this.name} drained ${Math.floor(this.atk * 0.8 * (1 + opp.ravage * 0.2) * (1 - opp.barrier * 0.5) * (1 - this.rot * 0.7) * 0.3)} health!`);
                         if (this.hp > this.maxHp) {
                             this.hp = this.maxHp;
                         }
@@ -284,7 +284,7 @@ export default class Character {
         }
 
         if(this.rot) {
-            this.hp -= Math.floor(this.maxHp * 0.125)
+            this.hp -= Math.floor(this.maxHp * 0.25)
         }
 
         this.turnCount ++;
