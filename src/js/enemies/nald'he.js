@@ -7,8 +7,8 @@ export default class Naldhe extends Enemy {
         const level = 7;
         const hp = 300;
         const maxHp = 300;
-        const atk = 9;
-        const spd = 21;
+        const atk = 7;
+        const spd = 17;
         const move_count = 2;
         const standard = 'Fire Breath';
         const special_1 = 'Venomous Bite';

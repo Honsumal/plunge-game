@@ -96,8 +96,12 @@ export function BattleField({announcerMessage, activechar, echar, setSequence, s
 
                     <Box sx={{ display: 'flex', justifyContent: 'space-evenly' }}>
                         <Button variant="contained" onClick={toMenu}>Menu</Button>
-
-                        <Button variant="contained" onClick={toNext}>Next Challenge!</Button>
+                            {!echar.isAlive() 
+                            ? floor === 50 
+                                ? <Typography variant="h5" component="h5"> Challenge Complete!</Typography>
+                                : <Button variant="contained" onClick={toNext}>Next Challenge!</Button>
+                                : <Typography variant="h5" component="h5"> Try Again!</Typography>}
+                        
                     </Box>                      
                 </Box>
             </Modal>

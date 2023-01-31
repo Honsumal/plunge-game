@@ -1,21 +1,17 @@
 # The Plunge
 
 ## Description
-This application is a turn-based combat game built using REACT. The user controlls three characters to fight an enemy. Currrently, only one stage has been written, but the combat is fully functional. 
+This application is a turn-based combat game built using REACT. The user controlls three characters to fight a set of ten battles with different opponents for each encounter, each with their own skills and abilities. The three characters level up over the course of the game depending on how much time they spend against each enemy, allowing the user to customize their gameplay experience. Lastly, if a player fails at a given floor, their characters are preserved and they can reattempt the stage.
 
 Future plans:
 
-MVP2:
-- Add health-based specials for stages so to change up a battle mid-combat
-- Add 9 more stages for a total of 10 enemies. 2 Stages have already been written to work in CLI but not ported to the application yet.
-- Add a levelling mechanic for users to customize their characters as they play through the stages
-- Add functionality to allow players to pick which character they want to start the battle with
-- Fix the display of damage/stats to be all at 2 d.p.
-
 MVP3:
+- Add spam protection to the game
 - Add field effects to each stage
 - Add additonal character options, and allow user to pick 3 of the characters to go through the game
-- Add sprites/sfx to the battle
+- Add sfx to the battle
+- Add some way of storing current levels even if user logs out
+- Add superboss
 
 MVP4:
 - Add an arcade mode

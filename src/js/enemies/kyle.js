@@ -18,17 +18,40 @@ export default class Kyle extends Enemy {
     };
 
     spec_1 (opp) {
-        opp.hp -= (Math.floor(this.atk * 0.5 * (1 + opp.ravage * 0.2) * (1 - opp.barrier * 0.5)));
-        console.log(`${this.name} attacked ${opp.name} for ${Math.floor(this.atk * 0.5 * (1 + opp.ravage * 0.2) * (1 - opp.barrier * 0.5))} damage!`)
-        if(opp.baseAtk > opp.maxHp && opp.baseAtk > opp.baseSpd) {
-            this.atk += opp.level;
-            console.log(`${this.name}'s attack increased`);
-        } else if (opp.baseSpd > opp.maxHp && opp.baseSpd > opp.baseAtk) {
-            this.spd += Math.floor(opp.level * 0.5);
-            console.log(`${this.name}'s speed increased`);
+        //If Opponent Protect
+        if (opp.protect) {
+            opp.protect = false;
+            console.log(`${this.name}'s attack bounced off the shield, cracking it!`)
         } else {
-            this.hp += opp.level * 5
-            console.log(`${this.name} recovered some HP`);
+            opp.hp -= (Math.floor(this.atk * 0.5 * (1 + opp.ravage * 0.2) * (1 - opp.barrier * 0.5)));
+            console.log(`${this.name} attacked ${opp.name} for ${Math.floor(this.atk * 0.5 * (1 + opp.ravage * 0.2) * (1 - opp.barrier * 0.5))} damage!`)
+            if (opp.baseAtk > opp.maxHp && opp.baseAtk > opp.baseSpd) {
+                this.atk += opp.level;
+                console.log(`${this.name}'s attack increased`);
+            } else if (opp.baseSpd > opp.maxHp && opp.baseSpd > opp.baseAtk) {
+                this.spd += Math.floor(opp.level * 0.5);
+                console.log(`${this.name}'s speed increased`);
+            } else {
+                this.hp += opp.level * 5
+                console.log(`${this.name} recovered some HP`);
+            }
+
+            //If Opponent Spiky
+            if (opp.sStrike_count > 0) {
+                this.hp -= Math.floor(this.atk * 0.5 * (1 + opp.ravage * 0.2) * (1 - opp.barrier * 0.5) * 0.3);
+                console.log(`${this.name} took ${Math.floor(this.atk * (1 + opp.ravage * 0.2) * (1 - opp.barrier * 0.5) * 0.3)} damage from spikes!`)
+            }
+
+            // If Opponent Barrier
+            if (opp.barrier) {
+                //opp.barrier_count --;
+                if (opp.barrier_count === 0) {
+                    opp.barrier = false;
+                    console.log(`${this.name} broke through ${opp.name}'s barrier!`);
+                } else {
+                    console.log(`${opp.name}'s barrier can withstand ${opp.barrier_count - 1} more hits!`)
+                }
+            }
         }
     }
 

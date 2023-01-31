@@ -29,8 +29,8 @@ export const useF28BattleSequence = (sequence, active, a, b, c, e, setRotating, 
             (async () => {
                 setInSeq(true)
                 e.turnStart();
-                let dice = Math.floor(Math.random() * 3);
-                if (dice === 0 || dice === 1) {
+                let dice = Math.floor(Math.random() * 4);
+                if (dice === 0 || dice === 1 || dice === 2) {
                     //If Opponent Protect
                     if (active.protect) {
                         active.protect = false;

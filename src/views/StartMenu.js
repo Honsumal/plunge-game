@@ -1,7 +1,7 @@
 import { Button, Typography } from "@mui/material"
 import { Box } from "@mui/system"
 
-export default function StartMenu ({ onF1, onTest }) {
+export default function StartMenu ({ onNew, onCurrent }) {
     return (
         <Box>
             <Box sx = {{ display: 'flex', justifyContent: 'center' }}>
@@ -13,9 +13,9 @@ export default function StartMenu ({ onF1, onTest }) {
 
             <Box sx = {{ display: 'flex', justifyContent: 'space-evenly' }}>
 
-                <Button variant="contained" onClick={onF1}>Start Anew!</Button>
+                <Button variant="contained" onClick={onNew}>Start Anew!</Button>
 
-                <Button variant="contained" onClick={onTest}>Continue!</Button>
+                <Button variant="contained" onClick={onCurrent}>Continue!</Button>
 
             </Box>
         </Box>

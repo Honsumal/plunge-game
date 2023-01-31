@@ -33,7 +33,7 @@ export default class Character {
     attack(opp) {
         //If Opponent Protect
         if (opp.protect) {
-            opp.protect = false;
+            //opp.protect = false;
             console.log(`${this.name}'s attack bounced off the shield, cracking it!`)
         } else {
             opp.hp -= Math.floor(this.atk * (1 + opp.ravage * 0.2) * (1 - opp.barrier * 0.5));
@@ -65,7 +65,7 @@ export default class Character {
         switch(this.special_1) {
             case 'Pugilistic Strike':
                 if (opp.protect) {
-                    opp.protect = false;
+                    //opp.protect = false;
                     console.log(`${this.name}'s attack bounced off the shield, cracking it!`)
                 } else {
                     opp.hp -= Math.floor(this.atk * 0.5 * (1 + this.pStrike_count * 0.5) * (1 + opp.ravage * 0.2) * (1 - opp.barrier * 0.5));
@@ -96,7 +96,7 @@ export default class Character {
             case 'Willful Strike':
                 //If Opponent Protect
                 if (opp.protect) {
-                    opp.protect = false;
+                    //opp.protect = false;
                     console.log(`${this.name}'s attack bounced off the shield, cracking it!`)
                 } else {
                     opp.hp -= Math.floor(this.atk * 0.8 * (1 + opp.ravage * 0.2) * (1 - opp.barrier * 0.5));
@@ -128,7 +128,7 @@ export default class Character {
             case 'Spiky Strike': 
                 //If Opponent Protect
                 if (opp.protect) {
-                    opp.protect = false;
+                    //opp.protect = false;
                     console.log(`${this.name}'s attack bounced off the shield, cracking it!`)
                 } else {
                     opp.hp -= Math.floor(this.atk * 0.8* (1 + opp.ravage * 0.2) * (1 - opp.barrier * 0.5));
@@ -169,7 +169,7 @@ export default class Character {
             case 'Ravage': 
                 //If Opponent Protect
                 if (opp.protect) {
-                    opp.protect = false;
+                    //opp.protect = false;
                     console.log(`${this.name}'s attack bounced off the shield, cracking it!`)
                 } else {
                     opp.hp -= Math.floor(this.atk * 0.8 * (1 + opp.ravage * 0.2) * (1 - opp.barrier * 0.5));
@@ -232,16 +232,19 @@ export default class Character {
 
             if (this.slipstream_count > 0) {
                 next.slipStream_count = this.slipstream_count;
+                this.slipstream_count = 0;
                 next.spd = Math.floor(next.spd * 1.2);
             }
 
             if (this.protect) {
                 next.protect = true;
+                this.protect = false;
             }
 
             if (this.barrier) {
                 next.barrier = true;
                 next.barrier_count = this.barrier_count;
+                this.barrier_count = 0
             }
 
             if(this.dipslay) {

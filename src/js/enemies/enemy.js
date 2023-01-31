@@ -59,7 +59,7 @@ export default class Enemy {
         }
     }
 
-    turnStart(eSlipstream) {
+    turnStart() {
         if ((this.name === 'Bars' || this.name === 'Kurosawa') && this.protect) {
             this.protect = false;
         }

@@ -1,6 +1,6 @@
 import { wait } from "./wait"
 
-export async function turnEnd (active, setAnnouncerMessage) {
+export async function turnEnd (active, setAnnouncerMessage, a, b, c, setRotating) {
     if (active.slipStream_count > 0) {
         active.slipStream_count --;
         if (active.slipStream_count > 0) {
@@ -36,7 +36,7 @@ export async function turnEnd (active, setAnnouncerMessage) {
     }
 
     if (active.rot) {
-        active.hp -= Math.floor(active.maxHp * 0.25);
+        active.hp -= Math.floor(active.maxHp * 0.125);
         setAnnouncerMessage(`${active.name} took damage from the infection!`)
         await wait (2500);
     }
@@ -51,6 +51,13 @@ export async function turnEnd (active, setAnnouncerMessage) {
             setAnnouncerMessage(`${active.name} is doomed in ${active.doom_count} turns!`);
             await wait(2500);
         }
+    }
+
+    if (!active.isAlive() && (a.isAlive() || b.isAlive() || c.isAlive())) {
+        setAnnouncerMessage(`${active.name} has been defeated!`)
+        await wait(2000)
+        setAnnouncerMessage(`Send someone else in!`)
+        setRotating(true);
     }
     
     active.turnCount ++;

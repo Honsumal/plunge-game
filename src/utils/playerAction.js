@@ -43,7 +43,7 @@ export function playerAction(action, active, a, b, c, e, setActive, setAnnouncer
                         }
                         
                     }
-                    await turnEnd(active, setAnnouncerMessage);
+                    await turnEnd(active, setAnnouncerMessage, a, b, c, setRotating);
                     //await wait(2500);
                     setInSeq(false);                            
                 })().then(() => lifeChecker(a, b, c, e, setAnnouncerMessage));
@@ -125,7 +125,7 @@ export function playerAction(action, active, a, b, c, e, setActive, setAnnouncer
                             }
                         }
                     }
-                    await turnEnd(active, setAnnouncerMessage);
+                    await turnEnd(active, setAnnouncerMessage, a, b, c, setRotating);
                     //await wait(2500);
                     setInSeq(false);
 
@@ -186,7 +186,7 @@ export function playerAction(action, active, a, b, c, e, setActive, setAnnouncer
                         setAnnouncerMessage(`Round ${round}: ${active.name} formed a barrier around the allies, nullifying some damage!`);
                         await wait(2500);
                     }
-                    await turnEnd(active, setAnnouncerMessage);
+                    await turnEnd(active, setAnnouncerMessage, a, b, c, setRotating);
                     //await wait(2500);
                     setInSeq(false)
                 })().then(() => lifeChecker(a, b, c, e, setAnnouncerMessage));

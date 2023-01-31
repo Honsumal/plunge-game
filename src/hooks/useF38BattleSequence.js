@@ -115,7 +115,7 @@ export const useF38BattleSequence = (sequence, active, a, b, c, e, setRotating, 
                         e.spec_1(active)
                         await wait(2500);
 
-                        //Set Opponent Ravage
+                        //Set Opponent Rot
                         setAnnouncerMessage(`${active.name} has been poisoned, taking damage over time!`);
                         await wait(2500);
 

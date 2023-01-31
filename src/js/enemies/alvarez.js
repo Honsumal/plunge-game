@@ -7,7 +7,7 @@ export default class Alvarez extends Enemy {
         const level = 4;
         const hp = 500;
         const maxHp = 500;
-        const atk = 10;
+        const atk = 7;
         const spd = 17;
         const move_count = 2;
         const standard = "Wrestle";
