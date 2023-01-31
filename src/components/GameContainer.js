@@ -17,11 +17,11 @@ export default function GameContainer() {
     const [currentCalculator, setCurrentCalculator] = useState('Rolls');
 
     const [mode, setMode] = useState('start');
-    const [current, setCurrent] = useState('f38')
+    const [current, setCurrent] = useState('f1')
 
-    const [aLv, setAlv] = useState(6);
-    const [bLv, setBlv] = useState(5);
-    const [cLv, setClv] = useState(9);
+    const [aLv, setAlv] = useState(1);
+    const [bLv, setBlv] = useState(1);
+    const [cLv, setClv] = useState(1);
     
 
     const handleCalculatorChange = (calc) => setCurrentCalculator(calc)

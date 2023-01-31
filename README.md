@@ -33,7 +33,7 @@ This application is deployed on Github Pages and does not require any additional
 
 The page is fully functional. All links and images have been tested and alt text has been provided where required. Below is an image of the screen you should arrive at on loading:
 
-![finished-webpage](./public/finished-webpage.png)
+![finished-webpage](./src/images//finished-webpage.png)
 
 ## Contributors
 
