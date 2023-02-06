@@ -4,6 +4,7 @@ import { changeChar } from "./changeChar";
 import { turnEnd } from "./turnEnd";
 
 export function playerAction(action, active, a, b, c, e, setActive, setAnnouncerMessage, setInSeq, setRotating, round, rocks) {
+    active.turnCount ++;
     if (action) {
         switch(action) {
             case 'standard' :                       

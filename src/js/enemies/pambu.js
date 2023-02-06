@@ -3,7 +3,7 @@ import Enemy from "./enemy";
 export default class Pambu extends Enemy {
     constructor () {
         const name = 'Pambu';
-        const epithet = 'the Monekey Kin';
+        const epithet = 'the Monkey Kin';
         const level = 2;
         const hp = 200;
         const maxHp = 200;

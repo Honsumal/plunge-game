@@ -60,7 +60,7 @@ export async function turnEnd (active, setAnnouncerMessage, a, b, c, setRotating
         setRotating(true);
     }
     
-    active.turnCount ++;
+    //active.turnCount ++;
     console.log(active.turnCount)
     //setAnnouncerMessage(``)
 }
