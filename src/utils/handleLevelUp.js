@@ -40,21 +40,30 @@ export function handleLevelUp (a, b, c, stage) {
         b.levelUp();
         c.levelUp();
         c.levelUp();
-    } else if (a.turnCount === b.turnCount && a.turnCount < c.turnCount) {
+    } else if (a.turnCount === b.turnCount && a.turnCount < c.turnCount && a.turnCount !== 0) {
         a.levelUp();
         b.levelUp();
         c.levelUp();
         c.levelUp();
-    } else if (a.turnCount === c.turnCount && a.turnCount < b.turnCount) {
+    } else if (a.turnCount === c.turnCount && a.turnCount < b.turnCount && a.turnCount !== 0) {
         a.levelUp();
         b.levelUp();
         b.levelUp();
         c.levelUp();
-    } else if (b.turnCount === c.turnCount && b.turnCount < a.turnCount) {
+    } else if (b.turnCount === c.turnCount && b.turnCount < a.turnCount && b.turnCount !== 0) {
         a.levelUp();
         a.levelUp();
         b.levelUp();
         c.levelUp();
+    } else if (a.turnCount === b.turnCount && a.turnCount < c.turnCount && a.turnCount === 0) {
+        c.levelUp();
+        c.levelUp();
+    } else if (a.turnCount === c.turnCount && a.turnCount < b.turnCount && a.turnCount === 0) {
+        b.levelUp();
+        b.levelUp();
+    } else if (b.turnCount === c.turnCount && b.turnCount < a.turnCount && b.turnCount === 0) {
+        a.levelUp();
+        a.levelUp();
     } else if (a.turnCount === b.turnCount && b.turnCount === c.turnCount) {
         a.levelUp();
         a.levelUp();
