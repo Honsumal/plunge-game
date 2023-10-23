@@ -15,6 +15,7 @@ export const useF28BattleSequence = (sequence, active, a, b, c, e, setRotating, 
     const [enemyGlobalTurnCounter, setEnemyTurnCounter] = useState(0)
 
     let turnCounter = 100;
+    let field = "superheated"
 
     useEffect (() => {
         
@@ -24,7 +25,7 @@ export const useF28BattleSequence = (sequence, active, a, b, c, e, setRotating, 
         setRound(round + 1);
 
         if(turn === 0) {
-            playerAction(action, active, a, b, c, e, setActive, setAnnouncerMessage, setInSeq, setRotating, round)
+            playerAction(action, active, a, b, c, e, setActive, setAnnouncerMessage, setInSeq, setRotating, round, field)
         } else if (turn === 1) {
             (async () => {
                 setInSeq(true)

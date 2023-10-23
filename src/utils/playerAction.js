@@ -3,7 +3,7 @@ import { wait } from "./wait";
 import { changeChar } from "./changeChar";
 import { turnEnd } from "./turnEnd";
 
-export function playerAction(action, active, a, b, c, e, setActive, setAnnouncerMessage, setInSeq, setRotating, round, rocks) {
+export function playerAction(action, active, a, b, c, e, setActive, setAnnouncerMessage, setInSeq, setRotating, round, field, deterius) {
     active.turnCount ++;
     if (action) {
         switch(action) {
@@ -44,7 +44,7 @@ export function playerAction(action, active, a, b, c, e, setActive, setAnnouncer
                         }
                         
                     }
-                    await turnEnd(active, setAnnouncerMessage, a, b, c, setRotating);
+                    await turnEnd(active, setAnnouncerMessage, a, b, c, setRotating, field);
                     //await wait(2500);
                     setInSeq(false);                            
                 })().then(() => lifeChecker(a, b, c, e, setAnnouncerMessage));
@@ -126,7 +126,7 @@ export function playerAction(action, active, a, b, c, e, setActive, setAnnouncer
                             }
                         }
                     }
-                    await turnEnd(active, setAnnouncerMessage, a, b, c, setRotating);
+                    await turnEnd(active, setAnnouncerMessage, a, b, c, setRotating, field);
                     //await wait(2500);
                     setInSeq(false);
 
@@ -187,26 +187,26 @@ export function playerAction(action, active, a, b, c, e, setActive, setAnnouncer
                         setAnnouncerMessage(`Round ${round}: ${active.name} formed a barrier around the allies, nullifying some damage!`);
                         await wait(2500);
                     }
-                    await turnEnd(active, setAnnouncerMessage, a, b, c, setRotating);
+                    await turnEnd(active, setAnnouncerMessage, a, b, c, setRotating, field);
                     //await wait(2500);
                     setInSeq(false)
                 })().then(() => lifeChecker(a, b, c, e, setAnnouncerMessage));
                 break
             case 'rotating_1':
                 (async () => {
-                    changeChar('Mack', active, a, b, c, setInSeq, setActive, setAnnouncerMessage, rocks);
+                    changeChar('Mack', active, a, b, c, setInSeq, setActive, setAnnouncerMessage, deterius);
                     setRotating(false);
                 })();
                 break
             case 'rotating_2':
                 (async () => {
-                    changeChar('Drake', active, a, b, c, setInSeq, setActive, setAnnouncerMessage, rocks);
+                    changeChar('Drake', active, a, b, c, setInSeq, setActive, setAnnouncerMessage, deterius);
                     setRotating(false);
                 })();
                 break
             case 'rotating_3':
                 (async () => {
-                    changeChar('Lionel', active, a, b, c, setInSeq, setActive, setAnnouncerMessage, rocks);
+                    changeChar('Lionel', active, a, b, c, setInSeq, setActive, setAnnouncerMessage, deterius);
                     setRotating(false);
                 })();
                 break

@@ -33,7 +33,7 @@ export default function GameContainer() {
             <div className='container'>
                 <br></br>
                 
-                {mode === 'start' && <StartMenu onNew={() => {setMode('f1'); setCurrent('f1'); setAlv(1); setBlv(1); setClv(1);}} onCurrent={() => setMode(current)} aLv={aLv} setALv={setAlv} bLv={bLv} setBLv={setBlv} cLv={cLv} setCLv={setClv}/>}
+                {mode === 'start' && <StartMenu onNew={() => {setMode('f8'); setCurrent('f8'); setAlv(1); setBlv(1); setClv(1);}} onCurrent={() => setMode(current)} aLv={aLv} setALv={setAlv} bLv={bLv} setBLv={setBlv} cLv={cLv} setCLv={setClv}/>}
                 {mode === 'f1' && <F1 toMenu={() => setMode('start')} toNext={() => {setMode('f8'); setCurrent('f8')}} aLv={aLv} setALv={setAlv} bLv={bLv} setBLv={setBlv} cLv={cLv} setCLv={setClv}/>}
                 {mode === 'f8' && <F8 toMenu={() => setMode('start')} toNext={() => {setMode('f20'); setCurrent('f20')}} aLv={aLv} setALv={setAlv} bLv={bLv} setBLv={setBlv} cLv={cLv} setCLv={setClv}/>}
                 {mode === 'f20' && <F20 toMenu={() => setMode('start')} toNext={() => {setMode('f28'); setCurrent('f28')}} aLv={aLv} setALv={setAlv} bLv={bLv} setBLv={setBlv} cLv={cLv} setCLv={setClv}/>}

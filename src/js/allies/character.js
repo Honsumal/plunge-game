@@ -215,7 +215,7 @@ export default class Character {
         }
     }
 
-    rotateTo(next, rocks) {
+    rotateTo(next, deterius) {
         if (this.name === next.name) {
             console.log(`${this.name} is already in combat!`)
         }
@@ -256,7 +256,7 @@ export default class Character {
             next.isActive = true;
             console.log(`${this.name} retreated! ${next.name} stepped up to fight!`)
 
-            if(rocks){
+            if(deterius){
                 next.hp -= (Math.floor(next.maxHp * 0.125))
                 console.log(`${next.name} took damage from the hazards!`)
             }

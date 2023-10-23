@@ -1,6 +1,6 @@
 import { wait } from "./wait"
 
-export async function turnEnd (active, setAnnouncerMessage, a, b, c, setRotating) {
+export async function turnEnd (active, setAnnouncerMessage, a, b, c, setRotating, field) {
     if (active.slipStream_count > 0) {
         active.slipStream_count --;
         if (active.slipStream_count > 0) {
@@ -52,6 +52,23 @@ export async function turnEnd (active, setAnnouncerMessage, a, b, c, setRotating
             await wait(2500);
         }
     }
+    
+    if (field === "grass") {
+        active.hp += Math.ceil(active.maxHp * 0.0625)
+        if (active.hp > active.maxHp) {
+            active.hp = active.maxHp
+        }
+        setAnnouncerMessage(`${active.name} was healed for ${Math.ceil(active.maxHp * 0.0625)} HP by the grassy field!`)
+        await wait (2500);
+    } else if (field === "superheated") {
+        active.hp -= Math.floor(active.maxHP * 0.0625);
+        setAnnouncerMessage(`${active.name} was damaged ${Math.floor(active.maxHp * 0.0625)} HP by the burning field!`)
+        await wait (2500);
+    } else if (field === "swamp") {
+        active.spd -= Math.floor(active.spd * 0.66);
+        setAnnouncerMessage(`${active.name} is weighed down by the swamp, decreasing their speed by ${Math.floor(active.spd * 0.66)}!`)
+        await wait (2500);
+    }
 
     if (!active.isAlive() && (a.isAlive() || b.isAlive() || c.isAlive())) {
         setAnnouncerMessage(`${active.name} has been defeated!`)
@@ -59,7 +76,7 @@ export async function turnEnd (active, setAnnouncerMessage, a, b, c, setRotating
         setAnnouncerMessage(`Send someone else in!`)
         setRotating(true);
     }
-    
+   
     //active.turnCount ++;
     console.log(active.turnCount)
     //setAnnouncerMessage(``)

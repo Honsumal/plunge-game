@@ -1,6 +1,6 @@
 import { wait } from "./wait";
 
-export async function changeChar(nameNext, active, a, b, c, setInSeq, setActive, setAnnouncerMessage, rocks) {
+export async function changeChar(nameNext, active, a, b, c, setInSeq, setActive, setAnnouncerMessage, deterius) {
     setInSeq(true)
     if (active.name === nameNext) {
         setAnnouncerMessage(`${active.name} is already in combat!`);
@@ -13,10 +13,10 @@ export async function changeChar(nameNext, active, a, b, c, setInSeq, setActive,
             if (!a.isAlive()) {
                 setAnnouncerMessage (`${a.name} has already fallen, ${active.name} cannot switch to them!`)
             } else {
-                active.rotateTo(a, rocks);
+                active.rotateTo(a, deterius);
                 setActive(a);
                 setAnnouncerMessage (`${active.name} retreated! ${a.name} stepped up to fight!`);
-                if(rocks) {
+                if(deterius) {
                     await wait(2500)
                     setAnnouncerMessage(`${a.name} took damage from the hazards!`)
                 }
@@ -26,10 +26,10 @@ export async function changeChar(nameNext, active, a, b, c, setInSeq, setActive,
             if (!b.isAlive()) {
                 setAnnouncerMessage (`${b.name} has already fallen, ${active.name} cannot switch to them!`)
             } else {
-                active.rotateTo(b, rocks);
+                active.rotateTo(b, deterius);
                 setActive(b);
                 setAnnouncerMessage (`${active.name} retreated! ${b.name} stepped up to fight!`);
-                if(rocks) {
+                if(deterius) {
                     await wait(2500)
                     setAnnouncerMessage(`${b.name} took damage from the hazards!`)
                 };
@@ -39,10 +39,10 @@ export async function changeChar(nameNext, active, a, b, c, setInSeq, setActive,
             if (!c.isAlive()) {
                 setAnnouncerMessage (`${c.name} has already fallen, ${active.name} cannot switch to them!`)
             } else {
-                active.rotateTo(c, rocks);
+                active.rotateTo(c, deterius);
                 setActive(c);
                 setAnnouncerMessage (`${active.name} retreated! ${c.name} stepped up to fight!`);
-                if(rocks) {
+                if(deterius) {
                     await wait(2500)
                     setAnnouncerMessage(`${c.name} took damage from the hazards!`)
                 };

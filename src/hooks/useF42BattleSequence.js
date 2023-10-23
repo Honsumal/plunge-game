@@ -19,6 +19,7 @@ export const useF42BattleSequence = (sequence, active, a, b, c, e, setRotating, 
     const [enemyGlobalTurnCounter, setEnemyTurnCounter] = useState(0)
 
     let turnCounter = 100;
+    let field = "electric"
 
     useEffect (() => {
         
@@ -28,7 +29,7 @@ export const useF42BattleSequence = (sequence, active, a, b, c, e, setRotating, 
         setRound(round + 1)
 
         if(turn === 0) {
-            playerAction(action, active, a, b, c, e, setActive, setAnnouncerMessage, setInSeq, setRotating, round, deterius)
+            playerAction(action, active, a, b, c, e, setActive, setAnnouncerMessage, setInSeq, setRotating, round, field, deterius)
         } else if (turn === 1) {
             (async () => {
                 setInSeq(true)    
