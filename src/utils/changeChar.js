@@ -1,6 +1,6 @@
 import { wait } from "./wait";
 
-export async function changeChar(nameNext, active, a, b, c, setInSeq, setActive, setAnnouncerMessage, deterius) {
+export async function changeChar(nameNext, active, a, b, c, setInSeq, setActive, setAnnouncerMessage, deterius, field) {
     setInSeq(true)
     if (active.name === nameNext) {
         setAnnouncerMessage(`${active.name} is already in combat!`);
@@ -48,7 +48,14 @@ export async function changeChar(nameNext, active, a, b, c, setInSeq, setActive,
                 };
             }
         }
-        await wait(2500)
+        await wait(2500);
+        
+        if (field === 'electric') {
+            active.spd += Math.floor(active.spd * 0.2)
+            setAnnouncerMessage(`The electric field boosted the incoming ally's speed!`)
+            await wait(2500)
+        }
+
         active.turnStart();
         setInSeq(false);
     }  

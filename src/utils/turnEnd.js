@@ -61,12 +61,12 @@ export async function turnEnd (active, setAnnouncerMessage, a, b, c, setRotating
         setAnnouncerMessage(`${active.name} was healed for ${Math.ceil(active.maxHp * 0.0625)} HP by the grassy field!`)
         await wait (2500);
     } else if (field === "superheated") {
-        active.hp -= Math.floor(active.maxHP * 0.0625);
+        active.hp -= Math.floor(active.maxHp * 0.0625);
         setAnnouncerMessage(`${active.name} was damaged ${Math.floor(active.maxHp * 0.0625)} HP by the burning field!`)
         await wait (2500);
     } else if (field === "swamp") {
-        active.spd -= Math.floor(active.spd * 0.66);
-        setAnnouncerMessage(`${active.name} is weighed down by the swamp, decreasing their speed by ${Math.floor(active.spd * 0.66)}!`)
+        active.spd -= Math.floor(active.spd * 0.2);
+        setAnnouncerMessage(`${active.name} is weighed down by the swamp, decreasing their speed by ${Math.floor(active.spd * 0.2)}!`)
         await wait (2500);
     }
 
