@@ -7,7 +7,7 @@ Future plans:
 
 MVP3:
 - Add spam protection to the game
-- Add field effects to each stage
+- Add field effects to each stage (Completed)
 - Add additonal character options, and allow user to pick 3 of the characters to go through the game
 - Add sfx to the battle
 - Add some way of storing current levels even if user logs out
