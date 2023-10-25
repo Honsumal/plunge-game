@@ -1,13 +1,13 @@
 {
   "files": {
     "main.css": "/plunge-game/static/css/main.809b9898.css",
-    "main.js": "/plunge-game/static/js/main.ad2f59c3.js",
+    "main.js": "/plunge-game/static/js/main.835becda.js",
     "index.html": "/plunge-game/index.html",
     "main.809b9898.css.map": "/plunge-game/static/css/main.809b9898.css.map",
-    "main.ad2f59c3.js.map": "/plunge-game/static/js/main.ad2f59c3.js.map"
+    "main.835becda.js.map": "/plunge-game/static/js/main.835becda.js.map"
   },
   "entrypoints": [
     "static/css/main.809b9898.css",
-    "static/js/main.ad2f59c3.js"
+    "static/js/main.835becda.js"
   ]
 }
