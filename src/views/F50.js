@@ -36,11 +36,13 @@ export default function F50 ({toMenu, toNext, aLv, setALv, bLv, setBLv, cLv, set
     const handleOpen = () => setOpen(true);
     const handleCloseStart = () => setOpenStart (false)
 
+    const field = 'diamond'
+
     const {
         turn,
         inSeq,
         announcerMessage
-    } = useF50BattleSequence(sequence, active, a, b, c, e, setRotating, setActive)
+    } = useF50BattleSequence(sequence, active, a, b, c, e, setRotating, setActive, field)
 
     useEffect(() => {
         if (turn === 1 && !inSeq && e.isAlive()) {
@@ -65,7 +67,7 @@ export default function F50 ({toMenu, toNext, aLv, setALv, bLv, setBLv, cLv, set
 
     return (
         <div>
-            <BattleField announcerMessage={announcerMessage} activechar={active} echar={e} setRotating={setRotating} setSequence={setSequence} setActive={setActive} handleCloseStart={handleCloseStart} turn={turn} rotating={rotating} toMenu={toMenu} toNext={toNext} open={open} openStart={openStart} a={a} b={b} c={c} floor={50}/>
+            <BattleField announcerMessage={announcerMessage} activechar={active} echar={e} setRotating={setRotating} setSequence={setSequence} setActive={setActive} handleCloseStart={handleCloseStart} turn={turn} rotating={rotating} toMenu={toMenu} toNext={toNext} open={open} openStart={openStart} a={a} b={b} c={c} floor={50} field={field}/>
 
         </div>
     )

@@ -50,7 +50,7 @@ export async function changeChar(nameNext, active, a, b, c, setInSeq, setActive,
         }
         await wait(2500);
         
-        if (field === 'electric') {
+        if (field === 'Electric') {
             active.spd += Math.floor(active.spd * 0.2)
             setAnnouncerMessage(`The electric field boosted the incoming ally's speed!`)
             await wait(2500)

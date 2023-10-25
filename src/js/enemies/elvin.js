@@ -8,7 +8,7 @@ export default class Elvin extends Enemy {
         const hp = 700;
         const maxHp = 700;
         const atk = 25;
-        const spd = 16;
+        const spd = 12;
         const move_count = 2;
         const standard = 'Wall Slam';
         const special_1 = 'Concuss';

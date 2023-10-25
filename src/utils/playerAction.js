@@ -118,7 +118,7 @@ export function playerAction(action, active, a, b, c, e, setActive, setAnnouncer
                                 await wait(2500);
                             }
 
-                            if (field === 'crystalline') {
+                            if (field === 'Crystalline') {
                                 active.atk += Math.floor(active.atk * 0.2)
                                 setAnnouncerMessage(`The crystalline field augments ${active.name}'s attacks!`)
                                 await wait(2500);
@@ -165,7 +165,7 @@ export function playerAction(action, active, a, b, c, e, setActive, setAnnouncer
                             setAnnouncerMessage (`${e.name} has been ravaged, taking extra damage!`);
                             await wait(2500);
 
-                            if (field === 'diamond') {
+                            if (field === 'Diamond') {
                                 e.spd -= Math.floor(e.spd * 0.2)
                                 setAnnouncerMessage(`Hitting the diamond field lowered ${e.name}'s speed!`)
                             }
@@ -199,7 +199,7 @@ export function playerAction(action, active, a, b, c, e, setActive, setAnnouncer
                         active.spec_2();
                         setAnnouncerMessage(`Round ${round}: ${active.name} conjured up magicks to increase allied speed!`);
                         await wait(2500);
-                        if (field === 'steel'){
+                        if (field === 'Steel'){
                             active.spd += Math.floor(active.baseSpd * 0.2)
                             setAnnouncerMessage(`The steel field further increased ${active.name}'s speed!`)
                             await wait(2500);
@@ -208,7 +208,7 @@ export function playerAction(action, active, a, b, c, e, setActive, setAnnouncer
                         active.spec_2();
                         setAnnouncerMessage(`Round ${round}: ${active.name} formed a barrier around the allies, nullifying some damage!`);
                         await wait(2500);
-                        if (field === 'titanium') {
+                        if (field === 'Titanium') {
                             active.barrier_count += 2
                             setAnnouncerMessage(`The titanium field augments the barrier!`)
                         }

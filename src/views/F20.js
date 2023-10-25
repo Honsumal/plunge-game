@@ -36,11 +36,13 @@ export default function F20 ({toMenu, toNext, aLv, setALv, bLv, setBLv, cLv, set
     const handleOpen = () => setOpen(true);
     const handleCloseStart = () => setOpenStart (false)
 
+    const field = 'steel'
+
     const {
         turn,
         inSeq,
         announcerMessage
-    } = useF20BattleSequence(sequence, active, a, b, c, e, setRotating, setActive)
+    } = useF20BattleSequence(sequence, active, a, b, c, e, setRotating, setActive, field)
 
     useEffect(() => {
         if (turn === 1 && !inSeq && e.isAlive()) {
@@ -65,7 +67,7 @@ export default function F20 ({toMenu, toNext, aLv, setALv, bLv, setBLv, cLv, set
 
     return (
         <div>
-            <BattleField announcerMessage={announcerMessage} activechar={active} echar={e} setRotating={setRotating} setSequence={setSequence} setActive={setActive} handleCloseStart={handleCloseStart} turn={turn} rotating={rotating} toMenu={toMenu} toNext={toNext} open={open} openStart={openStart} a={a} b={b} c={c} floor={20}/>
+            <BattleField announcerMessage={announcerMessage} activechar={active} echar={e} setRotating={setRotating} setSequence={setSequence} setActive={setActive} handleCloseStart={handleCloseStart} turn={turn} rotating={rotating} toMenu={toMenu} toNext={toNext} open={open} openStart={openStart} a={a} b={b} c={c} floor={20} field={field}/>
         </div>
     )
 }

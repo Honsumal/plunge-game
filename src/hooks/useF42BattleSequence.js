@@ -5,7 +5,7 @@ import { playerAction } from "../utils/playerAction";
 import { useState, useEffect } from "react";
 
 
-export const useF42BattleSequence = (sequence, active, a, b, c, e, setRotating, setActive) => {
+export const useF42BattleSequence = (sequence, active, a, b, c, e, setRotating, setActive, field) => {
     const [turn, setTurn] = useState(0);
     const [round, setRound] = useState(0);
     const [inSeq, setInSeq] = useState(false);
@@ -19,7 +19,6 @@ export const useF42BattleSequence = (sequence, active, a, b, c, e, setRotating, 
     const [enemyGlobalTurnCounter, setEnemyTurnCounter] = useState(0)
 
     let turnCounter = 100;
-    let field = "electric"
 
     useEffect (() => {
         
