@@ -36,7 +36,7 @@ export default function F38 ({toMenu, toNext, aLv, setALv, bLv, setBLv, cLv, set
     const handleOpen = () => setOpen(true);
     const handleCloseStart = () => setOpenStart (false)
 
-    const field = 'crystalline'
+    const field = 'Crystalline'
 
     const {
         turn,

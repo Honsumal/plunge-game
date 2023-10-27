@@ -53,21 +53,26 @@ export function BattleField({announcerMessage, activechar, echar, setSequence, s
                 <h2>Actions:</h2>
                 <br></br>
 
-                {turn === 0 && rotating 
+                {!turn &&"burn"}
+
+                {!turn && rotating 
                     ? <Rotations 
                         rMack={() => {setSequence({ action: 'rotating_1', turn })}} 
                         rDrake={() => {setSequence({ action: 'rotating_2', turn })}} 
                         rLionel={() => {setSequence({ action: 'rotating_3', turn })}} 
-                        back={() => setRotating(false)} />
+                        back={() => setRotating(false)}
+                        turn={turn} />
 
                     : <Actions 
                         active = {activechar}
                         onStandard={() => setSequence({ action: 'standard', turn })} 
                         onSpec1={() => setSequence({action: 'special_1', turn })} 
                         onSpec2={() => setSequence({action: 'special_2', turn })} 
-                        onRotate={() => setRotating(true)} /> }
+                        onRotate={() => setRotating(true)} 
+                        turn={turn}/> 
+                }
                 
-                {turn === 1 && <h1 className="centered">Wait</h1>}
+                {turn && <h1 className="centered">Wait</h1>}
                 <br></br>
             </div>
 

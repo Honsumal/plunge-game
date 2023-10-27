@@ -36,7 +36,7 @@ export default function F34 ({toMenu, toNext, aLv, setALv, bLv, setBLv, cLv, set
     const handleOpen = () => setOpen(true);
     const handleCloseStart = () => setOpenStart (false)
 
-    const field = 'swamp'
+    const field = 'Swamp'
 
     const {
         turn,

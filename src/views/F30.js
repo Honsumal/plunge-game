@@ -36,7 +36,7 @@ export default function F30 ({toMenu, toNext, aLv, setALv, bLv, setBLv, cLv, set
     const handleOpen = () => setOpen(true);
     const handleCloseStart = () => setOpenStart (false)
 
-    const field = 'titanium'
+    const field = 'Titanium'
 
     const {
         turn,
