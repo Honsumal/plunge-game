@@ -73,9 +73,9 @@ export function handleLevelUp (a, b, c, stage) {
         c.levelUp();
     }
 
-    if(a.level < stage - 1) {a.levelUp()}
-    if(b.level < stage - 1) {b.levelUp()}
-    if(c.level < stage - 1) {c.levelUp()}
+    // if(a.level < stage - 1) {a.levelUp()}
+    // if(b.level < stage - 1) {b.levelUp()}
+    // if(c.level < stage - 1) {c.levelUp()}
 
     console.log(a.level, b.level, c.level)
 }
